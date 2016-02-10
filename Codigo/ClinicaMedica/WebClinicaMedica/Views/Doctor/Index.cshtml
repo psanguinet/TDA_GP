@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DataAccess.Model.Doctor>
+
+@{
+    ViewBag.Title = "Listado de Doctores";
+}
+
+<h2>Listado de Doctores</h2>
+
+<p>
+    @Html.ActionLink("Nuevo doctor", MVC.Doctor.ActionNames.Create, MVC.Doctor.Name)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CI)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IsDirector)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDirector)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", MVC.Doctor.ActionNames.Edit, new { id = item.DoctorID }) |
+                @Html.ActionLink("Detalles", MVC.Doctor.ActionNames.Details, new { id = item.DoctorID }) |
+                @Html.ActionLink("Borrar", MVC.Doctor.ActionNames.Delete, new { id = item.DoctorID })
+            </td>
+        </tr>
+    }
+
+</table>

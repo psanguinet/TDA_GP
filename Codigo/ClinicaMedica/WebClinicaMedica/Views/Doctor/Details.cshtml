@@ -1,0 +1,106 @@
+﻿@model DataAccess.Model.Doctor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Doctor</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorConsulta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorConsulta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SueldoMinimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SueldoMinimo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDirector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDirector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DoctorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

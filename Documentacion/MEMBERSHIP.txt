@@ -1,0 +1,5 @@
+--Levanto el iis express
+iisexpress.exe /path:C:\Windows\Microsoft.NET\Framework\v4.0.30319\ASP.NETWebAdminFiles /vpath:"/ASP.NETWebAdminFiles" /port:8089 /clr:4.0 /ntlm
+
+--Lecanto el sitio
+http://localhost:8089/asp.netwebadminfiles/default.aspx?applicationPhysicalPath=c:\users\psanguinet\documents\visual studio 2013\Projects\WebApplicationMVC\WebApplicationMVC\&applicationUrl=/LM/W3SVC/3/ROOT
