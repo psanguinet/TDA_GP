@@ -1,0 +1,42 @@
+﻿@model DataAccess.Model.Especialidad
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles de la</h2>
+
+<div>
+    <h4>Especialidad</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", MVC.Especialidad.ActionNames.Edit, new { id = Model.EspecialidadID }) |
+    @Html.ActionLink("Volver al listado", MVC.Especialidad.ActionNames.Index)
+</p>

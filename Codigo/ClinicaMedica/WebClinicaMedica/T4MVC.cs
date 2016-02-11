@@ -29,7 +29,9 @@ public static partial class MVC
 {
     public static WebClinicaMedica.Controllers.AccountController Account = new WebClinicaMedica.Controllers.T4MVC_AccountController();
     public static WebClinicaMedica.Controllers.DoctorController Doctor = new WebClinicaMedica.Controllers.T4MVC_DoctorController();
+    public static WebClinicaMedica.Controllers.EspecialidadController Especialidad = new WebClinicaMedica.Controllers.T4MVC_EspecialidadController();
     public static WebClinicaMedica.Controllers.HomeController Home = new WebClinicaMedica.Controllers.T4MVC_HomeController();
+    public static WebClinicaMedica.Controllers.RolController Rol = new WebClinicaMedica.Controllers.T4MVC_RolController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

@@ -39,6 +39,15 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="UsuarioID" />
@@ -48,6 +57,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Mail" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RolID" Type="int" />
         </EntityType>
         <Association Name="FK_Doctor_Especialidad_Doctor">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
@@ -85,10 +95,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Usuario_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClinicaMedicaModelStoreContainer">
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor_Especialidad" EntityType="Self.Doctor_Especialidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Doctor_Especialidad_Doctor" Association="Self.FK_Doctor_Especialidad_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
@@ -101,6 +124,10 @@
           <AssociationSet Name="FK_Doctor_Usuario" Association="Self.FK_Doctor_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -118,6 +145,11 @@
           <AssociationSet Name="Doctor_Especialidad" Association="ClinicaMedicaModel.Doctor_Especialidad">
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="Especialidad" EntitySet="Especialidad" />
+          </AssociationSet>
+          <EntitySet Name="Rol" EntityType="ClinicaMedicaModel.Rol" />
+          <AssociationSet Name="FK_Usuario_Rol" Association="ClinicaMedicaModel.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Doctor">
@@ -159,6 +191,8 @@
           <Property Name="Mail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="ClinicaMedicaModel.FK_Doctor_Usuario" FromRole="Usuario" ToRole="Doctor" />
+          <Property Name="RolID" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="ClinicaMedicaModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
         <Association Name="FK_Doctor_Usuario">
           <End Type="ClinicaMedicaModel.Usuario" Role="Usuario" Multiplicity="1" />
@@ -175,6 +209,28 @@
         <Association Name="Doctor_Especialidad">
           <End Type="ClinicaMedicaModel.Doctor" Role="Doctor" Multiplicity="*" />
           <End Type="ClinicaMedicaModel.Especialidad" Role="Especialidad" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ClinicaMedicaModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Usuario_Rol">
+          <End Type="ClinicaMedicaModel.Rol" Role="Rol" Multiplicity="0..1" />
+          <End Type="ClinicaMedicaModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -213,6 +269,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="ClinicaMedicaModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -229,6 +286,16 @@
               <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="ClinicaMedicaModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

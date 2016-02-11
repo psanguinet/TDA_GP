@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DataModel\Doctor_MD.cs" />
     <Compile Include="DataModel\Especialidad_MD.cs" />
+    <Compile Include="DataModel\Rol_MD.cs" />
     <Compile Include="DataModel\Usuario_MD.cs" />
     <Compile Include="Model\Doctor.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -71,6 +72,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Rol.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Usuario.cs">
       <DependentUpon>Model.tt</DependentUpon>

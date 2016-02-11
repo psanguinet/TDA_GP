@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataAccess.Model.Rol>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Roles</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Rol", MVC.Rol.ActionNames.Create)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.RolID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.RolID }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.RolID })
+        </td>
+    </tr>
+}
+
+</table>

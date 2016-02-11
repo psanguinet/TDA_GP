@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="ClinicaMedicaModel.Usuario" Width="1.5" PointX="0.75" PointY="1.75" />
         <AssociationConnector Association="ClinicaMedicaModel.FK_Doctor_Usuario" />
         <AssociationConnector Association="ClinicaMedicaModel.Doctor_Especialidad" />
+        <EntityTypeShape EntityType="ClinicaMedicaModel.Rol" Width="1.5" PointX="0.75" PointY="7" />
+        <AssociationConnector Association="ClinicaMedicaModel.FK_Usuario_Rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

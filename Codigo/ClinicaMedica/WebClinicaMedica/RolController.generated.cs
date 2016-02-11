@@ -25,13 +25,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace WebClinicaMedica.Controllers
 {
-    public partial class DoctorController
+    public partial class RolController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DoctorController() { }
+        public RolController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected DoctorController(Dummy d) { }
+        protected RolController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -83,21 +83,15 @@ namespace WebClinicaMedica.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult FileUpload()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FileUpload);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DoctorController Actions { get { return MVC.Doctor; } }
+        public RolController Actions { get { return MVC.Rol; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Doctor";
+        public readonly string Name = "Rol";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Doctor";
+        public const string NameConst = "Rol";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -111,7 +105,6 @@ namespace WebClinicaMedica.Controllers
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
             public readonly string DeleteConfirmed = "Delete";
-            public readonly string FileUpload = "FileUpload";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,7 +116,6 @@ namespace WebClinicaMedica.Controllers
             public const string Edit = "Edit";
             public const string Delete = "Delete";
             public const string DeleteConfirmed = "Delete";
-            public const string FileUpload = "FileUpload";
         }
 
 
@@ -141,9 +133,7 @@ namespace WebClinicaMedica.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string doctor = "doctor";
-            public readonly string usuario = "usuario";
-            public readonly string especialidad = "especialidad";
+            public readonly string rol = "rol";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -152,7 +142,7 @@ namespace WebClinicaMedica.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string doctor = "doctor";
+            public readonly string rol = "rol";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -170,14 +160,6 @@ namespace WebClinicaMedica.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_FileUpload s_params_FileUpload = new ActionParamsClass_FileUpload();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_FileUpload FileUploadParams { get { return s_params_FileUpload; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_FileUpload
-        {
-            public readonly string file = "file";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -193,21 +175,19 @@ namespace WebClinicaMedica.Controllers
                 public readonly string Details = "Details";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
-                public readonly string PV_Usuario = "PV_Usuario";
             }
-            public readonly string Create = "~/Views/Doctor/Create.cshtml";
-            public readonly string Delete = "~/Views/Doctor/Delete.cshtml";
-            public readonly string Details = "~/Views/Doctor/Details.cshtml";
-            public readonly string Edit = "~/Views/Doctor/Edit.cshtml";
-            public readonly string Index = "~/Views/Doctor/Index.cshtml";
-            public readonly string PV_Usuario = "~/Views/Doctor/PV_Usuario.cshtml";
+            public readonly string Create = "~/Views/Rol/Create.cshtml";
+            public readonly string Delete = "~/Views/Rol/Delete.cshtml";
+            public readonly string Details = "~/Views/Rol/Details.cshtml";
+            public readonly string Edit = "~/Views/Rol/Edit.cshtml";
+            public readonly string Index = "~/Views/Rol/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_DoctorController : WebClinicaMedica.Controllers.DoctorController
+    public partial class T4MVC_RolController : WebClinicaMedica.Controllers.RolController
     {
-        public T4MVC_DoctorController() : base(Dummy.Instance) { }
+        public T4MVC_RolController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -244,16 +224,14 @@ namespace WebClinicaMedica.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, DataAccess.Model.Especialidad especialidad);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Rol rol);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, DataAccess.Model.Especialidad especialidad)
+        public override System.Web.Mvc.ActionResult Create(DataAccess.Model.Rol rol)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "doctor", doctor);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usuario", usuario);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "especialidad", especialidad);
-            CreateOverride(callInfo, doctor, usuario, especialidad);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "rol", rol);
+            CreateOverride(callInfo, rol);
             return callInfo;
         }
 
@@ -270,14 +248,14 @@ namespace WebClinicaMedica.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Doctor doctor);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Rol rol);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(DataAccess.Model.Doctor doctor)
+        public override System.Web.Mvc.ActionResult Edit(DataAccess.Model.Rol rol)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "doctor", doctor);
-            EditOverride(callInfo, doctor);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "rol", rol);
+            EditOverride(callInfo, rol);
             return callInfo;
         }
 
@@ -302,18 +280,6 @@ namespace WebClinicaMedica.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DeleteConfirmedOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void FileUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult FileUpload(System.Web.HttpPostedFileBase file)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FileUpload);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
-            FileUploadOverride(callInfo, file);
             return callInfo;
         }
 

@@ -28,5 +28,6 @@ namespace DataAccess.Model
         public virtual DbSet<Doctor> Doctor { get; set; }
         public virtual DbSet<Especialidad> Especialidad { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
     }
 }

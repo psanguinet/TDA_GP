@@ -1,0 +1,42 @@
+﻿@model DataAccess.Model.Rol
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles del</h2>
+
+<div>
+    <h4>Rol</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", MVC.Rol.ActionNames.Edit, new { id = Model.RolID }) |
+    @Html.ActionLink("Volver al listado", MVC.Rol.ActionNames.Index)
+</p>

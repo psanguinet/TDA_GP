@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataAccess.Model.Especialidad>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Especialidades</h2>
+
+<p>
+    @Html.ActionLink("Nueva Especialidad", MVC.Especialidad.ActionNames.Create)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.EspecialidadID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.EspecialidadID }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.EspecialidadID })
+        </td>
+    </tr>
+}
+
+</table>
