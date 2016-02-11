@@ -17,7 +17,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
         </div>
     </div>
@@ -28,4 +28,5 @@
             @Html.ValidationMessageFor(model => model.Mail)
         </div>
     </div>
+    @Html.HiddenFor(model => model.Active, Model.Active = true )
 </div>

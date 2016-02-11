@@ -35,7 +35,7 @@ namespace DataAccess.Model
         public Nullable<decimal> SueldoMinimo { get; set; }
         [Display(Name = "Es Director ?")]
         public bool IsDirector { get; set; }
-       
+               
         [Display(Name = "Activo ?")]
         public bool Active { get; set; }
     }

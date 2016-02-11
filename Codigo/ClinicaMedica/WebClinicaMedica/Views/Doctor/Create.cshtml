@@ -43,7 +43,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Foto, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Foto)
+                <input name="Image" type="file" id="ImageID" />
+                @Html.HiddenFor(model => model.Foto)
                 @Html.ValidationMessageFor(model => model.Foto)
             </div>
         </div>
@@ -82,8 +83,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Especialidad, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Especialidad, new SelectList(ViewBag.Especialidades, "EspecialidadID", "Nombre"), "Seleccione...")
-                @Html.ValidationMessageFor(model => model.Especialidad)
+                @Html.DropDownListFor(model => model.Especialidad.ElementAt(0).EspecialidadID, new SelectList(ViewBag.Especialidades, "EspecialidadID", "Nombre"), "Seleccione...", new { id = "Especialidades" })
+                @Html.ValidationMessageFor(model => model.Especialidad.ElementAt(0).EspecialidadID)
             </div>
         </div>
 
@@ -107,7 +108,7 @@
 }
 
 <div>
-    @Html.ActionLink("Volver al listado",MVC.Doctor.ActionNames.Index)
+    @Html.ActionLink("Volver al listado", MVC.Doctor.ActionNames.Index)
 </div>
 
 @section Scripts {

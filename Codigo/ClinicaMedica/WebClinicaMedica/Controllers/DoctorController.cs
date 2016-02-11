@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataAccess.Model;
+using System.IO;
 
 namespace WebClinicaMedica.Controllers
 {
@@ -48,10 +49,13 @@ namespace WebClinicaMedica.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "DoctorID,Nombre,Apellido,CI,Foto,Direccion,Telefono,ValorConsulta,SueldoMinimo,IsDirector,UsuarioID,Active")] Doctor doctor, Usuario usuario)
+        public virtual ActionResult Create([Bind(Include = "DoctorID,Nombre,Apellido,CI,Foto,Direccion,Telefono,ValorConsulta,SueldoMinimo,IsDirector,UsuarioID,Active")] Doctor doctor, Usuario usuario, Especialidad especialidad)
         {
             if (ModelState.IsValid)
             {
+                doctor.Usuario = usuario;
+                var mEspecialidad = db.Especialidad.Single(e => e.EspecialidadID == especialidad.EspecialidadID);
+                doctor.Especialidad.Add(mEspecialidad);
                 db.Doctor.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -118,6 +122,31 @@ namespace WebClinicaMedica.Controllers
             db.Doctor.Remove(doctor);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        
+        public virtual ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/images/profile"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                // save the image path path to the database or you can send image
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("actionname", "controller name");
         }
 
         protected override void Dispose(bool disposing)
