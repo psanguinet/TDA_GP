@@ -28,5 +28,12 @@
             @Html.ValidationMessageFor(model => model.Mail)
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rol, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.RolID, new SelectList(ViewBag.Roles, "RolID", "Nombre"), "Seleccione...", new { id = "Roles" })
+            @Html.ValidationMessageFor(model => model.RolID)
+        </div>
+    </div>
     @Html.HiddenFor(model => model.Active, Model.Active = true )
 </div>

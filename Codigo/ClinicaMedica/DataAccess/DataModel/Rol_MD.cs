@@ -13,6 +13,10 @@ namespace DataAccess.Model
 
     public class Rol_MD
     {
+
+       
+        int RolID { get; set; }
+        
         [Required(ErrorMessage = "El nombre es requerido.")]
         public string Nombre { get; set; }
 

@@ -28,5 +28,8 @@ namespace DataAccess.Model
 
         [Display(Name = "Activo")]
         public bool Active { get; set; }
+
+        [Required(ErrorMessage = "El rol es requerido.")]
+        public Nullable<int> RolID { get; set; }
     }
 }

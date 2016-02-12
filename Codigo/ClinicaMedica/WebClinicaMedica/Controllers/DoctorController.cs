@@ -41,6 +41,7 @@ namespace WebClinicaMedica.Controllers
         public virtual ActionResult Create()
         {
             ViewBag.Especialidades = db.Especialidad.OrderBy(e => e.Nombre).ToList();
+            ViewBag.Roles = db.Rol.OrderBy(r => r.Nombre).ToList();
             return View();
         }
 
