@@ -9,8 +9,10 @@ using System.Web.Mvc;
 using DataAccess.Model;
 using System.IO;
 
+
 namespace WebClinicaMedica.Controllers
 {
+    [Helper.AccessValidation]
     public partial class DoctorController : Controller
     {
         private ClinicaMedicaEntities db = new ClinicaMedicaEntities();

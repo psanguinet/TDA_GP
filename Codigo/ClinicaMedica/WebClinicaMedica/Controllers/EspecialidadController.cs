@@ -10,6 +10,7 @@ using DataAccess.Model;
 
 namespace WebClinicaMedica.Controllers
 {
+     [Helper.AccessValidation]
     public partial class EspecialidadController : Controller
     {
         private ClinicaMedicaEntities db = new ClinicaMedicaEntities();

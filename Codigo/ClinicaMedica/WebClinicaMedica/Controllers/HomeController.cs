@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebClinicaMedica.Controllers
 {
+     [Helper.AccessValidation]
     public partial class HomeController : Controller
     {
         public virtual ActionResult Index()
