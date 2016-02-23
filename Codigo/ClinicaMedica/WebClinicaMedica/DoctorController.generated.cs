@@ -143,7 +143,7 @@ namespace WebClinicaMedica.Controllers
         {
             public readonly string doctor = "doctor";
             public readonly string usuario = "usuario";
-            public readonly string especialidad = "especialidad";
+            public readonly string frm = "frm";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -193,6 +193,7 @@ namespace WebClinicaMedica.Controllers
                 public readonly string Details = "Details";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string PV_Especialidades = "PV_Especialidades";
                 public readonly string PV_Usuario = "PV_Usuario";
             }
             public readonly string Create = "~/Views/Doctor/Create.cshtml";
@@ -200,6 +201,7 @@ namespace WebClinicaMedica.Controllers
             public readonly string Details = "~/Views/Doctor/Details.cshtml";
             public readonly string Edit = "~/Views/Doctor/Edit.cshtml";
             public readonly string Index = "~/Views/Doctor/Index.cshtml";
+            public readonly string PV_Especialidades = "~/Views/Doctor/PV_Especialidades.cshtml";
             public readonly string PV_Usuario = "~/Views/Doctor/PV_Usuario.cshtml";
         }
     }
@@ -244,16 +246,16 @@ namespace WebClinicaMedica.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, DataAccess.Model.Especialidad especialidad);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, System.Web.Mvc.FormCollection frm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, DataAccess.Model.Especialidad especialidad)
+        public override System.Web.Mvc.ActionResult Create(DataAccess.Model.Doctor doctor, DataAccess.Model.Usuario usuario, System.Web.Mvc.FormCollection frm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "doctor", doctor);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usuario", usuario);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "especialidad", especialidad);
-            CreateOverride(callInfo, doctor, usuario, especialidad);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "frm", frm);
+            CreateOverride(callInfo, doctor, usuario, frm);
             return callInfo;
         }
 

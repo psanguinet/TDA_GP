@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataAccess.Model;
 using System.IO;
+using WebClinicaMedica.Models;
 
 
 namespace WebClinicaMedica.Controllers
@@ -15,60 +16,120 @@ namespace WebClinicaMedica.Controllers
     [Helper.AccessValidation]
     public partial class DoctorController : Controller
     {
-        private ClinicaMedicaEntities db = new ClinicaMedicaEntities();
+        #region ATTRIBUTES
 
-        // GET: /Doctor/
+        private ClinicaMedicaEntities db = new ClinicaMedicaEntities();
+        #endregion
+
+        #region METHODS
+        /// <summary>
+        /// Muestra el listado de doctores
+        /// </summary>
+        /// <returns>Retorna el listado de doctores</returns>
         public virtual ActionResult Index()
         {
-            var doctor = db.Doctor.Include(d => d.Usuario);
-            return View(doctor.ToList());
+            List<Doctor> doctores = null;
+            try
+            {
+                doctores = db.Doctor.Include(d => d.Usuario).ToList();
+            }
+            catch (Exception e)
+            {
+                return View(MVC.Dialogs.Views.DialogMessageError, new MessageDialog() { Titulo = "Error", Mensaje = "Se produjo un error al mostrar el listado de doctores" });
+            }
+
+            return View(doctores);
         }
 
-        // GET: /Doctor/Details/5
+        /// <summary>
+        /// Muestra el detalle de un doctor
+        /// </summary>
+        /// <param name="id">id que identifica al doctor</param>
+        /// <returns>La vista con los detalles del doctor</returns>
         public virtual ActionResult Details(int? id)
         {
-            if (id == null)
+            Doctor doctor = null;
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                doctor = db.Doctor.Find(id);
+                if (doctor == null)
+                {
+                    return View(MVC.Dialogs.Views.DialogMessageError, new MessageDialog() { Titulo = "Error", Mensaje = "El doctor no existe" });
+                }
             }
-            Doctor doctor = db.Doctor.Find(id);
-            if (doctor == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                return View(MVC.Dialogs.Views.DialogMessageError, new MessageDialog() { Titulo = "Error", Mensaje = "Se produjo un error al mostrar el doctor" });
             }
+
             return View(doctor);
         }
 
-        // GET: /Doctor/Create
+       /// <summary>
+       /// Llama a al vista de creacion del doctor
+       /// </summary>
+       /// <returns></returns>
         public virtual ActionResult Create()
         {
-            ViewBag.Especialidades = db.Especialidad.OrderBy(e => e.Nombre).ToList();
-            ViewBag.Roles = db.Rol.OrderBy(r => r.Nombre).ToList();
+            var especialidades = db.Especialidad.OrderBy(e => e.Nombre).ToList();
+            List<VM_Especialidad> especialidadesVM = new List<VM_Especialidad>();
+
+            foreach (var item in especialidades)
+            {
+                VM_Especialidad e = new VM_Especialidad()
+                {
+                    Especialidad = item,
+                    Activa = false
+                };
+                especialidadesVM.Add(e);
+            }
+
+            //Se pasan especialidades
+            ViewBag.Especialidades = especialidadesVM;
+
+            //Se le pasa el rol de doctor
+            ViewBag.Roles = db.Rol.Where(r => r.Nombre == "Doctor").ToList();
             return View();
         }
 
-        // POST: /Doctor/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Crea un nuevo doctor
+        /// </summary>
+        /// <param name="doctor"></param>
+        /// <param name="usuario"></param>
+        /// <param name="frm"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "DoctorID,Nombre,Apellido,CI,Foto,Direccion,Telefono,ValorConsulta,SueldoMinimo,IsDirector,UsuarioID,Active")] Doctor doctor, Usuario usuario, Especialidad especialidad)
+        public virtual ActionResult Create([Bind(Include = "DoctorID,Nombre,Apellido,CI,Foto,Direccion,Telefono,ValorConsulta,SueldoMinimo,IsDirector,UsuarioID,Active")] Doctor doctor, Usuario usuario, FormCollection frm)
         {
-            if (ModelState.IsValid)
+            try
             {
-                doctor.Usuario = usuario;
-                var mEspecialidad = db.Especialidad.Single(e => e.EspecialidadID == especialidad.EspecialidadID);
-                doctor.Especialidad.Add(mEspecialidad);
-                db.Doctor.Add(doctor);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    doctor.Usuario = usuario;
+                    AsignarRelacionDoctorEspecialidad(doctor, frm);
+                    db.Doctor.Add(doctor);
+                    db.SaveChanges();
+                }
             }
+            catch (Exception e)
+            {
+                return View(MVC.Dialogs.Views.DialogMessageError, new MessageDialog() { Titulo = "Error", Mensaje = "Se produjo un error al guardar el doctor." });
+            }
+            return RedirectToAction("Index");
 
-            ViewBag.UsuarioID = new SelectList(db.Usuario, "UsuarioID", "UserName", doctor.UsuarioID);
-            return View(doctor);
         }
 
-        // GET: /Doctor/Edit/5
+        /// <summary>
+        /// Llama a la vista de edicion del doctor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,9 +145,11 @@ namespace WebClinicaMedica.Controllers
             return View(doctor);
         }
 
-        // POST: /Doctor/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita un doctor.
+        /// </summary>
+        /// <param name="doctor"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult Edit([Bind(Include = "DoctorID,Nombre,Apellido,CI,Foto,Direccion,Telefono,ValorConsulta,SueldoMinimo,IsDirector,UsuarioID,Active")] Doctor doctor)
@@ -101,7 +164,11 @@ namespace WebClinicaMedica.Controllers
             return View(doctor);
         }
 
-        // GET: /Doctor/Delete/5
+        /// <summary>
+        /// LLama a la vista del doctor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,7 +183,11 @@ namespace WebClinicaMedica.Controllers
             return View(doctor);
         }
 
-        // POST: /Doctor/Delete/5
+        /// <summary>
+        /// Borra un Doctor. El borrado fisico es solo si no tiene consultas o si tiene liquidaciones realizadas
+        /// </summary>
+        /// <param name="id">Numero que identifica al doctor</param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public virtual ActionResult DeleteConfirmed(int id)
@@ -127,7 +198,7 @@ namespace WebClinicaMedica.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
         public virtual ActionResult FileUpload(HttpPostedFileBase file)
         {
             if (file != null)
@@ -152,6 +223,42 @@ namespace WebClinicaMedica.Controllers
             return RedirectToAction("actionname", "controller name");
         }
 
+        /// <summary>
+        /// Asigna a un doctor un conjunto de especialidades
+        /// </summary>
+        /// <param name="doctor">Doctor al que se le asigna las especialidades</param>
+        /// <param name="frm">Especialidades seleccionadas</param>
+        private void AsignarRelacionDoctorEspecialidad(Doctor doctor, FormCollection frm)
+        {
+            try
+            {
+                // Se declara el objecto correspondiente a la tabla relación
+                Especialidad especialidad = null;
+
+                // Se obtienen las claves asociadas a los controles check con los que queremos trabajar.
+                List<string> chkKeys = frm.AllKeys.Where(p => p.StartsWith("chkDoctor_Especialidad_")).ToList();
+
+                foreach (string key in chkKeys)
+                {
+                    // Se obtiene el ID del objeto relacionado seleccionado a partir de la key
+                    // En la vista se arma el nombre del check de la forma nombreDelCheck_IDdelObjeto
+                    string[] chkNameArray = key.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+                    int IDEspecialidad = int.Parse(chkNameArray.Last());
+
+                    // Si es TRUE (si está chequeado) se agrega la asociación
+                    if (this.HttpContext.Request.Params[key] != "false")
+                    {
+                        especialidad = db.Especialidad.Single(c => c.EspecialidadID == IDEspecialidad);
+                        doctor.Especialidad.Add(especialidad);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+          
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -160,5 +267,6 @@ namespace WebClinicaMedica.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }

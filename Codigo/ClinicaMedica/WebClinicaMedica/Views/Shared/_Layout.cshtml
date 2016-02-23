@@ -7,8 +7,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
-
+    <script src="~/Scripts/DataTables-1.10.11/media/js/jquery.js"></script>
+    <script src="~/Scripts/DataTables-1.10.11/media/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables-1.10.11/media/js/dataTables.jqueryui.js"></script>
+    <link href="~/Scripts/DataTables-1.10.11/media/css/jquery.dataTables.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -48,7 +50,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

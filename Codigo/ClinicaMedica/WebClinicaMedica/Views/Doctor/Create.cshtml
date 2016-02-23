@@ -81,20 +81,17 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Especialidad, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Especialidad.ElementAt(0).EspecialidadID, new SelectList(ViewBag.Especialidades, "EspecialidadID", "Nombre"), "Seleccione...", new { id = "Especialidades" })
-                @Html.ValidationMessageFor(model => model.Especialidad.ElementAt(0).EspecialidadID)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.IsDirector, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IsDirector)
                 @Html.ValidationMessageFor(model => model.IsDirector)
             </div>
         </div>
+        <div class="form-group">
+           @Html.Partial(MVC.Doctor.Views.PV_Especialidades, (IEnumerable<WebClinicaMedica.Models.VM_Especialidad>)ViewBag.Especialidades)
+        </div>
+
+       
         <div class="form-group">
             @Html.Partial(MVC.Doctor.Views.PV_Usuario, new DataAccess.Model.Usuario())
         </div>
