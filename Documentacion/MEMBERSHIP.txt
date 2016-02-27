@@ -1,4 +1,5 @@
 --Levanto el iis express
+cd \Program Files\IIS Express
 iisexpress.exe /path:C:\Windows\Microsoft.NET\Framework\v4.0.30319\ASP.NETWebAdminFiles /vpath:"/ASP.NETWebAdminFiles" /port:8089 /clr:4.0 /ntlm
 
 --Lecanto el sitio
