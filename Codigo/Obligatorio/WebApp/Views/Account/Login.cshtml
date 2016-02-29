@@ -1,11 +1,11 @@
 ﻿@model Modelo.Models.LoginModel
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+@{
+    ViewBag.Title = "Login";
+}
 
 <section id="loginForm">
-<h2>Use a local account to log in.</h2>
+<h2>Ingresar al Sistema</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)

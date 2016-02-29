@@ -50,12 +50,8 @@
   <ItemGroup>
     <Compile Include="Logic\Account.cs" />
     <Compile Include="Logic\IAccount.cs" />
-    <Compile Include="Logic\IPersonaLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
-    <Compile Include="Logic\PersonaLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
-    <Compile Include="Model\ContextLogic.cs" />
-    <Compile Include="Model\IContextLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

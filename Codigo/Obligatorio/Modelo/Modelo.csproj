@@ -52,7 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Agenda.cs" />
+    <Compile Include="Models\AnalisisClinico.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Especialidad.cs" />
+    <Compile Include="Models\HistoriaMedica.cs" />
+    <Compile Include="Models\InformesDeConsulta.cs" />
+    <Compile Include="Models\LiquidacionDeSueldo.cs" />
+    <Compile Include="Models\Paciente.cs" />
+    <Compile Include="Models\ResultadoAnalisis.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
