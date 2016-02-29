@@ -1,0 +1,40 @@
+﻿@model Modelo.Models.Role
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Está seguro que desea eliminar el rol?</h3>
+@using (Html.BeginForm())
+{
+<fieldset>
+    <legend>Rol</legend>
+
+    @Html.AntiForgeryToken()
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RoleName)
+        
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+       
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+      
+    </div>
+
+</fieldset>
+
+    <p>
+        <input type="submit" value="Borrar" /> |
+        @Html.ActionLink("Volver al listado", "Index")
+    </p>
+
+}

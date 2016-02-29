@@ -1,0 +1,9 @@
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\Modelo.dll.config
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\Modelo.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\Modelo.pdb
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\EntityFramework.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\EntityFramework.xml
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\obj\Debug\Modelo.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\Modelo\obj\Debug\Modelo.pdb

@@ -1,0 +1,14 @@
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\Modelo.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\Modelo.pdb
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.dll.config
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
