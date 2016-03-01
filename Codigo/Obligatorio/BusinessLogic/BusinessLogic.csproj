@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="Logic\Account.cs" />
     <Compile Include="Logic\IAccount.cs" />
+    <Compile Include="Logic\IPacienteLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
+    <Compile Include="Logic\PacienteLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,82 @@
+﻿@model Modelo.Models.Paciente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Paciente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellido)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cedula)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cedula)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaNacimiento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Altura)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Altura)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GrupoSanguineo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GrupoSanguineo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Peso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Peso)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

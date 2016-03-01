@@ -7,7 +7,7 @@ using Modelo.Models;
 
 namespace BusinessLogic.Logic
 {
-    public interface IRoleLogic
+    public interface IRoleLogic : IDisposable
     {
         IEnumerable<Role> ListRoles();
         Role GetRol(Guid id);

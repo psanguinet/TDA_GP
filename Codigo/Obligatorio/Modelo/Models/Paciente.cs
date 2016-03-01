@@ -20,13 +20,16 @@ namespace Modelo.Models
 
         [Required(ErrorMessage = "La cédula es requerida.")]
         [Display(Name = "Cédula")]
+        [MaxLength(9, ErrorMessage = "La mayor cantidad de dígitos son {1}")]
         public string Cedula { get; set; }
+
         public byte[] Foto { get; set; }
 
         [Display(Name = "Dirección")]
         public string Direccion { get; set; }
 
         [Display(Name = "Teléfono")]
+        [MaxLength(10,ErrorMessage="La mayor cantidad de dígitos son {1}")]
         public string Telefono { get; set; }
 
         [Required(ErrorMessage = "La fecha de nacimento es requerida")]
@@ -34,10 +37,17 @@ namespace Modelo.Models
         [Display(Name = "Fecha Nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
+        [Display(Name = "Altura (cm)")]
+        [Range(0, 300,ErrorMessage="La alturar debe ser entre {1} y {2}")]
+        [Required(ErrorMessage = "La altura es requerida")]
         public int Altura { get; set; }
 
-        [Display(Name="Grupo Sanguíneo")]
+        [Display(Name = "Grupo Sanguíneo")]
         public string GrupoSanguineo { get; set; }
+
+        [Display(Name = "Peso (kg)")]
+        [Range(0,500,ErrorMessage="El peso debe ser entre {1} y {2}")]
+        [Required(ErrorMessage = "El peso es requerido")]
         public int Peso { get; set; }
         public virtual HistoriaMedica HistoriaMedica { get; set; }
 

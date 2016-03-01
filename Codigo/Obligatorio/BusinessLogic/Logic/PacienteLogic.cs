@@ -1,23 +1,24 @@
-﻿using System;
+﻿using DataAccess.Model;
+using Modelo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess.Model;
-using Modelo.Models;
 
 namespace BusinessLogic.Logic
 {
-    public class RoleLogic : IRoleLogic
+    public class PacienteLogic : IPacienteLogic
     {
-        public IEnumerable<Role> ListRoles()
+
+        public IEnumerable<Modelo.Models.Paciente> ListPacientes()
         {
-            IEnumerable<Role> result = new List<Role>();
+            IEnumerable<Paciente> result = new List<Paciente>();
             try
             {
                 using (Context db = new Context())
                 {
-                    result = db.Roles.ToList();
+                    result = db.Pacientes.ToList();
                 }
             }
             catch (Exception)
@@ -28,14 +29,14 @@ namespace BusinessLogic.Logic
             return result;
         }
 
-        public Role GetRol(Guid id)
+        public Modelo.Models.Paciente GetPaciente(int id)
         {
-            Role result = null;
+            Paciente result = null;
             try
             {
                 using (Context db = new Context())
                 {
-                    result = db.Roles.SingleOrDefault(r => r.RoleId == id);
+                    result = db.Pacientes.SingleOrDefault(p => p.PacienteID == id);
                 }
             }
             catch (Exception)
@@ -46,14 +47,13 @@ namespace BusinessLogic.Logic
             return result;
         }
 
-        public void Save(Role rol)
+        public void Save(Modelo.Models.Paciente paciente)
         {
             try
             {
                 using (Context db = new Context())
                 {
-                    rol.RoleId = Guid.NewGuid();
-                    db.Roles.Add(rol);
+                    db.Pacientes.Add(paciente);
                     db.SaveChanges();
                 }
             }
@@ -64,18 +64,18 @@ namespace BusinessLogic.Logic
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             try
             {
                 using (Context db = new Context())
                 {
-                  
-                    var rol = GetRol(id);
-                    if (rol != null)
+
+                    var paciente = GetPaciente(id);
+                    if (paciente != null)
                     {
-                        db.Entry(rol).State = System.Data.Entity.EntityState.Deleted;
-                        db.Roles.Remove(rol);
+                        db.Entry(paciente).State = System.Data.Entity.EntityState.Deleted;
+                        db.Pacientes.Remove(paciente);
                         db.SaveChanges();
                     }
                 }
@@ -87,13 +87,13 @@ namespace BusinessLogic.Logic
             }
         }
 
-        public void Edit(Role rol)
+        public void Edit(Modelo.Models.Paciente paciente)
         {
             try
             {
                 using (Context db = new Context())
                 {
-                    db.Entry(rol).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(paciente).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }

@@ -1,0 +1,78 @@
+﻿@model Modelo.Models.Paciente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Paciente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellido)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cedula)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cedula)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaNacimiento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Altura)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Altura)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GrupoSanguineo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GrupoSanguineo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Peso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Peso)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PacienteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

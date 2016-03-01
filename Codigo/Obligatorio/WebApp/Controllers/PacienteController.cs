@@ -1,28 +1,28 @@
-﻿using System;
+﻿using BusinessLogic.Logic;
+using Modelo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BusinessLogic.Logic;
-using Modelo.Models;
+
 
 namespace WebApp.Controllers
 {
-    public class RoleController : Controller
+    public class PacienteController : Controller
     {
-
         /// <summary>
-        /// Listado de Roles
+        /// Listado de pacientes
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
-            IEnumerable<Role> result = new List<Role>();
+            IEnumerable<Paciente> result = new List<Paciente>();
             try
             {
-                using (IRoleLogic bl = new RoleLogic())
+                using (IPacienteLogic bl = new PacienteLogic())
                 {
-                    result = bl.ListRoles();
+                    result = bl.ListPacientes();
                 }
             }
             catch (Exception)
@@ -33,20 +33,20 @@ namespace WebApp.Controllers
         }
 
         /// <summary>
-        /// Detalles del rol
+        /// Detalles del paciente
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Details(Guid id)
+        public ActionResult Details(int id)
         {
-            Role rol = null;
+            Paciente paciente = null;
             try
             {
-                using (IRoleLogic bl = new RoleLogic())
+                using (IPacienteLogic bl = new PacienteLogic())
                 {
-                    rol = bl.GetRol(id);
+                    paciente = bl.GetPaciente(id);
                 }
-                if (rol == null)
+                if (paciente == null)
                 {
                     return HttpNotFound();
                 }
@@ -55,7 +55,7 @@ namespace WebApp.Controllers
             {
                 throw;
             }
-            return View(rol);
+            return View(paciente);
         }
 
 
@@ -64,24 +64,31 @@ namespace WebApp.Controllers
             return View();
         }
 
+
+
+        /// <summary>
+        /// Crear nuevo paciente
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Role role)
+        public ActionResult Create(Paciente paciente)
         {
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    using (IRoleLogic bl = new RoleLogic())
+                    using (IPacienteLogic bl = new PacienteLogic())
                     {
-                        bl.Save(role);
+                        bl.Save(paciente);
                     }
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    result = View(role);
+                    result = View(paciente);
                 }
             }
             catch (Exception)
@@ -92,16 +99,16 @@ namespace WebApp.Controllers
             return result;
         }
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id)
         {
-            Role result = null;
+            Paciente result = null;
             try
             {
                 if (id != null)
                 {
-                    using (IRoleLogic bl = new RoleLogic())
+                    using (IPacienteLogic bl = new PacienteLogic())
                     {
-                       result= bl.GetRol(id);
+                        result = bl.GetPaciente(id);
                     }
                 }
             }
@@ -115,22 +122,22 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Role role)
+        public ActionResult Edit(Paciente paciente)
         {
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    using (IRoleLogic bl = new RoleLogic())
+                    using (IPacienteLogic bl = new PacienteLogic())
                     {
-                        bl.Edit(role);
+                        bl.Edit(paciente);
                     }
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    result = View(role);
+                    result = View(paciente);
                 }
             }
             catch (Exception)
@@ -142,16 +149,16 @@ namespace WebApp.Controllers
         }
 
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
-            Role result = null;
+            Paciente result = null;
             try
             {
                 if (id != null)
                 {
-                    using (IRoleLogic bl = new RoleLogic())
+                    using (IPacienteLogic bl = new PacienteLogic())
                     {
-                        result = bl.GetRol(id);
+                        result = bl.GetPaciente(id);
                     }
                 }
             }
@@ -164,14 +171,14 @@ namespace WebApp.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    using (IRoleLogic bl = new RoleLogic())
+                    using (IPacienteLogic bl = new PacienteLogic())
                     {
                         bl.Delete(id);
                     }
@@ -189,5 +196,6 @@ namespace WebApp.Controllers
             }
             return result;
         }
+
     }
 }
