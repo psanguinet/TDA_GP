@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BusinessLogic.Logic
 {
     public class PacienteLogic : IPacienteLogic
@@ -53,6 +54,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
+                   
                     db.Pacientes.Add(paciente);
                     db.SaveChanges();
                 }

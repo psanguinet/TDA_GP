@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 
 namespace WebApp.Controllers
@@ -61,6 +62,11 @@ namespace WebApp.Controllers
 
         public ActionResult Create()
         {
+            using (IRoleLogic bl = new RoleLogic())
+            {
+                ViewBag.Roles = bl.ListRoles();
+            }
+
             return View();
         }
 
@@ -72,28 +78,47 @@ namespace WebApp.Controllers
         /// <param name="paciente"></param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Paciente paciente)
+        public ActionResult Create(Paciente paciente, RegisterModel userRegister)
         {
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
+
+
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
+                        paciente.Usuario = new Modelo.Models.User()
+                        {
+                            UserId = Guid.NewGuid(),
+                            Username = userRegister.UserName,
+                            Password = userRegister.Password,
+                            Email = userRegister.Email,
+                            IsApproved = true,
+                            PasswordFailuresSinceLastSuccess = 0,
+                            IsLockedOut = false
+                        };
+                       
                         bl.Save(paciente);
+                        Roles.AddUserToRole(userRegister.UserName, "PACIENTE");
                     }
+
+
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    result = View(paciente);
+                    using (IRoleLogic bl = new RoleLogic())
+                    {
+                        ViewBag.Roles = bl.ListRoles();
+                    }
+                    result = View("Create", paciente);
                 }
             }
             catch (Exception)
             {
-
+                return RedirectToAction("Index", "Home");
                 throw;
             }
             return result;
@@ -121,7 +146,6 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Paciente paciente)
         {
             ActionResult result = null;
@@ -170,7 +194,6 @@ namespace WebApp.Controllers
             return View(result);
         }
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             ActionResult result = null;

@@ -40,7 +40,6 @@ namespace Modelo.Models
         public virtual DateTime? LastPasswordChangedDate { get; set; }
         public virtual String PasswordVerificationToken { get; set; }
         public virtual DateTime? PasswordVerificationTokenExpirationDate { get; set; }
-
         public virtual ICollection<Role> Roles { get; set; }
     }
 }

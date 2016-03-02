@@ -90,10 +90,14 @@
     <Compile Include="Migrations\201602292150411__9.Designer.cs">
       <DependentUpon>201602292150411__9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603012234060__10.cs" />
+    <Compile Include="Migrations\201603012234060__10.Designer.cs">
+      <DependentUpon>201603012234060__10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\WebSecurity.cs" />
     <Compile Include="Model\Context.cs" />
-    <Compile Include="Model\ContextInitializer.cs" />
+    <Compile Include="Model\DBInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602292150411__9.resx">
       <DependentUpon>201602292150411__9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603012234060__10.resx">
+      <DependentUpon>201603012234060__10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

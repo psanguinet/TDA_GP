@@ -26,14 +26,6 @@ namespace Modelo.Models
         public string UserName { get; set; }
     }
 
-    public class RegisterExternalLoginModel
-    {
-        [Required]
-        [Display(Name = "Usuario")]
-        public string UserName { get; set; }
-
-        public string ExternalLoginData { get; set; }
-    }
 
     public class LocalPasswordModel
     {
@@ -56,7 +48,7 @@ namespace Modelo.Models
 
     public class LoginModel
     {
-        [Required(ErrorMessage="El usuario es requerido.")]
+        [Required(ErrorMessage = "El usuario es requerido.")]
         [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
@@ -71,15 +63,20 @@ namespace Modelo.Models
 
     public class RegisterModel
     {
-        [Required]
+        [Required(ErrorMessage = "El nombre de usuario es requerido")]
         [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El mail es requerido")]
+        [EmailAddress(ErrorMessage = "El formato no es correcto")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
         [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
+
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar contraseña")]

@@ -11,13 +11,15 @@ using System.Web.Routing;
 
 namespace DataAccess.Model
 {
-    public class ContextInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DBInitializer : DropCreateDatabaseIfModelChanges<Context>
     {
+
         protected override void Seed(Context context)
         {
             WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
             Roles.CreateRole("Admin");
             Roles.AddUserToRole("Demo", "Admin");
+            base.Seed(context);
         }
     }
     }

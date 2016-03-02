@@ -18,11 +18,13 @@ namespace DataAccess.Model
 
         public Context() : base("name=Context")
         {
-            Database.SetInitializer<Context>(new ContextInitializer());
+            Database.SetInitializer<Context>(new DBInitializer());
             Configuration.AutoDetectChangesEnabled = true;
             Configuration.LazyLoadingEnabled = true;
             Configuration.ProxyCreationEnabled = true;
             Configuration.ValidateOnSaveEnabled = true;
+            
+            
         }
 
      

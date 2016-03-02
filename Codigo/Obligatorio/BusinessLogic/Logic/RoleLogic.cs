@@ -46,6 +46,24 @@ namespace BusinessLogic.Logic
             return result;
         }
 
+        public Role GetRolByName(string rolName)
+        {
+            Role result = null;
+            try
+            {
+                using (Context db = new Context())
+                {
+                    result = db.Roles.SingleOrDefault(r => r.RoleName == rolName);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
         public void Save(Role rol)
         {
             try
@@ -108,5 +126,8 @@ namespace BusinessLogic.Logic
         {
             GC.Collect();
         }
+
+
+        
     }
 }
