@@ -322,6 +322,7 @@
     <Content Include="Views\Paciente\Delete.cshtml" />
     <Content Include="Views\Paciente\Create.cshtml" />
     <Content Include="Views\Shared\_UsuarioCreate.cshtml" />
+    <Content Include="Views\Shared\_UsuarioEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

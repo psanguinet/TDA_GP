@@ -1,17 +1,16 @@
 ﻿@model Modelo.Models.Paciente
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Paciente";
 }
 
-<h2>Edit</h2>
+<h2>Modificar Paciente</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Paciente</legend>
 
         @Html.HiddenFor(model => model.PacienteID)
 
@@ -60,6 +59,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.FechaNacimiento)
+            @Html.HiddenFor(model => model.FechaNacimiento, new { id = "FechaNacimientoID"})
             @Html.ValidationMessageFor(model => model.FechaNacimiento)
         </div>
 
@@ -86,17 +86,34 @@
             @Html.EditorFor(model => model.Peso)
             @Html.ValidationMessageFor(model => model.Peso)
         </div>
-
+        <div>
+            @Html.Partial("_UsuarioEdit", (Modelo.Models.RegisterModel)@ViewBag.User)
+            @Html.HiddenFor(model=>model.Usuario.UserId)
+            @Html.HiddenFor(model => model.Usuario.Username)
+            @Html.HiddenFor(model => model.Usuario.Password)
+            @Html.HiddenFor(model => model.Usuario.Email)
+        </div>
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Guardar" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("<< Volver al listado", "Index")
 </div>
-
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#FechaNacimiento').prop('type', 'text');
+        var fecha = $('#FechaNacimientoID').val().substr(0,10).split('/');
+        var anio = fecha[0];
+        var mes = fecha[1];
+        var dia = fecha[2];
+      
+        var dateValue = anio + '/' + mes + '/' + dia;
+        $('#FechaNacimiento').val(dateValue);
+    });
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

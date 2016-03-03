@@ -33,7 +33,7 @@ namespace Modelo.Models
         public string Telefono { get; set; }
 
         [Required(ErrorMessage = "La fecha de nacimento es requerida")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date,ErrorMessage="El formato de la fecha debe ser dd/mm/yyyy")]
         [Display(Name = "Fecha Nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 

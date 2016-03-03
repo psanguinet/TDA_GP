@@ -1,7 +1,7 @@
 ﻿@model Modelo.Models.Paciente
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Paciente";
 }
 
 <h2>Alta de Paciente</h2>
@@ -12,7 +12,6 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Paciente</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Nombre)

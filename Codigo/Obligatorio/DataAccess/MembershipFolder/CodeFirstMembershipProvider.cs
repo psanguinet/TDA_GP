@@ -209,6 +209,7 @@ public class CodeFirstMembershipProvider : MembershipProvider
                     User.LastActivityDate = DateTime.UtcNow;
                     Context.SaveChanges();
                 }
+                
                 return new MembershipUser(Membership.Provider.Name, User.Username, User.UserId, User.Email, null, null, User.IsApproved, User.IsLockedOut, User.CreateDate.Value, User.LastLoginDate.Value, User.LastActivityDate.Value, User.LastPasswordChangedDate.Value, User.LastLockoutDate.Value);
             }
             else

@@ -83,12 +83,12 @@ using Modelo.Models;
             return Membership.GetUser(Username);
         }
 
-        public static bool ChangePassword(string userName, string currentPassword, string newPassword)
+        public static bool ChangePassword(string userName, string currentPassword, string newPassword, bool isOnline)
         {
             bool success = false;
             try
             {
-                MembershipUser currentUser = Membership.GetUser(userName, true);
+                MembershipUser currentUser = Membership.GetUser(userName, isOnline);
                 success = currentUser.ChangePassword(currentPassword, newPassword);
             }
             catch (ArgumentException)
@@ -160,7 +160,10 @@ using Modelo.Models;
             int totalRecords;
             return Membership.FindUsersByName(Username, PageIndex, PageSize, out totalRecords).Cast<MembershipUser>().ToList();
         }
-
+        public static List<MembershipUser> FindUsersByName(string Username)
+        {
+            return Membership.FindUsersByName(Username).Cast<MembershipUser>().ToList();
+        }
         public static List<MembershipUser> GetAllUsers(int PageIndex, int PageSize)
         {
             int totalRecords;

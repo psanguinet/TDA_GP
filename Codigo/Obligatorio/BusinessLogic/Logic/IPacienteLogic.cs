@@ -14,5 +14,6 @@ namespace BusinessLogic.Logic
         void Save(Paciente paciente);
         void Delete(int id);
         void Edit(Paciente rol);
+        bool UserExist(User user);
     }
 }

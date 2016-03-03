@@ -85,8 +85,7 @@ namespace WebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
-
+                    
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         paciente.Usuario = new Modelo.Models.User()
@@ -99,31 +98,36 @@ namespace WebApp.Controllers
                             PasswordFailuresSinceLastSuccess = 0,
                             IsLockedOut = false
                         };
+                        if(!bl.UserExist(paciente.Usuario))
+                        {
+                            bl.Save(paciente);
+                            Roles.AddUserToRole(userRegister.UserName, "PACIENTE");
+                        }
+                        else
+                        {
+                            return View("Error");
+                        }
                        
-                        bl.Save(paciente);
-                        Roles.AddUserToRole(userRegister.UserName, "PACIENTE");
                     }
-
-
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    using (IRoleLogic bl = new RoleLogic())
-                    {
-                        ViewBag.Roles = bl.ListRoles();
-                    }
                     result = View("Create", paciente);
                 }
             }
             catch (Exception)
             {
-                return RedirectToAction("Index", "Home");
-                throw;
+                return View("Error");
             }
             return result;
         }
 
+        /// <summary>
+        /// Invoca a vista de edicion de paciente con el paciente id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id)
         {
             Paciente result = null;
@@ -134,19 +138,31 @@ namespace WebApp.Controllers
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         result = bl.GetPaciente(id);
+                        var user= new RegisterModel()
+                        {
+                            UserName = result.Usuario.Username,
+                            Password = result.Usuario.Password,
+                            Email = result.Usuario.Email,
+                            ConfirmPassword = result.Usuario.Password,
+                        };
+                        ViewBag.User = user;
                     }
                 }
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
 
+        /// <summary>
+        /// Guarda el paciente modificado
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(Paciente paciente)
+        public ActionResult Edit(Paciente paciente, RegisterModel userRegister)
         {
             ActionResult result = null;
             try
@@ -155,6 +171,9 @@ namespace WebApp.Controllers
                 {
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
+                        paciente.Usuario.Email = (userRegister.Email != null || userRegister.Email != "") ? userRegister.Email : paciente.Usuario.Email;
+                        paciente.Usuario.Password = (paciente.Usuario.Password != userRegister.Password) ? userRegister.Password : paciente.Usuario.Password;
+                       
                         bl.Edit(paciente);
                     }
                     result = RedirectToAction("Index");
@@ -166,8 +185,8 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
+                return View("Error");
 
-                throw;
             }
             return result;
         }
@@ -186,13 +205,14 @@ namespace WebApp.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
+
+
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -212,10 +232,9 @@ namespace WebApp.Controllers
                     result = View();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }

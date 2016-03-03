@@ -184,7 +184,7 @@ C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\WebApp\obj
 C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\WebApp\obj\Debug\WebApp.pdb
 C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\WebApp\bin\BusinessLogic.dll
 C:\Users\psanguinet\Documents\Visual Studio 2013\Projects\Obligatorio\WebApp\bin\BusinessLogic.pdb
-C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\EntityFramework.dll
+C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\WebApp.dll.config
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\WebApp.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\WebApp.pdb
@@ -197,6 +197,7 @@ C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\DotNetOpenAuth.OAuth.Consumer.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\DotNetOpenAuth.OAuth.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\DotNetOpenAuth.OpenId.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\EntityFramework.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\EntityFramework.SqlServer.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\Microsoft.Data.Edm.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\Microsoft.Data.OData.dll
@@ -279,6 +280,5 @@ C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\ko\System.Spatial.resources.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\ru\System.Spatial.resources.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\zh-Hans\System.Spatial.resources.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\zh-Hant\System.Spatial.resources.dll
-C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.pdb

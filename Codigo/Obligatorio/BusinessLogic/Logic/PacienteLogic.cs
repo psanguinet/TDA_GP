@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
+
 
 
 namespace BusinessLogic.Logic
@@ -37,7 +39,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-                    result = db.Pacientes.SingleOrDefault(p => p.PacienteID == id);
+                    result = db.Pacientes.Include("Usuario").SingleOrDefault(p => p.PacienteID == id);
                 }
             }
             catch (Exception)
@@ -54,7 +56,22 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
+                    paciente.Usuario.Comment = "Paciente_Usuario";
+                    paciente.Usuario.ConfirmationToken = "0";
                    
+                    paciente.Usuario.FirstName = paciente.Nombre;
+                    paciente.Usuario.IsApproved = true;
+                    paciente.Usuario.LastName = paciente.Apellido;
+                    paciente.Usuario.CreateDate = DateTime.UtcNow;
+                    paciente.Usuario.LastPasswordChangedDate = DateTime.UtcNow;
+                    paciente.Usuario.PasswordFailuresSinceLastSuccess = 0;
+                    paciente.Usuario.LastLoginDate = DateTime.UtcNow;
+                    paciente.Usuario.LastActivityDate = DateTime.UtcNow;
+                    paciente.Usuario.LastLockoutDate = DateTime.UtcNow;
+                    paciente.Usuario.IsLockedOut = false;
+                    paciente.Usuario.LastPasswordFailureDate = DateTime.UtcNow;
+                    
+
                     db.Pacientes.Add(paciente);
                     db.SaveChanges();
                 }
@@ -96,6 +113,7 @@ namespace BusinessLogic.Logic
                 using (Context db = new Context())
                 {
                     db.Entry(paciente).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(paciente.Usuario).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -109,6 +127,25 @@ namespace BusinessLogic.Logic
         public void Dispose()
         {
             GC.Collect();
+        }
+
+
+        public bool UserExist(User user)
+        {
+            bool duplicate = false;
+            try
+            {
+                using (Context db = new Context())
+                {
+                    duplicate = db.Users.Where(Usr => Usr.Username == user.Username).Any();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return duplicate;
         }
     }
 }
