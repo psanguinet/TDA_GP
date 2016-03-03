@@ -4,11 +4,10 @@
     ViewBag.Title = "Paciente";
 }
 
-<h2>Delete</h2>
+<h2>Baja de paciente</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Está usted seguro que desea dar de baja al paciente?</h3>
 <fieldset>
-    <legend>Paciente</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -72,11 +71,14 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Peso)
     </div>
+    <div class="display-field">
+        @Html.HiddenFor(model => model.Activo)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("<< Volver al listado", "Index")
     </p>
 }

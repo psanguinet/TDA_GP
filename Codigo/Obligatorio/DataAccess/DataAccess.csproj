@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201603012234060__10.Designer.cs">
       <DependentUpon>201603012234060__10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603030230502__11.cs" />
+    <Compile Include="Migrations\201603030230502__11.Designer.cs">
+      <DependentUpon>201603030230502__11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\WebSecurity.cs" />
     <Compile Include="Model\Context.cs" />
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603012234060__10.resx">
       <DependentUpon>201603012234060__10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603030230502__11.resx">
+      <DependentUpon>201603030230502__11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

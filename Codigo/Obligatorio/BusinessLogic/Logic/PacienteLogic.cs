@@ -70,8 +70,8 @@ namespace BusinessLogic.Logic
                     paciente.Usuario.LastLockoutDate = DateTime.UtcNow;
                     paciente.Usuario.IsLockedOut = false;
                     paciente.Usuario.LastPasswordFailureDate = DateTime.UtcNow;
-                    
 
+                    paciente.Activo = true;
                     db.Pacientes.Add(paciente);
                     db.SaveChanges();
                 }
@@ -93,8 +93,8 @@ namespace BusinessLogic.Logic
                     var paciente = GetPaciente(id);
                     if (paciente != null)
                     {
-                        db.Entry(paciente).State = System.Data.Entity.EntityState.Deleted;
-                        db.Pacientes.Remove(paciente);
+                        paciente.Activo = false;
+                        db.Entry(paciente).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
                 }

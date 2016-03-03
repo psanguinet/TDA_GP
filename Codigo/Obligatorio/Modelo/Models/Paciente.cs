@@ -49,6 +49,8 @@ namespace Modelo.Models
         [Range(0,500,ErrorMessage="El peso debe ser entre {1} y {2}")]
         [Required(ErrorMessage = "El peso es requerido")]
         public int Peso { get; set; }
+
+        public bool Activo { get; set; }
         public virtual HistoriaMedica HistoriaMedica { get; set; }
 
         public virtual User Usuario { get; set; }

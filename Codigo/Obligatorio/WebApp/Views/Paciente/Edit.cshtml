@@ -86,12 +86,20 @@
             @Html.EditorFor(model => model.Peso)
             @Html.ValidationMessageFor(model => model.Peso)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Activo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Activo)
+            @Html.ValidationMessageFor(model => model.Activo)
+        </div>
         <div>
             @Html.Partial("_UsuarioEdit", (Modelo.Models.RegisterModel)@ViewBag.User)
             @Html.HiddenFor(model=>model.Usuario.UserId)
             @Html.HiddenFor(model => model.Usuario.Username)
             @Html.HiddenFor(model => model.Usuario.Password)
             @Html.HiddenFor(model => model.Usuario.Email)
+           
         </div>
         <p>
             <input type="submit" value="Guardar" />

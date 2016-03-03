@@ -28,7 +28,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -54,7 +54,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error"); 
             }
             return View(paciente);
         }

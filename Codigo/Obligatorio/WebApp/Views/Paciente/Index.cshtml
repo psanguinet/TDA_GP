@@ -24,6 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
+        <th>
+            @Html.DisplayName("Estado")
+        </th>
                
         <th></th>
     </tr>
@@ -42,6 +45,9 @@
         
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
         </td>
       
         <td>

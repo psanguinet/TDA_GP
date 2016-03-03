@@ -4,10 +4,9 @@
     ViewBag.Title = "Paciente";
 }
 
-<h2>Details</h2>
+<h2>Detalles del paciente</h2>
 
 <fieldset>
-    <legend>Paciente</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -71,8 +70,15 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Peso)
     </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+    
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.PacienteID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id=Model.PacienteID }) |
+    @Html.ActionLink("<< Volver al listado", "Index")
 </p>

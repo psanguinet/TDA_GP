@@ -84,6 +84,14 @@
             @Html.EditorFor(model => model.Peso)
             @Html.ValidationMessageFor(model => model.Peso)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Activo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Activo)
+            @Html.ValidationMessageFor(model => model.Activo)
+        </div>
+
         <div>
             @Html.Partial("_UsuarioCreate")
         </div>
@@ -112,6 +120,8 @@
         $('#Password').val('123456');
         $('#ConfirmPassword').val('123456');
         $('#GrupoSanguineo').val('A');
+        $('#Activo').prop('checked', true);
+        $('#Activo').attr("disabled", true);
     });
 </script>
 

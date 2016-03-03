@@ -39,3 +39,4 @@ C:\Proyectos\TDA\Codigo\Obligatorio\DataAccess\obj\Debug\DataAccess.Migrations._
 C:\Proyectos\TDA\Codigo\Obligatorio\DataAccess\obj\Debug\DataAccess.csproj.GenerateResource.Cache
 C:\Proyectos\TDA\Codigo\Obligatorio\DataAccess\obj\Debug\DataAccess.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\DataAccess\obj\Debug\DataAccess.pdb
+C:\Proyectos\TDA\Codigo\Obligatorio\DataAccess\obj\Debug\DataAccess.Migrations._11.resources

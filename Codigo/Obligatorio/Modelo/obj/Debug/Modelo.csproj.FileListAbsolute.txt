@@ -16,3 +16,4 @@ C:\Proyectos\TDA\Codigo\Obligatorio\Modelo\bin\Debug\EntityFramework.xml
 C:\Proyectos\TDA\Codigo\Obligatorio\Modelo\bin\Debug\EntityFramework.SqlServer.xml
 C:\Proyectos\TDA\Codigo\Obligatorio\Modelo\obj\Debug\Modelo.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\Modelo\obj\Debug\Modelo.pdb
+C:\Proyectos\TDA\Codigo\Obligatorio\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
