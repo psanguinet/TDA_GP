@@ -1,0 +1,29 @@
+﻿@model Modelo.Models.Agenda
+
+@{
+    ViewBag.Title = "Agenda";
+}
+
+<h2>Detalles de la consulta</h2>
+
+<fieldset>
+    <legend>Agenda</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.AgendaID }) |
+    @Html.ActionLink("<<Volver al listado", "Index")
+</p>

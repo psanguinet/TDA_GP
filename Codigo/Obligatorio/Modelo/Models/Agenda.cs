@@ -12,11 +12,16 @@ namespace Modelo.Models
         [Key]
         public int AgendaID { get; set; }
         public virtual Paciente Paciente { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
-       
-        [Display(Name="Descripción")]
+
+        [Required(ErrorMessage = "La hora es requerida.")]
+        public String Hora { get; set; }
+
+        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
+
     }
 }

@@ -40,13 +40,11 @@ namespace Modelo.Models
         [Display(Name = "Sueldo Mínimo")]
         public decimal SueldoMinimo { get; set; }
 
-        public virtual Agenda Agenda { get; set; }
-
         public bool Activo { get; set; }
 
-       
         public virtual User Usuario { get; set; }
         public virtual ICollection<Especialidad> ListEspecialidades { get; set; }
+      
 
     }
 }

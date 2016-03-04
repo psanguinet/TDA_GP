@@ -98,6 +98,18 @@
     <Compile Include="Migrations\201603030230502__11.Designer.cs">
       <DependentUpon>201603030230502__11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603040004366__12.cs" />
+    <Compile Include="Migrations\201603040004366__12.Designer.cs">
+      <DependentUpon>201603040004366__12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603040018180__13.cs" />
+    <Compile Include="Migrations\201603040018180__13.Designer.cs">
+      <DependentUpon>201603040018180__13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603040119391__14.cs" />
+    <Compile Include="Migrations\201603040119391__14.Designer.cs">
+      <DependentUpon>201603040119391__14.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\WebSecurity.cs" />
     <Compile Include="Model\Context.cs" />
@@ -147,6 +159,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603030230502__11.resx">
       <DependentUpon>201603030230502__11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040004366__12.resx">
+      <DependentUpon>201603040004366__12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040018180__13.resx">
+      <DependentUpon>201603040018180__13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040119391__14.resx">
+      <DependentUpon>201603040119391__14.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,32 @@
+﻿@model Modelo.Models.Agenda
+
+@{
+    ViewBag.Title = "Agenda";
+}
+
+<h2>Quitar de la agenda</h2>
+
+<h3>Está seguro que desea quitar al paciente de la agenda?</h3>
+<fieldset>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("<< Volver al listado", "Index")
+    </p>
+}

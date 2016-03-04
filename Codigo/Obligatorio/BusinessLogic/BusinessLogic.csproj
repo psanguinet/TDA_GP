@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\Account.cs" />
+    <Compile Include="Logic\AgendaLogic.cs" />
     <Compile Include="Logic\IAccount.cs" />
+    <Compile Include="Logic\IAgendaLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
     <Compile Include="Logic\PacienteLogic.cs" />
