@@ -19,7 +19,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-                    result = db.Agendas.Where(a => a.Doctor.DoctorID == DoctorID).OrderByDescending(a => a.Fecha).ToList();
+                    result = db.Agendas.Include("Paciente").Where(a => a.Doctor.DoctorID == DoctorID).OrderByDescending(a => a.Fecha).ToList();
                 }
             }
             catch (Exception)
@@ -103,7 +103,7 @@ namespace BusinessLogic.Logic
             }
         }
 
-        public IDictionary<string, bool> ListHorasDisponiblesPorFecha(DateTime date)
+        public IDictionary<string, bool> ListHorasDisponiblesPorFecha(int  doctorId, DateTime date)
         {
             IDictionary<string, bool> horasDisponibles = new Dictionary<string, bool>();
             for (int i = 0; i < 21; i++)
@@ -115,7 +115,11 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-                    var agendaItems = db.Agendas.Where(a => a.Fecha == date).ToList();
+
+                    string dateString = date.ToShortDateString();
+                    DateTime dateTo = new DateTime(date.Year, date.Month, date.Day);
+                    dateTo = dateTo.AddDays(1).AddSeconds(-1);
+                    var agendaItems = db.Agendas.Where(a => a.Doctor.DoctorID == doctorId && a.Fecha > date && a.Fecha <= dateTo).ToList();
                     foreach (Agenda item in agendaItems)
                     {
                         horasDisponibles[item.Hora] = !horasDisponibles.ContainsKey(item.Hora);
@@ -130,10 +134,11 @@ namespace BusinessLogic.Logic
             return horasDisponibles;
         }
 
+              
 
-        IDictionary<int, int> IAgendaLogic.ListHorasDisponiblesPorFecha(DateTime date)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.Collect();
         }
     }
 }

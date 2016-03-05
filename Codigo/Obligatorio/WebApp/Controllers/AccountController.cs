@@ -40,6 +40,11 @@ namespace WebApp.Controllers
             {
                 return RedirectToLocal(returnUrl);
             }
+            //CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
+            //if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
@@ -156,7 +161,7 @@ namespace WebApp.Controllers
                     bool changePasswordSucceeded;
                     try
                     {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword,true);
+                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword, true);
                     }
                     catch (Exception)
                     {
