@@ -42,11 +42,7 @@
             @Html.EditorFor(model => model.ConfirmPassword)
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
-        @*<div class="editor-field">
-            @Html.DropDownListFor(model => model.RolID, new SelectList(@ViewBag.Roles, "RoleId", "RoleName"), "Seleccione...", new { id = "IDRol" })
-            @Html.ValidationMessageFor(model => model.RolID)
-            @Html.HiddenFor(Model=>Model.RolID, new { id = "rolNameID" })
-        </div>*@
+
     </fieldset>
 }
 

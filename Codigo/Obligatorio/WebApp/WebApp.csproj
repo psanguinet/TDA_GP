@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Dialogs\Message.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -328,7 +329,7 @@
     <Content Include="Views\Agenda\Edit.cshtml" />
     <Content Include="Views\Agenda\Details.cshtml" />
     <Content Include="Views\Agenda\Delete.cshtml" />
-    <Content Include="Views\Agenda\Create.cshtml" />
+    <Content Include="Views\Agenda\AgendarPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
