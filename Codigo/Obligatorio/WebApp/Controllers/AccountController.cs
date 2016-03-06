@@ -38,8 +38,9 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+              return RedirectToLocal(returnUrl);
             }
+
             //CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
             //if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
             //{
@@ -47,7 +48,7 @@ namespace WebApp.Controllers
             //}
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
+            //ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
             return View(model);
         }
 

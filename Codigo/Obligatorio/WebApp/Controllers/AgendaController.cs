@@ -40,7 +40,7 @@ namespace WebApp.Controllers
                     result = bl.ListAgendaByDoctor(1);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View("Error");
             }

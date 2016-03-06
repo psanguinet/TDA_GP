@@ -11,7 +11,7 @@ using System.Web.Routing;
 
 namespace DataAccess.Model
 {
-    public class DBInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DBInitializer : DropCreateDatabaseAlways<Context>
     {
 
         protected override void Seed(Context context)

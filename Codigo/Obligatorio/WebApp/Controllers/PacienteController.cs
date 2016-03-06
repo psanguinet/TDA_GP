@@ -183,7 +183,7 @@ namespace WebApp.Controllers
                     result = View(paciente);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
 

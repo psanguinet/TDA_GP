@@ -10,7 +10,7 @@ namespace WebApp.Controllers
     {
         //
         // GET: /Administracion/
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         public ActionResult Index()
         {
             return View();

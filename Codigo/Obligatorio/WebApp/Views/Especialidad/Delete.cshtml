@@ -1,0 +1,34 @@
+﻿@model Modelo.Models.Especialidad
+
+@{
+    ViewBag.Title = "Especialidades";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Está seguro que desea eliminar la especialidad?</h3>
+@using (Html.BeginForm())
+{
+<fieldset>
+    <legend>Especialidad</legend>
+
+    @Html.AntiForgeryToken()
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+        
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+       
+    </div>
+
+
+
+</fieldset>
+
+    <p>
+        <input type="submit" value="Borrar" /> |
+        @Html.ActionLink("Volver al listado", "Index")
+    </p>
+
+}
