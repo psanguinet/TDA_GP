@@ -26,9 +26,3 @@ C:\Proyectos\TDA\Codigo\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.xml
 C:\Proyectos\TDA\Codigo\Obligatorio\BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
 C:\Proyectos\TDA\Codigo\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.pdb
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.dll.config
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.dll
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\bin\Debug\BusinessLogic.pdb
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.dll
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\BusinessLogic\obj\Debug\BusinessLogic.pdb

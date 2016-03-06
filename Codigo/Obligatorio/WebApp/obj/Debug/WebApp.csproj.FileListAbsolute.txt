@@ -282,8 +282,4 @@ C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\zh-Hans\System.Spatial.resources.
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\bin\zh-Hant\System.Spatial.resources.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.dll
 C:\Proyectos\TDA\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.pdb
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\WebApp\bin\WebApp.dll
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\WebApp\bin\WebApp.pdb
 C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.dll
-C:\Users\Gorga\Desktop\facultad\Taller diseño de apps\CodeProyect\Codigo\Obligatorio\WebApp\obj\Debug\WebApp.pdb
