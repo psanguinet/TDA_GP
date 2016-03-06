@@ -6,20 +6,54 @@
 
 <h2>Modificar agenda</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
 
         @Html.HiddenFor(model => model.AgendaID)
+        @Html.HiddenFor(model => model.Doctor.DoctorID)
+        @Html.HiddenFor(model => model.Doctor.Nombre)
+        @Html.HiddenFor(model => model.Doctor.Apellido)
+        @Html.HiddenFor(model => model.Doctor.Cedula)
 
+        @Html.HiddenFor(model => model.Paciente.PacienteID)
+        @Html.HiddenFor(model => model.Paciente.Nombre)
+        @Html.HiddenFor(model => model.Paciente.Apellido)
+        @Html.HiddenFor(model => model.Paciente.Cedula)
+        @Html.HiddenFor(model => model.Paciente.Altura)
+        @Html.HiddenFor(model => model.Paciente.Peso)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Doctor)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Doctor.Nombre) - 
+            @Html.DisplayFor(model => model.Doctor.Apellido)
+           
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Paciente)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Paciente.Nombre) - 
+            @Html.DisplayFor(model => model.Paciente.Apellido)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Fecha)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Fecha)
             @Html.ValidationMessageFor(model => model.Fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Hora)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hora)
+            @Html.ValidationMessageFor(model => model.Hora)
         </div>
 
         <div class="editor-label">
@@ -31,13 +65,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Modificar" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("<< Volver al listado", "Index")
 </div>
 
 @section Scripts {
