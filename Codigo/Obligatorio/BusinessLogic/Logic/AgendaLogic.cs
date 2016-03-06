@@ -54,11 +54,14 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
+                    db.Entry(agenda.Paciente).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(agenda.Doctor).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(agenda.Doctor.Usuario).State = System.Data.Entity.EntityState.Unchanged;
                     db.Agendas.Add(agenda);
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;

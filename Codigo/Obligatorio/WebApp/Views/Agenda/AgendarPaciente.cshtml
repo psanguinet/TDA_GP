@@ -1,4 +1,4 @@
-﻿@model Modelo.Models.Agenda
+﻿@model WebApp.ViewModel.VM_Agenda
 
 @{
     ViewBag.Title = "Agenda";
@@ -29,48 +29,48 @@
 
     <fieldset>
         <div class="editor-label">
-            @Html.Label("Doctor: ")
+            @Html.Label("Doctor")
         </div>
         <div class="editor-field">
-            @Html.DisplayFor(model => model.Doctor.Apellido)  
-            @Html.HiddenFor(model => model.Doctor)
+            @ViewBag.DoctorNombre
         </div>
         <div class="editor-label">
             @Html.Label("Pacientes")
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Paciente.PacienteID, new SelectList(@ViewBag.Pacientes, "PacienteID", "Apellido"), "Seleccione...")
-            @Html.ValidationMessageFor(model => model.Paciente.PacienteID)
+            @Html.DropDownListFor(model => model.PacienteID, new SelectList(@ViewBag.Pacientes, "PacienteID", "Apellido"), "Seleccione...")
+            @Html.ValidationMessageFor(model => model.PacienteID)
+
         </div>
         @*<div class="editor-field" >
-            @Html.EditorFor(model => model.Paciente.Apellido)
-            @Html.ValidationMessageFor(model => model.Paciente.Apellido)
-            @Html.ActionLink("Buscar", "BuscarPaciente", null, new { id = "lnkBuscarPaciente" })
-        </div>
-        <div id="targetDiv">
-            <input type="text" id="target" />
-        </div>*@
+                @Html.EditorFor(model => model.Paciente.Apellido)
+                @Html.ValidationMessageFor(model => model.Paciente.Apellido)
+                @Html.ActionLink("Buscar", "BuscarPaciente", null, new { id = "lnkBuscarPaciente" })
+            </div>
+            <div id="targetDiv">
+                <input type="text" id="target" />
+            </div>*@
         <div class="editor-label">
-            @Html.LabelFor(model => model.Fecha)
+            @Html.LabelFor(model => model.Agenda.Fecha)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Fecha)
-            @Html.ValidationMessageFor(model => model.Fecha)
+            @Html.EditorFor(model => model.Agenda.Fecha)
+            @Html.ValidationMessageFor(model => model.Agenda.Fecha)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Hora)
+            @Html.LabelFor(model => model.Agenda.Hora)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Hora)
-            @Html.ValidationMessageFor(model => model.Hora)
+            @Html.EditorFor(model => model.Agenda.Hora)
+            @Html.ValidationMessageFor(model => model.Agenda.Hora)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Descripcion)
+            @Html.LabelFor(model => model.Agenda.Descripcion)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Descripcion)
-            @Html.ValidationMessageFor(model => model.Descripcion)
+            @Html.EditorFor(model => model.Agenda.Descripcion)
+            @Html.ValidationMessageFor(model => model.Agenda.Descripcion)
         </div>
 
         <p>
@@ -83,68 +83,73 @@
     @Html.ActionLink("<<Volver al listado", "Index")
 </div>
 <div>
-    @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgResultadoCorrecto", "Notificación", "Persona agregada con éxito. </br>"))
-    @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgResultadoError", "Error", "Error en el proceso. </br></br>Por favor verifique los datos ingresados."))
-    @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgProcesando", "Procesando...", "Espere por favor."))
+    @*@Html.Raw(WebApp.Dialogs.Message.createDialog("dlgResultadoCorrecto", "Notificación", "Persona agregada con éxito. </br>"))
+        @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgResultadoError", "Error", "Error en el proceso. </br></br>Por favor verifique los datos ingresados."))
+        @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgProcesando", "Procesando...", "Espere por favor."))*@
 </div>
-
-@*<script type='text/javascript'>
-    $(document).ready(function(){
-        $("#target").keyup(function () {
-            var query = $(this).val();
-            getAllItems(query);
-        });
-
-        function getAllItems(query) {
-            $.ajax({
-                url: "/Agenda/BuscarPaciente",
-                data: { "query": query },
-                dataType: 'Json',
-                type: 'GET',
-                //beforeSend: function () {
-                //    $('#dlgProcesando').dialog('open');
-                //},
-                success: function (response) {
-                    if (response.Data != null) {
-                        if ($("#targetUL") != undefined) {
-                            //If the UL element is not null or undefined we are clearing it, so that the result is appended in new UL every next time.
-                            $("#targetUL").remove();
-                        }
-                        //assigning json response data to local variable. It is basically list of values.
-                        data = response.Data;
-                        //appending an UL element to show the values.
-                        $("#targetDiv").append($("<ul id='targetUL'></ul>"));
-                        //Removing previously added li elements to the list.
-                        $("#targetUL").find("li").remove();
-                        //We are iterating over the list returned by the json and for each element we are creating a li element and appending the li element to ul element.
-                        $.each(data, function (i, value) {
-                            //On click of li element we are calling a method.
-                            $("#targetUL").append($("<li class='targetLI' onclick='javascript:appendTextToTextBox(this)'>" + value + "</li>"));
-
-                        });
-                    }
-                    else {
-                        //If data is null the we are removing the li and ul elements.
-                        $("#targetUL").find("li").remove();
-                        $("#targetUL").remove();
-                    }
-                },
-                error: function (xhr, status, error) {
-                }
-            })
-        };
+<script type='text/javascript'>
+    $(document).ready(function () {
 
     });
-    //This method appends the text oc clicked li element to textbox.
-    function appendTextToTextBox(e) {
-        //Getting the text of selected li element.
-        var textToappend = e.innerText;
-        //setting the value attribute of textbox with selected li element.
-        $("#target").val(textToappend);
-        //Removing the ul element once selected element is set to textbox.
-        $("#targetUL").remove();
-    }
-</script>*@
+</script>
+
+@*<script type='text/javascript'>
+        $(document).ready(function(){
+            $("#target").keyup(function () {
+                var query = $(this).val();
+                getAllItems(query);
+            });
+
+            function getAllItems(query) {
+                $.ajax({
+                    url: "/Agenda/BuscarPaciente",
+                    data: { "query": query },
+                    dataType: 'Json',
+                    type: 'GET',
+                    //beforeSend: function () {
+                    //    $('#dlgProcesando').dialog('open');
+                    //},
+                    success: function (response) {
+                        if (response.Data != null) {
+                            if ($("#targetUL") != undefined) {
+                                //If the UL element is not null or undefined we are clearing it, so that the result is appended in new UL every next time.
+                                $("#targetUL").remove();
+                            }
+                            //assigning json response data to local variable. It is basically list of values.
+                            data = response.Data;
+                            //appending an UL element to show the values.
+                            $("#targetDiv").append($("<ul id='targetUL'></ul>"));
+                            //Removing previously added li elements to the list.
+                            $("#targetUL").find("li").remove();
+                            //We are iterating over the list returned by the json and for each element we are creating a li element and appending the li element to ul element.
+                            $.each(data, function (i, value) {
+                                //On click of li element we are calling a method.
+                                $("#targetUL").append($("<li class='targetLI' onclick='javascript:appendTextToTextBox(this)'>" + value + "</li>"));
+
+                            });
+                        }
+                        else {
+                            //If data is null the we are removing the li and ul elements.
+                            $("#targetUL").find("li").remove();
+                            $("#targetUL").remove();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                    }
+                })
+            };
+
+        });
+        //This method appends the text oc clicked li element to textbox.
+        function appendTextToTextBox(e) {
+            //Getting the text of selected li element.
+            var textToappend = e.innerText;
+            //setting the value attribute of textbox with selected li element.
+            $("#target").val(textToappend);
+            //Removing the ul element once selected element is set to textbox.
+            $("#targetUL").remove();
+        }
+    </script>*@
 
 
 
