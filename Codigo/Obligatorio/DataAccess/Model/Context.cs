@@ -23,8 +23,7 @@ namespace DataAccess.Model
             //Configuration.LazyLoadingEnabled = false;
             //Configuration.ProxyCreationEnabled = false;
             //Configuration.ValidateOnSaveEnabled = true;
-            
-            
+            //Configuration.ProxyCreationEnabled = false;
         }
 
      

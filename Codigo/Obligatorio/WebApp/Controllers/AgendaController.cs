@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Newtonsoft.Json;
+using WebApp.ViewModel;
 
 namespace WebApp.Controllers
 {
@@ -49,16 +50,13 @@ namespace WebApp.Controllers
 
         public ActionResult AgendarPaciente()
         {
-            string userName = ((HttpContext.User).Identity).Name;
-            var agenda = new Modelo.Models.Agenda();
             using (DataAccess.Model.Context db = new DataAccess.Model.Context())
             {
-                var doctor = db.Doctores.Single(d => d.DoctorID == 1);
-                agenda.Doctor = doctor;
-                ViewBag.Doctor = doctor;
+                string userName = ((HttpContext.User).Identity).Name;
+                var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                ViewBag.DoctorNombre = doc.Nombre + " " + doc.Apellido;
             }
 
-            //ViewBag.Doctor = userName;
             using (IPacienteLogic bl = new PacienteLogic())
             {
                 IEnumerable<Paciente> pacientes = bl.ListPacientes();
@@ -70,24 +68,36 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgendarPaciente(Agenda agenda)
+        public ActionResult AgendarPaciente(VM_Agenda vm_agenda)
         {
-            //bool isValid = agenda.Fecha != null && agenda.Hora != "" && agenda.Paciente.PacienteID > 0;
-            //if (isValid)
-            //{
-            //    using (IAgendaLogic bl = new AgendaLogic())
-            //    {
 
-            //        //TODO: obtener el usuario logueado
-            //        string userName = ((HttpContext.User).Identity).Name;
+            using (IAgendaLogic bl = new AgendaLogic())
+            {
 
-            //        agenda.Doctor = new Doctor() { DoctorID = 1};
-            //        DateTime fecha = DateTime.Now;
-            //        bl.Save(agenda);
-            //    }
-            //}
+                using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    db.Configuration.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
 
-            return View("Index");
+                    var paciente = db.Pacientes.Single(p => p.PacienteID == vm_agenda.PacienteID);
+                    Agenda agenda = new Agenda()
+                    {
+                        Doctor = doc,
+                        Fecha = DateTime.Now,
+                        Hora = DateTime.Now.ToShortTimeString(),
+                        Descripcion = vm_agenda.Agenda.Descripcion,
+                        Paciente = paciente,
+
+                    };
+
+                    bl.Save(agenda);
+                }
+
+            }
+
+            return RedirectToAction("Index");
         }
 
         public Action HorasDisponibles()
