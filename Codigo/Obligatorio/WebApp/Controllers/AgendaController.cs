@@ -23,21 +23,14 @@ namespace WebApp.Controllers
             {
                 using (IAgendaLogic bl = new AgendaLogic())
                 {
-
-                    //TODO: obtener el usuario logueado
-                    string userName = ((HttpContext.User).Identity).Name;
-
-                    //Guid userId = (Guid)WebSecurity.GetUser(userName).ProviderUserKey;
-
-
-                    //using(IDoctorLogic bl = new DoctorLogic)
-                    //{
-                    // Doctor doctor = bl.GetDoctorByUser(userId);
-                    //}
-
-
-                    DateTime fecha = DateTime.Now;
-                    IDictionary<string, bool> horas = bl.ListHorasDisponiblesPorFecha(1, fecha);
+                    //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
+                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                    {
+                        string userName = ((HttpContext.User).Identity).Name;
+                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                        DateTime fecha = DateTime.Now;
+                        IDictionary<string, bool> horas = bl.ListHorasDisponiblesPorFecha(doc.DoctorID, fecha);
+                    }
                     result = bl.ListAgendaByDoctor(1);
                 }
             }
@@ -53,6 +46,7 @@ namespace WebApp.Controllers
             using (DataAccess.Model.Context db = new DataAccess.Model.Context())
             {
                 string userName = ((HttpContext.User).Identity).Name;
+                //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
                 var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
                 ViewBag.DoctorNombre = doc.Nombre + " " + doc.Apellido;
             }
@@ -99,6 +93,55 @@ namespace WebApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        
+        public ActionResult Edit(int id)
+        {
+            Agenda result = null;
+            try
+            {
+                if (id != null)
+                {
+                    using (IAgendaLogic bl = new AgendaLogic())
+                    {
+                        result = bl.GetAgendaItem(id);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Agenda agenda)
+        {
+            ActionResult result = null;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (IAgendaLogic bl = new AgendaLogic())
+                    {
+                        bl.Edit(agenda);
+                    }
+                    result = RedirectToAction("Index");
+                }
+                else
+                {
+                    result = View(agenda);
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return result;
+        }
+
+
 
         public Action HorasDisponibles()
         {

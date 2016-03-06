@@ -37,7 +37,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-                    result = db.Agendas.SingleOrDefault(a => a.AgendaID == id);
+                    result = db.Agendas.Include("Doctor").Include("Paciente").SingleOrDefault(a => a.AgendaID == id);
                 }
             }
             catch (Exception)
