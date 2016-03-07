@@ -20,6 +20,7 @@ namespace Modelo.Models
       
         [Required(ErrorMessage = "La fecha es requerida.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "La hora es requerida.")]

@@ -11,6 +11,7 @@ using WebApp.ViewModel;
 
 namespace WebApp.Controllers
 {
+     [Authorize(Roles = "DOCTOR")]
     public class AgendaController : Controller
     {
         //
@@ -34,7 +35,7 @@ namespace WebApp.Controllers
                     result = bl.ListAgendaByDoctor(1);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
             }
@@ -142,7 +143,72 @@ namespace WebApp.Controllers
         }
 
 
+        public ActionResult Details(int id)
+        {
+            Agenda agenda = null;
+            try
+            {
+                using (IAgendaLogic bl = new AgendaLogic())
+                {
+                    agenda = bl.GetAgendaItem(id);
+                }
+                if (agenda == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            return View(agenda);
+        }
 
+        public ActionResult Delete(int id)
+        {
+            Agenda result = null;
+            try
+            {
+                if (id != null)
+                {
+                    using (IAgendaLogic bl = new AgendaLogic())
+                    {
+                        result = bl.GetAgendaItem(id);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(result);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ActionResult result = null;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (IAgendaLogic bl = new AgendaLogic())
+                    {
+                        bl.Delete(id);
+                    }
+                    result = RedirectToAction("Index");
+                }
+                else
+                {
+                    result = View();
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return result;
+        }
         public Action HorasDisponibles()
         {
             return null;

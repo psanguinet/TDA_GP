@@ -8,14 +8,34 @@
 
 <fieldset>
     <legend>Agenda</legend>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Doctor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Doctor.Nombre) -
+        @Html.DisplayFor(model => model.Doctor.Apellido)
 
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Paciente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Paciente.Nombre) -
+        @Html.DisplayFor(model => model.Paciente.Apellido)
+    </div>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Fecha)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Fecha)
     </div>
-
+    <div class="editor-label">
+        @Html.DisplayNameFor(model => model.Hora)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.Hora)
+        @Html.ValidationMessageFor(model => model.Hora)
+    </div>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Descripcion)
     </div>

@@ -77,7 +77,8 @@ namespace BusinessLogic.Logic
                     var agenda = GetAgendaItem(id);
                     if (agenda != null)
                     {
-                        db.Entry(agenda).State = System.Data.Entity.EntityState.Modified;
+                        db.Entry(agenda).State = System.Data.Entity.EntityState.Deleted;
+                        db.Agendas.Remove(agenda);
                         db.SaveChanges();
                     }
                 }

@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Agenda";
 }
+
+
 <style>
     #targetUL {
         width: 110px;
@@ -69,7 +71,7 @@
             @Html.LabelFor(model => model.Agenda.Descripcion)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Agenda.Descripcion)
+            @Html.TextAreaFor(model => model.Agenda.Descripcion)
             @Html.ValidationMessageFor(model => model.Agenda.Descripcion)
         </div>
 
@@ -87,9 +89,10 @@
         @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgResultadoError", "Error", "Error en el proceso. </br></br>Por favor verifique los datos ingresados."))
         @Html.Raw(WebApp.Dialogs.Message.createDialog("dlgProcesando", "Procesando...", "Espere por favor."))*@
 </div>
+
 <script type='text/javascript'>
     $(document).ready(function () {
-
+       
     });
 </script>
 
