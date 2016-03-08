@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelo.Models;
+using System.Globalization;
 
 namespace BusinessLogic.Logic
 {
@@ -119,11 +120,10 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-
-                    string dateString = date.ToShortDateString();
+                    DateTime dateFrom = new DateTime(date.Year, date.Month, date.Day);
                     DateTime dateTo = new DateTime(date.Year, date.Month, date.Day);
                     dateTo = dateTo.AddDays(1).AddSeconds(-1);
-                    var agendaItems = db.Agendas.Where(a => a.Doctor.DoctorID == doctorId && a.Fecha > date && a.Fecha <= dateTo).ToList();
+                    var agendaItems = db.Agendas.Where(a => a.Doctor.DoctorID == doctorId && a.Fecha > dateFrom && a.Fecha <= dateTo).ToList();
                     foreach (Agenda item in agendaItems)
                     {
                         horasDisponibles[item.Hora] = !horasDisponibles.ContainsKey(item.Hora);

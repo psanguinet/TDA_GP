@@ -324,6 +324,7 @@
     <Content Include="Views\Especialidad\Details.cshtml" />
     <Content Include="Views\Especialidad\Edit.cshtml" />
     <Content Include="Views\Especialidad\Index.cshtml" />
+    <Content Include="Views\Shared\_HorariosDisponibles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

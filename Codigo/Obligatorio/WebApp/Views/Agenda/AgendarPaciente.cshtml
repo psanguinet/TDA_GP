@@ -4,27 +4,9 @@
     ViewBag.Title = "Agenda";
 }
 
-
-<style>
-    #targetUL {
-        width: 110px;
-        border: 1px solid silver;
-        margin-top: 2px;
-        list-style: none;
-    }
-
-        #targetUL li {
-            margin-left: -40px;
-            border-bottom: 1px solid silver;
-            height: 26px;
-            padding-left: 5px;
-            padding-top: 8px;
-            cursor: pointer;
-        }
-</style>
 <h2>Agendar paciente</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCreate" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -44,14 +26,6 @@
             @Html.ValidationMessageFor(model => model.PacienteID)
 
         </div>
-        @*<div class="editor-field" >
-                @Html.EditorFor(model => model.Paciente.Apellido)
-                @Html.ValidationMessageFor(model => model.Paciente.Apellido)
-                @Html.ActionLink("Buscar", "BuscarPaciente", null, new { id = "lnkBuscarPaciente" })
-            </div>
-            <div id="targetDiv">
-                <input type="text" id="target" />
-            </div>*@
         <div class="editor-label">
             @Html.LabelFor(model => model.Agenda.Fecha)
         </div>
@@ -59,14 +33,14 @@
             @Html.EditorFor(model => model.Agenda.Fecha)
             @Html.ValidationMessageFor(model => model.Agenda.Fecha)
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Agenda.Hora)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Agenda.Hora)
-            @Html.ValidationMessageFor(model => model.Agenda.Hora)
-        </div>
-
+        @*<div class="editor-label">
+                @Html.LabelFor(model => model.Agenda.Hora)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Agenda.Hora)
+                @Html.ValidationMessageFor(model => model.Agenda.Hora)
+            </div>*@
+      
         <div class="editor-label">
             @Html.LabelFor(model => model.Agenda.Descripcion)
         </div>
@@ -74,7 +48,11 @@
             @Html.TextAreaFor(model => model.Agenda.Descripcion)
             @Html.ValidationMessageFor(model => model.Agenda.Descripcion)
         </div>
-
+        <div>
+            <h3>Horas disponibles</h3>
+            @Html.HiddenFor(model => model.Agenda.Hora)
+            @Html.Partial("_HorariosDisponibles", Model)
+        </div>
         <p>
             <input type="submit" value="Agendar" />
         </p>
@@ -92,7 +70,10 @@
 
 <script type='text/javascript'>
     $(document).ready(function () {
-       
+        $("#Agenda_Hora").val();
+        $('#formCreate input').on('change', function () {
+            alert($('input[name=item.Value]:checked', '#formCreate').val());
+        });
     });
 </script>
 

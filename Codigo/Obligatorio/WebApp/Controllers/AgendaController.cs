@@ -30,7 +30,7 @@ namespace WebApp.Controllers
                         string userName = ((HttpContext.User).Identity).Name;
                         var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
                         DateTime fecha = DateTime.Now;
-                        IDictionary<string, bool> horas = bl.ListHorasDisponiblesPorFecha(doc.DoctorID, fecha);
+                     
                     }
                     result = bl.ListAgendaByDoctor(1);
                 }
@@ -44,26 +44,33 @@ namespace WebApp.Controllers
 
         public ActionResult AgendarPaciente()
         {
+            Doctor doc = null;
+            VM_Agenda vm_agenda = null;
+
             using (DataAccess.Model.Context db = new DataAccess.Model.Context())
             {
                 string userName = ((HttpContext.User).Identity).Name;
                 //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
-                var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
                 ViewBag.DoctorNombre = doc.Nombre + " " + doc.Apellido;
             }
 
             using (IPacienteLogic bl = new PacienteLogic())
             {
                 IEnumerable<Paciente> pacientes = bl.ListPacientes();
-
                 ViewBag.Pacientes = pacientes;
             }
-
-            return View();
+          
+            using (IAgendaLogic bl = new AgendaLogic())
+            {
+                vm_agenda = new VM_Agenda();
+                vm_agenda.ListHorasDisponibles = bl.ListHorasDisponiblesPorFecha(doc.DoctorID, DateTime.Now);
+            }
+            return View(vm_agenda);
         }
 
         [HttpPost]
-        public ActionResult AgendarPaciente(VM_Agenda vm_agenda)
+        public ActionResult AgendarPaciente(VM_Agenda vm_agenda, FormCollection frm)
         {
 
             using (IAgendaLogic bl = new AgendaLogic())
@@ -71,6 +78,13 @@ namespace WebApp.Controllers
 
                 using (DataAccess.Model.Context db = new DataAccess.Model.Context())
                 {
+                    string rbtKeys = frm.AllKeys.Single(p => p.StartsWith("rbtHora_Disponible_"));
+
+
+                    string[] chkNameArray = rbtKeys.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+                    string hora = chkNameArray.Last();
+                   
+
                     string userName = ((HttpContext.User).Identity).Name;
                     db.Configuration.ProxyCreationEnabled = false;
                     db.Configuration.LazyLoadingEnabled = false;
@@ -81,7 +95,7 @@ namespace WebApp.Controllers
                     {
                         Doctor = doc,
                         Fecha = DateTime.Now,
-                        Hora = DateTime.Now.ToShortTimeString(),
+                        Hora = hora,
                         Descripcion = vm_agenda.Agenda.Descripcion,
                         Paciente = paciente,
 

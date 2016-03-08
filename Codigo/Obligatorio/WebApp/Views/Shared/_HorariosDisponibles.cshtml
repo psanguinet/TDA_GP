@@ -1,0 +1,36 @@
+﻿@model WebApp.ViewModel.VM_Agenda
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Horario")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListHorasDisponibles)
+    {
+        <tr>
+            <td>
+                @if (item.Value)
+                {
+                    @Html.RadioButtonFor(modelItem => item.Value, item.Value, new { id = "rbtHora_Disponible_" + item.Key, @name = "rbtn" })
+                    @*@Html.RadioButton("rbtHora_Disponible_" + item.Key, false, new { id = "rbtHora_Disponible_" + item.Key })*@
+
+                }
+                else
+                {
+                    @Html.RadioButtonFor(modelItem => item.Value, item.Value, new { id = "rbtHora_Disponible_" + item.Key, disabled = "disabled",@name = "rbtn" })
+                    @*@Html.RadioButton("rbtHora_Disponible_" + item.Key, false, new { id = "rbtHora_Disponible_" + item.Key, disabled = "disabled" })*@
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key)
+            </td>
+
+        </tr>
+    }
+
+</table>
