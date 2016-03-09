@@ -76,7 +76,7 @@ namespace BusinessLogic.Logic
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -99,7 +99,7 @@ namespace BusinessLogic.Logic
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -117,7 +117,7 @@ namespace BusinessLogic.Logic
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -140,7 +140,7 @@ namespace BusinessLogic.Logic
                     duplicate = db.Users.Where(Usr => Usr.Username == user.Username).Any();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
