@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\HistoriaMedicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformeConsultaController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
@@ -188,6 +189,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\VM_Agenda.cs" />
+    <Compile Include="ViewModel\VM_HistoriaMedica.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -332,6 +334,7 @@
     <Content Include="Views\InformeConsulta\Details.cshtml" />
     <Content Include="Views\InformeConsulta\Delete.cshtml" />
     <Content Include="Views\InformeConsulta\Edit.cshtml" />
+    <Content Include="Views\HistoriaMedica\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

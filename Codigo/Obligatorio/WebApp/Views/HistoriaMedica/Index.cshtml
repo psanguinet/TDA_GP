@@ -1,0 +1,86 @@
+﻿@model WebApp.ViewModel.VM_HistoriaMedica
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Historia Clínica</h2>
+
+<h2>Listado de Infomes de Consulta</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Doctor
+        </th>
+        <th>
+            Motivo
+        </th>
+        <th>
+            Detalle
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListadoInformeDeConsultas)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+<h2>Listado de Análisis Clínicos</h2>
+<table class="table">
+    <tr>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Doctor
+        </th>
+
+        <th>
+            Detalle
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListadoInformesAnalisisClinicos)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

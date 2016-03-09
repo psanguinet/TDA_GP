@@ -22,7 +22,7 @@ namespace WebApp.Controllers
                     {
                         string userName = ((HttpContext.User).Identity).Name;
                         var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListInformeDeConsultas(doc.DoctorID);
+                        result = bl.ListInformeDeConsultas(doc);
                     }
                 }
             }

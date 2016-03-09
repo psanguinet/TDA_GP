@@ -9,7 +9,8 @@ namespace BusinessLogic.Logic
 {
     public interface IInformeDeConsultaLogic : IDisposable
     {
-        IEnumerable<InformesDeConsulta> ListInformeDeConsultas(int DoctorID);
+        IEnumerable<InformesDeConsulta> ListInformeDeConsultas(Doctor doctor);
+        IEnumerable<InformesDeConsulta> ListInformeDeConsultas(Paciente paciente);
         InformesDeConsulta GetInformeDeConsulta(int id);
         void Save(InformesDeConsulta informeDeConsulta);
         void Delete(int id);

@@ -55,14 +55,15 @@ namespace BusinessLogic.Logic
             GC.Collect();
         }
 
-        public IEnumerable<Modelo.Models.InformesDeConsulta> ListInformeDeConsultas(int DoctorID)
+        public IEnumerable<Modelo.Models.InformesDeConsulta> ListInformeDeConsultas(Doctor doctor)
         {
             IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
             try
             {
+                int DoctorID = doctor.DoctorID;
                 using (Context db = new Context())
                 {
-                    result = db.InformesDeConsultas.Include("Paciente").Where(a => a.Doctor.DoctorID == DoctorID).OrderByDescending(a => a.Fecha).ToList();
+                    result = db.InformesDeConsultas.Include("Doctor").Include("Paciente").Where(a => a.Doctor.DoctorID == DoctorID).OrderByDescending(a => a.Fecha).ToList();
                 }
             }
             catch (Exception)
@@ -111,6 +112,26 @@ namespace BusinessLogic.Logic
 
                 throw;
             }
+        }
+
+
+        public IEnumerable<InformesDeConsulta> ListInformeDeConsultas(Paciente paciente)
+        {
+            IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
+            try
+            {
+                int PacienteID = paciente.PacienteID;
+                using (Context db = new Context())
+                {
+                    result = db.InformesDeConsultas.Include("Doctor").Include("Paciente").Where(a => a.Paciente.PacienteID == PacienteID).OrderByDescending(a => a.Fecha).ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
         }
     }
 }
