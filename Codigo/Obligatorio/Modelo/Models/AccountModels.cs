@@ -48,8 +48,10 @@ namespace Modelo.Models
 
     public class LoginModel
     {
-        [Required(ErrorMessage = "El usuario es requerido.")]
+        [Required(ErrorMessage = "El nombre de usuario es requerido"), DataType(DataType.Text)]
         [Display(Name = "Usuario")]
+        [StringLength(12,ErrorMessage="No puede tener mas de 12 caracteres")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No se permiten espacios")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "La contraseña es requerida.")]
