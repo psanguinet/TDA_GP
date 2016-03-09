@@ -8,10 +8,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Newtonsoft.Json;
 using WebApp.ViewModel;
+using System.Net;
 
 namespace WebApp.Controllers
 {
-     [Authorize(Roles = "DOCTOR")]
+    [Authorize(Roles = "DOCTOR")]
     public class AgendaController : Controller
     {
         //
@@ -30,7 +31,7 @@ namespace WebApp.Controllers
                         string userName = ((HttpContext.User).Identity).Name;
                         var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
                         DateTime fecha = DateTime.Now;
-                     
+
                     }
                     result = bl.ListAgendaByDoctor(1);
                 }
@@ -60,7 +61,7 @@ namespace WebApp.Controllers
                 IEnumerable<Paciente> pacientes = bl.ListPacientes();
                 ViewBag.Pacientes = pacientes;
             }
-          
+
             using (IAgendaLogic bl = new AgendaLogic())
             {
                 vm_agenda = new VM_Agenda();
@@ -70,7 +71,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgendarPaciente(VM_Agenda vm_agenda, FormCollection frm)
+        public ActionResult AgendarPaciente(VM_Agenda vm_agenda)
         {
 
             using (IAgendaLogic bl = new AgendaLogic())
@@ -78,13 +79,6 @@ namespace WebApp.Controllers
 
                 using (DataAccess.Model.Context db = new DataAccess.Model.Context())
                 {
-                    string rbtKeys = frm.AllKeys.Single(p => p.StartsWith("rbtHora_Disponible_"));
-
-
-                    string[] chkNameArray = rbtKeys.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
-                    string hora = chkNameArray.Last();
-                   
-
                     string userName = ((HttpContext.User).Identity).Name;
                     db.Configuration.ProxyCreationEnabled = false;
                     db.Configuration.LazyLoadingEnabled = false;
@@ -94,11 +88,10 @@ namespace WebApp.Controllers
                     Agenda agenda = new Agenda()
                     {
                         Doctor = doc,
-                        Fecha = DateTime.Now,
-                        Hora = hora,
+                        Fecha = vm_agenda.Agenda.Fecha,
+                        Hora = vm_agenda.Agenda.Hora,
                         Descripcion = vm_agenda.Agenda.Descripcion,
                         Paciente = paciente,
-
                     };
 
                     bl.Save(agenda);
@@ -109,7 +102,7 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
         public ActionResult Edit(int id)
         {
             Agenda result = null;
@@ -227,6 +220,33 @@ namespace WebApp.Controllers
         {
             return null;
 
+        }
+
+        public ActionResult BuscarHorarios(string date)
+        {
+            IDictionary<string, bool> listData = null;
+            //checking the query parameter sent from view. If it is null we will return null else we will return list based on query.
+            string result = string.Empty;
+            if (!string.IsNullOrEmpty(date))
+            {
+                DateTime fecha = DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
+                using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                    using (IAgendaLogic bl = new AgendaLogic())
+                    {
+
+                        listData = bl.ListHorasDisponiblesPorFecha(doc.DoctorID, fecha);
+                    }
+                }
+            }
+            VM_Agenda vm_agenda = new VM_Agenda()
+            {
+                ListHorasDisponibles = listData,
+            };
+            return PartialView("_HorariosDisponibles", vm_agenda);
         }
 
         public ActionResult BuscarPaciente(string query)

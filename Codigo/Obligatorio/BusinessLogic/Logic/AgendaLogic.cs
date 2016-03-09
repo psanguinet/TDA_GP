@@ -111,10 +111,11 @@ namespace BusinessLogic.Logic
         public IDictionary<string, bool> ListHorasDisponiblesPorFecha(int  doctorId, DateTime date)
         {
             IDictionary<string, bool> horasDisponibles = new Dictionary<string, bool>();
-            for (int i = 0; i < 21; i++)
+            int hora = 7;
+            for (int i = 0; i < 12; i++)
             {
-                horasDisponibles.Add(string.Concat(i.ToString(), ":00"), true);
-                horasDisponibles.Add(string.Concat(i.ToString(), ":30"), true);
+                horasDisponibles.Add(string.Concat(hora.ToString(), ":00"), true);
+                hora++;
             }
             try
             {
@@ -123,7 +124,7 @@ namespace BusinessLogic.Logic
                     DateTime dateFrom = new DateTime(date.Year, date.Month, date.Day);
                     DateTime dateTo = new DateTime(date.Year, date.Month, date.Day);
                     dateTo = dateTo.AddDays(1).AddSeconds(-1);
-                    var agendaItems = db.Agendas.Where(a => a.Doctor.DoctorID == doctorId && a.Fecha > dateFrom && a.Fecha <= dateTo).ToList();
+                    var agendaItems = db.Agendas.Where(a => a.Doctor.DoctorID == doctorId && a.Fecha >= dateFrom && a.Fecha <= dateTo).OrderByDescending(a => a.Fecha).ToList();
                     foreach (Agenda item in agendaItems)
                     {
                         horasDisponibles[item.Hora] = !horasDisponibles.ContainsKey(item.Hora);
