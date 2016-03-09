@@ -16,16 +16,17 @@ namespace DataAccess.Model
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<WebApp.DataAccess.Model.Context>());
 
-        public Context() : base("name=Context")
+        public Context()
+            : base("name=Context")
         {
-        //    Database.SetInitializer<Context>(new DBInitializer());
+            //    Database.SetInitializer<Context>(new DBInitializer());
             //Configuration.AutoDetectChangesEnabled = false;
             //Configuration.LazyLoadingEnabled = false;
             //Configuration.ProxyCreationEnabled = false;
 
         }
 
-     
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Doctor> Doctores { get; set; }
@@ -34,7 +35,6 @@ namespace DataAccess.Model
         public DbSet<AnalisisClinico> AnalisisClinicos { get; set; }
         public DbSet<Agenda> Agendas { get; set; }
         public DbSet<Especialidad> Especialidades { get; set; }
-        public DbSet<HistoriaMedica> HistoriasMedicas { get; set; }
         public DbSet<InformesDeConsulta> InformesDeConsultas { get; set; }
         public DbSet<LiquidacionDeSueldo> LiquidacionesDeSueldos { get; set; }
         public DbSet<ResultadoAnalisis> ResultadosAnalisis { get; set; }

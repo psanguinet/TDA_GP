@@ -12,9 +12,12 @@
 <table>
     <tr>
         <th>
+
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Fecha)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Hora)
         </th>
@@ -27,26 +30,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.AgendaID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.AgendaID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.AgendaID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.AgendaID })
+            
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+
+                @Html.ActionLink("Detalles", "Details", new { id = item.AgendaID }) |
+                @Html.ActionLink("Informe de consulta", "../InformeConsulta/InformeConsulta", new { agendaID = item.AgendaID })
+            </td>
+        </tr>
+    }
 
 </table>

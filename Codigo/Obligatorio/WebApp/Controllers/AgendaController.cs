@@ -102,54 +102,6 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public ActionResult Edit(int id)
-        {
-            Agenda result = null;
-            try
-            {
-                if (id != null)
-                {
-                    using (IAgendaLogic bl = new AgendaLogic())
-                    {
-                        result = bl.GetAgendaItem(id);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                return View("Error");
-            }
-            return View(result);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Agenda agenda)
-        {
-            ActionResult result = null;
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    using (IAgendaLogic bl = new AgendaLogic())
-                    {
-                        bl.Edit(agenda);
-                    }
-                    result = RedirectToAction("Index");
-                }
-                else
-                {
-                    result = View(agenda);
-                }
-            }
-            catch (Exception e)
-            {
-                return View("Error");
-            }
-            return result;
-        }
-
-
         public ActionResult Details(int id)
         {
             Agenda agenda = null;

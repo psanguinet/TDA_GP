@@ -82,6 +82,8 @@
     <Compile Include="Logic\EspecialidadLogic.cs" />
     <Compile Include="Logic\IAgendaLogic.cs" />
     <Compile Include="Logic\IEspecialidadLogic.cs" />
+    <Compile Include="Logic\IInformeDeConsultaLogic.cs" />
+    <Compile Include="Logic\InformeDeConsultaLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
     <Compile Include="Logic\PacienteLogic.cs" />

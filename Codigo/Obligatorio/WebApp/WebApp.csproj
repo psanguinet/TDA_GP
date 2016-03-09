@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformeConsultaController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Dialogs\Message.cs" />
@@ -316,7 +317,6 @@
     <Content Include="Views\Shared\_UsuarioCreate.cshtml" />
     <Content Include="Views\Shared\_UsuarioEdit.cshtml" />
     <Content Include="Views\Agenda\Index.cshtml" />
-    <Content Include="Views\Agenda\Edit.cshtml" />
     <Content Include="Views\Agenda\Details.cshtml" />
     <Content Include="Views\Agenda\Delete.cshtml" />
     <Content Include="Views\Agenda\AgendarPaciente.cshtml" />
@@ -326,6 +326,8 @@
     <Content Include="Views\Especialidad\Edit.cshtml" />
     <Content Include="Views\Especialidad\Index.cshtml" />
     <Content Include="Views\Shared\_HorariosDisponibles.cshtml" />
+    <Content Include="Views\InformeConsulta\Create.cshtml" />
+    <Content Include="Views\Shared\_PacienteDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

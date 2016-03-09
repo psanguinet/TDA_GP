@@ -83,7 +83,6 @@
     <Compile Include="Models\AnalisisClinico.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Especialidad.cs" />
-    <Compile Include="Models\HistoriaMedica.cs" />
     <Compile Include="Models\InformesDeConsulta.cs" />
     <Compile Include="Models\LiquidacionDeSueldo.cs" />
     <Compile Include="Models\Paciente.cs" />
