@@ -4,27 +4,17 @@
     ViewBag.Title = "Informe de Consulta";
 }
 
-<h2>Informe de Consulta</h2>
+<h2>Editar Informe de consulta</h2>
 
-@using (Html.BeginForm("Create", "InformeConsulta", FormMethod.Post, new { id = "formCreate" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+       
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.InformesDeConsultaID)
-
-        @Html.HiddenFor(model => model.Fecha)
-        @Html.HiddenFor(model => model.Paciente.PacienteID)
-        @Html.HiddenFor(model => model.Paciente.Nombre)
-        @Html.HiddenFor(model => model.Paciente.Apellido)
-        @Html.HiddenFor(model => model.Paciente.Cedula)
-
-        @Html.HiddenFor(model => model.Doctor.DoctorID)
-        @Html.HiddenFor(model => model.Doctor.Nombre)
-        @Html.HiddenFor(model => model.Doctor.Apellido)
-        @Html.HiddenFor(model => model.Doctor.Cedula)
         <div>
             <div>
                 @Html.Partial("_PacienteDetails", Model.Paciente)
@@ -33,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Motivo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Motivo)
+                @Html.EditorFor(model => model.Motivo)
                 @Html.ValidationMessageFor(model => model.Motivo)
             </div>
         </div>
@@ -41,21 +31,29 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Detalle, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Detalle)
+                @Html.EditorFor(model => model.Detalle)
                 @Html.ValidationMessageFor(model => model.Detalle)
             </div>
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha)
+                @Html.ValidationMessageFor(model => model.Fecha)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default"/>
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("<< Volver", "../Agenda/Index")
+    @Html.ActionLink("<< Volver al listado", "Index")
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

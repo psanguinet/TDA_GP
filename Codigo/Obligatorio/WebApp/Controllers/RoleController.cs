@@ -27,7 +27,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -53,7 +53,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
             return View(rol);
         }
@@ -86,8 +86,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }
@@ -107,8 +106,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -135,8 +133,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }
@@ -157,8 +154,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -184,8 +180,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }

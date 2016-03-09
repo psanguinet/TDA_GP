@@ -328,6 +328,10 @@
     <Content Include="Views\Shared\_HorariosDisponibles.cshtml" />
     <Content Include="Views\InformeConsulta\Create.cshtml" />
     <Content Include="Views\Shared\_PacienteDetails.cshtml" />
+    <Content Include="Views\InformeConsulta\Index.cshtml" />
+    <Content Include="Views\InformeConsulta\Details.cshtml" />
+    <Content Include="Views\InformeConsulta\Delete.cshtml" />
+    <Content Include="Views\InformeConsulta\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

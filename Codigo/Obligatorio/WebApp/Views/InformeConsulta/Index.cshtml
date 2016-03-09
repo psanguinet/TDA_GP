@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Modelo.Models.InformesDeConsulta>
+
+@{
+    ViewBag.Title = "Informe de Consulta";
+}
+
+<h2>Listado de Infomes de Consulta</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+           Paciente
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.InformesDeConsultaID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.First(ic => ic.Paciente.PacienteID == item.Paciente.PacienteID).Paciente.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.InformesDeConsultaID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.InformesDeConsultaID })
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
