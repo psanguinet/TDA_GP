@@ -1,0 +1,24 @@
+﻿@model WebApp.ViewModel.VM_Reportes
+<table class="table">
+    <tr>
+        <th>
+            Doctor
+        </th>
+        <th>
+            Cantidad
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListadoNumeroDeConsultasMensuales)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.Nombre) - @Html.DisplayFor(modelItem => item.Key.Apellido) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+        </tr>
+    }
+
+</table>

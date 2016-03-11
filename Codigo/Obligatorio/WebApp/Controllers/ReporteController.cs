@@ -9,6 +9,7 @@ using WebApp.ViewModel;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "DIRECTOR")]
     public class ReporteController : Controller
     {
         //
@@ -20,18 +21,19 @@ namespace WebApp.Controllers
 
         public ActionResult NumeroDeConsultasMensuales()
         {
-            return View();
+            VM_Reportes vm_reportes = new VM_Reportes();
+            return View(vm_reportes);
         }
 
         [HttpPost]
         public ActionResult NumeroDeConsultasMensuales(DateTime dateFrom, DateTime dateTo)
         {
-            IDictionary<int, int> listado = null;
+            VM_Reportes vm_reportes = new VM_Reportes();
             try
             {
                 using (IReporteLogic bl = new ReporteLogic())
                 {
-                    listado = bl.ListadoNumeroDeConsultasMensuales(dateFrom, dateTo);
+                    vm_reportes.ListadoNumeroDeConsultasMensuales = bl.ListadoNumeroDeConsultasMensuales(dateFrom, dateTo);
                 }
             }
             catch (Exception)
@@ -39,7 +41,7 @@ namespace WebApp.Controllers
 
                 throw;
             }
-            return View(listado);
+            return PartialView("_NumeroDeConsultasMensuales", vm_reportes);
         }
 
         public ActionResult DoctorMasyMenosVisitado()
@@ -52,7 +54,7 @@ namespace WebApp.Controllers
         {
 
 
-            ViewModel.VM_DoctorMasYMenosVisitados vm_doctores = new ViewModel.VM_DoctorMasYMenosVisitados();
+            ViewModel.VM_Reportes vm_doctores = new ViewModel.VM_Reportes();
             try
             {
                 using (IReporteLogic bl = new ReporteLogic())

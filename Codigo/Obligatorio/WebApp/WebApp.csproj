@@ -191,7 +191,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\VM_Agenda.cs" />
-    <Compile Include="ViewModel\VM_DoctorMasYMenosVisitados.cs" />
+    <Compile Include="ViewModel\VM_Reportes.cs" />
     <Compile Include="ViewModel\VM_HistoriaMedica.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +343,7 @@
     <Content Include="Views\Reporte\Index.cshtml" />
     <Content Include="Views\Reporte\DoctorMasyMenosVisitado.cshtml" />
     <Content Include="Views\Shared\_DoctorMasMenosVisitados.cshtml" />
+    <Content Include="Views\Shared\_NumeroDeConsultasMensuales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

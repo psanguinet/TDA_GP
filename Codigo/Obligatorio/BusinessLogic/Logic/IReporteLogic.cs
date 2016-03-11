@@ -13,7 +13,7 @@ namespace BusinessLogic.Logic
 
         IDictionary<Doctor, int> DoctorMenosVisitado(DateTime dateFrom, DateTime dateTo);
 
-        IDictionary<int, int> ListadoNumeroDeConsultasMensuales(DateTime dateFrom, DateTime dateTo);
+        IDictionary<Doctor, int> ListadoNumeroDeConsultasMensuales(DateTime dateFrom, DateTime dateTo);
       
     }
 }

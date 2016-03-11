@@ -1,32 +1,69 @@
-﻿@model IEnumerable<Modelo.Models.InformesDeConsulta>
-
+﻿@model WebApp.ViewModel.VM_Reportes
 @{
-    ViewBag.Title = "Reportes";
+    ViewBag.Title = "Reporte";
 }
 
-<h2>Numero De Consultas Mensuales</h2>
+<script src="~/Scripts/jquery-2.2.1.js"></script>
+<h2>Número De Consultas Mensuales</h2>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateFrom)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateFrom)
+</div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateTo)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateTo)
+</div>
+<p>
+    @Html.ActionLink("Consultar", "NumeroDeConsultasMensuales", "Reporte", null, new { id = "lnkConsultar" })
+</p>
 
 
-<table class="table">
-    <tr>
-        <th>
-            Doctor
-        </th>
-        <th>
-            Cantidad
-        </th>
-    </tr>
+<div id="table">
+    @Html.Partial("_NumeroDeConsultasMensuales", Model)
+</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Count(ic=>ic.Doctor.DoctorID == item.Doctor.DoctorID))
-            </td>
-        </tr>
-    }
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#lnkConsultar').on('click', function (e) {
+            e.preventDefault();
+            $("#table").html("");
+            var dateFrom = $("#DateFrom").val();
+            var dateTo = $("#DateTo").val();
+            var targetUrl = "/Reporte/NumeroDeConsultasMensuales";
+            $.ajax({
+                url: targetUrl,
+                dataType: 'html',
+                data: { "dateFrom": dateFrom, "dateTo": dateTo },
+                type: 'POST',
+                beforeSend: function () {
+                    //$('#dlgProcesando').dialog('open');
+                },
+                success: function (data) {
+                    //$("#tabla_Horas").html(data.Data);
+                    $("#table").html(data);
+                }
+            })
+            .fail(function (serverResponse) {
+                //$('#dlgProcesando').dialog('close');
+                //$('#dlgResultadoError').html(serverResponse.responseText);
+                //$('#dlgResultadoError').dialog({
+                //    buttons: {
+                //        'Aceptar': function () {
+                //            $(this).dialog('close');
+                //        }
+                //    }
+                //});
+                //$('#dlgResultadoError').dialog('open');
+            });
+        });
+    });
+</script>
 
-</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

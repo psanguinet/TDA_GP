@@ -7,7 +7,7 @@ using System.Web;
 
 namespace WebApp.ViewModel
 {
-    public class VM_DoctorMasYMenosVisitados
+    public class VM_Reportes
     {
         public IDictionary<Doctor,int> DoctorMasVisitado { get; set; }
 
@@ -27,10 +27,13 @@ namespace WebApp.ViewModel
         [Display(Name = "Fecha hasta:")]
         public DateTime DateTo { get; set; }
 
-        public VM_DoctorMasYMenosVisitados()
+        public IDictionary<Doctor, int> ListadoNumeroDeConsultasMensuales { get; set; }
+
+        public VM_Reportes()
         {
             DoctorMasVisitado = new Dictionary<Doctor, int>();
             DoctorMenosVisitado = new Dictionary<Doctor, int>();
+            ListadoNumeroDeConsultasMensuales = new Dictionary<Doctor, int>();
         }
     }
 }
