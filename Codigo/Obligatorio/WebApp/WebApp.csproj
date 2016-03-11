@@ -182,6 +182,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformeConsultaController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Dialogs\Message.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -190,6 +191,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\VM_Agenda.cs" />
+    <Compile Include="ViewModel\VM_DoctorMasYMenosVisitados.cs" />
     <Compile Include="ViewModel\VM_HistoriaMedica.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -337,6 +339,10 @@
     <Content Include="Views\InformeConsulta\Edit.cshtml" />
     <Content Include="Views\HistoriaMedica\Index.cshtml" />
     <Content Include="Views\Consulta\Index.cshtml" />
+    <Content Include="Views\Reporte\NumeroDeConsultasMensuales.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
+    <Content Include="Views\Reporte\DoctorMasyMenosVisitado.cshtml" />
+    <Content Include="Views\Shared\_DoctorMasMenosVisitados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

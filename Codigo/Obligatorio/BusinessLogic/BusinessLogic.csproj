@@ -89,8 +89,10 @@
     <Compile Include="Logic\IInformeDeConsultaLogic.cs" />
     <Compile Include="Logic\InformeDeConsultaLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
+    <Compile Include="Logic\IReporteLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
     <Compile Include="Logic\PacienteLogic.cs" />
+    <Compile Include="Logic\ReporteLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

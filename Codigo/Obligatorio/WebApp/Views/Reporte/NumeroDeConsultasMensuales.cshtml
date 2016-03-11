@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Modelo.Models.InformesDeConsulta>
+
+@{
+    ViewBag.Title = "Reportes";
+}
+
+<h2>Numero De Consultas Mensuales</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Doctor
+        </th>
+        <th>
+            Cantidad
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Count(ic=>ic.Doctor.DoctorID == item.Doctor.DoctorID))
+            </td>
+        </tr>
+    }
+
+</table>
