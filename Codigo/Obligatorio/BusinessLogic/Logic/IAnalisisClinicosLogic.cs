@@ -10,5 +10,6 @@ namespace BusinessLogic.Logic
     public interface IAnalisisClinicosLogic : IDisposable
     {
         IEnumerable<AnalisisClinico> ListadoInformesAnalisisClinicos(Paciente paciente);
+        IEnumerable<AnalisisClinico> ListadoInformesAnalisisClinicos(Doctor doctor);
     }
 }

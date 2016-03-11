@@ -34,5 +34,25 @@ namespace BusinessLogic.Logic
         {
             GC.Collect();
         }
+
+
+        public IEnumerable<AnalisisClinico> ListadoInformesAnalisisClinicos(Doctor doctor)
+        {
+            IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
+            try
+            {
+                int doctorID = doctor.DoctorID;
+                using (Context db = new Context())
+                {
+                    result = db.AnalisisClinicos.Include("Doctor").Include("Paciente").Include("ListResultadoAnalisis").Where(a => a.Doctor.DoctorID == doctorID).OrderByDescending(a => a.Fecha).ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
     }
 }

@@ -61,11 +61,46 @@ namespace WebApp.Controllers
         }
         public ActionResult InformeAnalisisClinicoReducido()
         {
-            return View();
+
+            IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                    {
+                        string userName = ((HttpContext.User).Identity).Name;
+                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                        result = bl.ListadoInformesAnalisisClinicos(doc);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(result);
         }
         public ActionResult InformeAnalisisClinicoExtenso()
         {
-            return View();
+            IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                    {
+                        string userName = ((HttpContext.User).Identity).Name;
+                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                        result = bl.ListadoInformesAnalisisClinicos(doc);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(result);
         }
         
         
