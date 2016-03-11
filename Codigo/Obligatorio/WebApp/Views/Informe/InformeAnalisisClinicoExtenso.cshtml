@@ -5,76 +5,79 @@
 
 <h2>Informe Analisis Clinico Extenso</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Fecha
-        </th>
-        <th>
-            Detalle
-        </th>
-        <th>
-            Paciente
-        </th>
-        <th>
-            Grupo sanguíneo
-        </th>
-        <th>
-            Peso
-        </th>
-        <th>
-            altura
-        </th>
-        <th>
-            Doctor responsable
-        </th>
-        <th>
-            Resultado
-        </th>
-
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="table_id" class="display">
+    <thead>
         <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Detalle
+            </th>
+            <th>
+                Paciente
+            </th>
+            <th>
+                Grupo sanguíneo
+            </th>
+            <th>
+                Peso
+            </th>
+            <th>
+                altura
+            </th>
+            <th>
+                Doctor responsable
+            </th>
+            <th>
+                Resultado
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.GrupoSanguineo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Peso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Altura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-            </td>
-            <td>
-                <ul>
-
-                    @foreach (var result in item.ListResultadoAnalisis)
-                    {
-                        <li>
-                            @Html.Display(result.Nobmre) @Html.Display(result.Resultado)
-                        </li>
-                    }
-                </ul>
-            </td>
 
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.GrupoSanguineo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Altura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+                </td>
+                <td>
+                    <ul>
+
+                        @foreach (var result in item.ListResultadoAnalisis)
+                        {
+                            <li>
+                                @Html.Display(result.Nobmre) @Html.Display(result.Resultado)
+                            </li>
+                        }
+                    </ul>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
 </table>
 
 
@@ -82,6 +85,13 @@
     @Html.ActionLink("<< Volver", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
+    });
+</script>

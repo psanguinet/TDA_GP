@@ -7,46 +7,66 @@
 <h2>Informe de consulta reducido</h2>
 
 
-<table class="table">
-<tr>
-    <th>
-        @Html.DisplayNameFor(model => model.Fecha)
-    </th>
+<div id="gridTable">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
 
-    <th>
-        @Html.DisplayNameFor(model => model.Detalle)
-    </th>
-    <th>
-        Paciente
-    </th>
-    <th>
-        Doctor Responsable
-    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Detalle)
+                </th>
+                <th>
+                    Paciente
+                </th>
+                <th>
+                    Doctor Responsable
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
 
-    <th></th>
-</tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Detalle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+                    </td>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Detalle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-        </td>
-
-    </tr>
-}
-
-</table>
+                </tr>
+            }
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
 <div>
     @Html.ActionLink("<< Volver", "Index")
 </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        
+
+        $('#table_id').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        } );
+    
+    //ApplyDataTablesExport("gridTable");
+    //ApplyDataTables("gridTable");
+
+    });
+</script>

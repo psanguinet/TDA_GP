@@ -4,59 +4,60 @@
 }
 
 <h2>Informe Análisis Clínico Reducido</h2>
-<table class="table">
-    <tr>
-        <th>
-            Fecha
-        </th>
-        <th>
-            Detalle
-        </th>
-        <th>
-            Paciente
-        </th>
-        <th>
-            Doctor responsable
-        </th>
-        <th>
-            Resultado
-        </th>
-
-
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="table_id" class="display">
+    <thead>
         <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-            </td>
-            <td>
-                <ul>
-
-                    @foreach (var result in item.ListResultadoAnalisis)
-                    {
-                        <li>
-                            @Html.Display(result.Nobmre) @Html.Display(result.Resultado)
-                        </li>
-                    }
-                </ul>
-            </td>
-
+            <th>
+                Fecha
+            </th>
+            <th>
+                Detalle
+            </th>
+            <th>
+                Paciente
+            </th>
+            <th>
+                Doctor responsable
+            </th>
+            <th>
+                Resultado
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+                </td>
+                <td>
+                    <ul>
+
+                        @foreach (var result in item.ListResultadoAnalisis)
+                        {
+                            <li>
+                                @Html.Display(result.Nobmre) @Html.Display(result.Resultado)
+                            </li>
+                        }
+                    </ul>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
 </table>
 
 
@@ -64,6 +65,13 @@
     @Html.ActionLink("<< Volver", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
+    });
+</script>
