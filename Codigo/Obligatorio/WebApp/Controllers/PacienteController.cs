@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "DIRECTOR")]
     public class PacienteController : Controller
     {
         /// <summary>

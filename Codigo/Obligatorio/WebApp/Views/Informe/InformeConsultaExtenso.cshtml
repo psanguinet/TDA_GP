@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Modelo.Models.InformesDeConsulta>
+
+@{
+    ViewBag.Title = "Informe De Consulta";
+}
+
+
+<h2>Informe de consulta extenso</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </th>
+        <th>
+            Paciente
+        </th>
+        <th>
+            Doctor Responsable
+        </th>
+        
+        <th>
+            Valor Consulta
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.ValorConsulta)
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("<< Volver", "Index")
+</div>

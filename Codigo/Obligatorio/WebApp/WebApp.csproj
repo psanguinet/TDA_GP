@@ -181,6 +181,7 @@
     <Compile Include="Controllers\HistoriaMedicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformeConsultaController.cs" />
+    <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -344,6 +345,11 @@
     <Content Include="Views\Reporte\DoctorMasyMenosVisitado.cshtml" />
     <Content Include="Views\Shared\_DoctorMasMenosVisitados.cshtml" />
     <Content Include="Views\Shared\_NumeroDeConsultasMensuales.cshtml" />
+    <Content Include="Views\Informe\Index.cshtml" />
+    <Content Include="Views\Informe\InformeConsultaReducido.cshtml" />
+    <Content Include="Views\Informe\InformeConsultaExtenso.cshtml" />
+    <Content Include="Views\Informe\InformeAnalisisClinicoReducido.cshtml" />
+    <Content Include="Views\Informe\InformeAnalisisClinicoExtenso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
