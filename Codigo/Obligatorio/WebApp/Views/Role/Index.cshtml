@@ -9,31 +9,43 @@
 <p>
     @Html.ActionLink("Nuevo", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.RoleId }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.RoleId }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.RoleId })
-        </td>
-    </tr>
-}
+<div id="gridTable">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.RoleId }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.RoleId }) |
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.RoleId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-</table>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+    });
+</script>
