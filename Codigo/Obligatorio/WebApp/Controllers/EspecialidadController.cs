@@ -8,7 +8,7 @@ using Modelo.Models;
 
 namespace WebApp.Controllers
 {
-    [Authorize(Roles = "ADMINISTRADOR")]
+     [Authorize(Roles = "DIRECTOR")]
     public class EspecialidadController : Controller
     {
 

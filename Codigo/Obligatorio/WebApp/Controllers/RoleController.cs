@@ -7,7 +7,9 @@ using BusinessLogic.Logic;
 using Modelo.Models;
 
 namespace WebApp.Controllers
+
 {
+     [Authorize(Roles = "DIRECTOR")]
     public class RoleController : Controller
     {
 

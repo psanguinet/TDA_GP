@@ -9,11 +9,12 @@ using WebApp.ViewModel;
 
 namespace WebApp.Controllers
 {
-    [Authorize(Roles = "PACIENTE")]
+   
     public class HistoriaMedicaController : Controller
     {
         //
         // GET: /HistoriaMedica/
+         [Authorize(Roles = "PACIENTE")]
         public ActionResult Index()
         {
 
