@@ -395,6 +395,7 @@
     <Content Include="Views\AnalisisClinico\Edit.cshtml" />
     <Content Include="Views\AnalisisClinico\Delete.cshtml" />
     <Content Include="Views\AnalisisClinico\Details.cshtml" />
+    <Content Include="Views\Shared\_DoctorDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

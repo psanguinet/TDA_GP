@@ -1,15 +1,9 @@
-﻿@model Modelo.Models.Paciente
+﻿@model Modelo.Models.Doctor
 
 <div>
-    <h4>Paciente</h4>
+    <h4>Doctor</h4>
 	<hr />
     <dl class="dl-horizontal">
-        <aside>
-            <div>
-                @Html.Partial("_FileUpload", "Foto")
-            </div>
-            @Html.HiddenFor(model => model.Foto)
-        </aside>
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -26,13 +20,6 @@
             @Html.DisplayFor(model => model.Apellido)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cedula)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cedula)
-        </dd>
     </dl>
 </div>
 

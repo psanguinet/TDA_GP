@@ -28,7 +28,7 @@
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Paciente.PacienteID, new SelectList(@ViewBag.Pacientes, "PacienteID", "Apellido"), "Seleccione...")
-            @Html.ValidationMessageFor(model => model.Paciente)
+            @Html.ValidationMessageFor(model => model.Paciente.PacienteID)
 
         </div>
         <div class="form-group">

@@ -57,7 +57,22 @@ namespace BusinessLogic.Logic
 
         public AnalisisClinico GetAnalisisClinico(int id)
         {
-            throw new NotImplementedException();
+            AnalisisClinico analisisClinico = null;
+            try
+            {
+                using (Context db = new Context())
+                {
+
+                    analisisClinico = db.AnalisisClinicos.Include("Doctor").Include("Paciente").Include("ListResultadoAnalisis").SingleOrDefault(ac => ac.AnalisisClinicoID == id);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            return analisisClinico;
         }
 
         public void Save(AnalisisClinico analisisClinico)
@@ -82,12 +97,45 @@ namespace BusinessLogic.Logic
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            AnalisisClinico analisisClinico = null;
+            try
+            {
+                using (Context db = new Context())
+                {
+
+                    analisisClinico = this.GetAnalisisClinico(id);
+                    if (analisisClinico != null)
+                    {
+                        db.Entry(analisisClinico).State = System.Data.Entity.EntityState.Deleted;
+                        db.AnalisisClinicos.Remove(analisisClinico);
+                        db.SaveChanges();
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
         }
 
         public void Edit(AnalisisClinico analisisClinico)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (Context db = new Context())
+                {
+                    db.Entry(analisisClinico).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
     }
 }

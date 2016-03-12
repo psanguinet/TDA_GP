@@ -80,5 +80,127 @@ namespace WebApp.Controllers
             }
             return result;
         }
+
+        public ActionResult Edit(int id)
+        {
+            AnalisisClinico analisisClinico = null;
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    analisisClinico = bl.GetAnalisisClinico(id);
+                    if (analisisClinico.Paciente.Foto != null)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageData = imageDataURL;
+
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(analisisClinico);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AnalisisClinico analisisClinico)
+        {
+            ActionResult result = null;
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    bl.Edit(analisisClinico);
+                }
+                result = RedirectToAction("Index");
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            return result;
+        }
+
+        public ActionResult Details(int id)
+        {
+            AnalisisClinico analisisClinico = null;
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    analisisClinico = bl.GetAnalisisClinico(id);
+                    if (analisisClinico.Paciente.Foto != null)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageData = imageDataURL;
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(analisisClinico);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            AnalisisClinico analisisClinico = null;
+            try
+            {
+                using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                {
+                    analisisClinico = bl.GetAnalisisClinico(id);
+                    if (analisisClinico.Paciente.Foto != null)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageData = imageDataURL;
+
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return View(analisisClinico);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ActionResult result = null;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
+                    {
+                        bl.Delete(id);
+                    }
+                    result = RedirectToAction("Index");
+                }
+                else
+                {
+                    result = View();
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+            return result;
+        }
     }
+
 }

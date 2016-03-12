@@ -4,23 +4,42 @@
     ViewBag.Title = "Analisis Clinico";
 }
 
-<h2>Edit</h2>
+<h2>Modificar Análisis Clínico</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>AnalisisClinico</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.AnalisisClinicoID)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fecha)
                 @Html.ValidationMessageFor(model => model.Fecha)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Doctor)
+            <div class="col-md-10">
+               @Html.Partial("_DoctorDetails",Model.Doctor)
+                @Html.HiddenFor(model=>model.Doctor.DoctorID)
+                @Html.HiddenFor(model => model.Doctor.Nombre)
+                @Html.HiddenFor(model => model.Doctor.Apellido)
+                @Html.HiddenFor(model => model.Doctor.Cedula)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+               @Html.Partial("_PacienteDetails",Model.Paciente)
+                @Html.ValidationMessageFor(model => model.Paciente.PacienteID)
+                @Html.HiddenFor(model => model.Paciente.Nombre)
+                @Html.HiddenFor(model => model.Paciente.Apellido)
+                @Html.HiddenFor(model => model.Paciente.Cedula)
             </div>
         </div>
 
@@ -34,14 +53,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("<< Volver al listado", "Index")
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
