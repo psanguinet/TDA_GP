@@ -387,6 +387,7 @@
     <Content Include="Views\Informe\InformeConsultaExtenso.cshtml" />
     <Content Include="Views\Informe\InformeAnalisisClinicoReducido.cshtml" />
     <Content Include="Views\Informe\InformeAnalisisClinicoExtenso.cshtml" />
+    <Content Include="Views\Shared\_FileUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
