@@ -35,7 +35,6 @@ namespace BusinessLogic.Logic
             GC.Collect();
         }
 
-
         public IEnumerable<AnalisisClinico> ListadoInformesAnalisisClinicos(Doctor doctor)
         {
             IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
@@ -53,6 +52,42 @@ namespace BusinessLogic.Logic
                 throw;
             }
             return result;
+        }
+
+
+        public AnalisisClinico GetAnalisisClinico(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(AnalisisClinico analisisClinico)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    db.Entry(analisisClinico.Paciente).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(analisisClinico.Doctor).State = System.Data.Entity.EntityState.Unchanged;
+                    //db.Entry(informeDeConsulta.Doctor.Usuario).State = System.Data.Entity.EntityState.Unchanged;
+                    db.AnalisisClinicos.Add(analisisClinico);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(AnalisisClinico analisisClinico)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -42,8 +42,8 @@
                             @if (User.IsInRole("DOCTOR"))
                             {
                                 <li>@Html.ActionLink("Agenda", "Index", "Agenda")</li>
-
-                                @*<li>@Html.ActionLink("Informes de Análisis Clínicos", "../HistoriaMedica/Index", "HistoriaMedica")</li>*@
+                                <li>@Html.ActionLink("Análisis Clínicos", "../AnalisisClinico/Index", "AnalisisClinico")</li>
+                                <li>@Html.ActionLink("Historia Médica", "../HistoriaMedica/ReporteHistoriaMedica", "HistoriaMedica")</li>
                                 <li>@Html.ActionLink("Informe de Consultas", "../InformeConsulta/Index", "InformeConsulta")</li>
                                 <li>@Html.ActionLink("Informes de impresión", "../Informe/Index", "Informe")</li>
                             }
@@ -59,6 +59,7 @@
                                 <li>@Html.ActionLink("Reportes", "../Reporte/Index", "Reporte")</li>
                                 <li>@Html.ActionLink("Administración", "Index", "Administracion")</li>
                                 <li>@Html.ActionLink("Liquidación de sueldos", "Index", "Administracion")</li>
+
                             }
 
 

@@ -1,0 +1,70 @@
+﻿@model Modelo.Models.AnalisisClinico
+
+@{
+    ViewBag.Title = "Analisis Clinico";
+}
+
+<h2>Nuevo análisis clínico</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="editor-label">
+            @Html.Label("Doctor")
+        </div>
+        <div class="editor-field">
+            @ViewBag.DoctorNombre
+            @Html.HiddenFor(model => model.Doctor.DoctorID)
+
+        </div>
+        <div class="editor-label">
+            @Html.Label("Pacientes")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Paciente.PacienteID, new SelectList(@ViewBag.Pacientes, "PacienteID", "Apellido"), "Seleccione...")
+            @Html.ValidationMessageFor(model => model.Paciente)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha)
+                @Html.ValidationMessageFor(model => model.Fecha)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Detalle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Detalle)
+                @Html.ValidationMessageFor(model => model.Detalle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("<<Volver al listado", "Index")
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $("#Doctor_DoctorID").val(@ViewBag.DoctorID);
+    });
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

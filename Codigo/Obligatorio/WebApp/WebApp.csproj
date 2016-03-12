@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\AnalisisClinicoController.cs" />
     <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\HistoriaMedicaController.cs" />
@@ -388,6 +389,12 @@
     <Content Include="Views\Informe\InformeAnalisisClinicoReducido.cshtml" />
     <Content Include="Views\Informe\InformeAnalisisClinicoExtenso.cshtml" />
     <Content Include="Views\Shared\_FileUpload.cshtml" />
+    <Content Include="Views\HistoriaMedica\ReporteHistoriaMedica.cshtml" />
+    <Content Include="Views\AnalisisClinico\Index.cshtml" />
+    <Content Include="Views\AnalisisClinico\Create.cshtml" />
+    <Content Include="Views\AnalisisClinico\Edit.cshtml" />
+    <Content Include="Views\AnalisisClinico\Delete.cshtml" />
+    <Content Include="Views\AnalisisClinico\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

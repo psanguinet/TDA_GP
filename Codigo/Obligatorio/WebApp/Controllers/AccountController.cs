@@ -41,14 +41,14 @@ namespace WebApp.Controllers
               return RedirectToLocal(returnUrl);
             }
 
-            //CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
-            //if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
+            if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            // If we got this far, something failed, redisplay form
-            //ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
+             //If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
             return View(model);
         }
 
