@@ -43,15 +43,17 @@
                     @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
                 </td>
                 <td>
-                    <ul>
 
-                        @foreach (var result in item.ListResultadoAnalisis)
-                        {
+
+                    @foreach (var result in item.ListResultadoAnalisis)
+                    {
+                        <ul>
                             <li>
-                                @Html.Display(result.Nobmre) @Html.Display(result.Resultado)
+                                @Html.Label(result.Nobmre) @Html.Label(result.Resultado)
                             </li>
-                        }
-                    </ul>
+                        </ul>
+                    }
+
                 </td>
 
             </tr>

@@ -1,0 +1,64 @@
+﻿@model Modelo.Models.ResultadoAnalisis
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Agregar resultado</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("AnalisisClinicosID")
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Partial("_DoctorDetails", (Modelo.Models.Doctor)@ViewBag.Doctor)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Partial("_PacienteDetails", (Modelo.Models.Paciente)@ViewBag.Paciente)
+               
+            </div>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nobmre, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nobmre)
+                @Html.ValidationMessageFor(model => model.Nobmre)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Resultado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Resultado)
+                @Html.ValidationMessageFor(model => model.Resultado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("<< Volver al listado", "Index")
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $("#AnalisisClinicosID").val(@ViewBag.AnalisisClinicoID);
+    });
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

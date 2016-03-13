@@ -47,7 +47,8 @@
                     <td>
                         @Html.ActionLink("Editar", "Edit", new { id = item.AnalisisClinicoID }) |
                         @Html.ActionLink("Detalles", "Details", new { id = item.AnalisisClinicoID }) |
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.AnalisisClinicoID })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.AnalisisClinicoID }) |
+                        @Html.ActionLink("Agregar resultado", "../ResultadoAnalisis/Create", new { id = item.AnalisisClinicoID })
                     </td>
                 </tr>
             }

@@ -185,6 +185,7 @@
     <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\ResultadoAnalisisController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Dialogs\Message.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -396,6 +397,7 @@
     <Content Include="Views\AnalisisClinico\Delete.cshtml" />
     <Content Include="Views\AnalisisClinico\Details.cshtml" />
     <Content Include="Views\Shared\_DoctorDetails.cshtml" />
+    <Content Include="Views\ResultadoAnalisis\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
