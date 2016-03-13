@@ -6,50 +6,59 @@
 <h2>Historia Médica</h2>
 
 <h2>Búsquedas en Historias médicas</h2>
+<aside>
+    @Html.TextBox("Search", null, new { id = "txtSearchID" })
+    @Html.ActionLink("Buscar", "Buscar", null, new { id = "lnkSearch" })
 
+</aside>
 <div id="gridTable">
-    <table class="display">
-        <thead>
-            <tr>
-                <th>
-                    Número
-                </th>
-                <th>
-                    Tipo de Informe
-                </th>
-                <th>
-                    Fecha creación
-                </th>
-                <th>
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.ListadoInformeDeConsultas)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Fecha)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Motivo)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Ver mas", "Edit", new { id = item.EspecilidadID })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @Html.Partial("_HistoriaMedicaBuscar",Model)
+
 </div>
 
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        ApplyDataTables("gridTable");
+        //ApplyDataTables("gridTable");
+        //$("#table").DataTable({
+        //    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json" },
+        //});
+
+        //$("#table_filter").hide();
+
+
+        $('#lnkSearch').on('click', function (e) {
+            e.preventDefault();
+            $("#gridTable").html("");
+            var txtSearch = $("#txtSearchID").val();
+         
+            var targetUrl = "/HistoriaMedica/Buscar";
+            $.ajax({
+                url: targetUrl,
+                dataType: 'html',
+                data: { "txtSearch": txtSearch },
+                type: 'POST',
+                beforeSend: function () {
+                    //$('#dlgProcesando').dialog('open');
+                },
+                success: function (data) {
+                    //$("#tabla_Horas").html(data.Data);
+                    $("#gridTable").html(data);
+                }
+            })
+            .fail(function (serverResponse) {
+                //$('#dlgProcesando').dialog('close');
+                //$('#dlgResultadoError').html(serverResponse.responseText);
+                //$('#dlgResultadoError').dialog({
+                //    buttons: {
+                //        'Aceptar': function () {
+                //            $(this).dialog('close');
+                //        }
+                //    }
+                //});
+                //$('#dlgResultadoError').dialog('open');
+            });
+        });
     });
+
 </script>

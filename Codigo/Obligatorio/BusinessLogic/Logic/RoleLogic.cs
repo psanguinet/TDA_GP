@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccess.Model;
 using Modelo.Models;
 
+
 namespace BusinessLogic.Logic
 {
     public class RoleLogic : IRoleLogic
@@ -88,7 +89,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
-                  
+
                     var rol = GetRol(id);
                     if (rol != null)
                     {
@@ -128,6 +129,39 @@ namespace BusinessLogic.Logic
         }
 
 
-        
+
+
+
+        public IEnumerable<string> GetRolByUserName(string userName)
+        {
+            string[] result = null;
+            try
+            {
+                if (string.IsNullOrEmpty(userName))
+                {
+                    return null;
+                }
+                using (Context Context = new Context())
+                {
+                    User User = null;
+                    User = Context.Users.FirstOrDefault(Usr => Usr.Username == userName);
+                    if (User != null)
+                    {
+                        result = User.Roles.Select(Rl => Rl.RoleName).ToArray();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
     }
 }

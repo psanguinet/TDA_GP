@@ -402,6 +402,7 @@
     <Content Include="Views\HistoriaMedica\HistoriaMedicaPaciente.cshtml" />
     <Content Include="Views\HistoriaMedica\HistoriaMedicaDoctor.cshtml" />
     <Content Include="Views\HistoriaMedica\IndexPaciente.cshtml" />
+    <Content Include="Views\Shared\_HistoriaMedicaBuscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,9 +10,10 @@ using System.Web.Mvc;
 
 namespace WebApp.Controllers
 {
-    [Authorize(Roles = "DOCTOR")]
+
     public class InformeConsultaController : Controller
     {
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Index()
         {
             IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
@@ -34,7 +35,7 @@ namespace WebApp.Controllers
             }
             return View(result);
         }
-
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult InformeConsulta(int agendaID)
         {
             InformesDeConsulta informeConsulta = null;
@@ -68,6 +69,7 @@ namespace WebApp.Controllers
             return View("Create", informeConsulta);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost]
         public ActionResult Create(InformesDeConsulta informeConsulta)
         {
@@ -90,6 +92,7 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Agenda");
         }
 
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Edit(int id)
         {
             InformesDeConsulta informeDeConsulta = null;
@@ -115,6 +118,7 @@ namespace WebApp.Controllers
             return View(informeDeConsulta);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(InformesDeConsulta informeDeConsulta)
@@ -168,7 +172,7 @@ namespace WebApp.Controllers
             return View(informeDeConsulta);
         }
 
-
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Delete(int id)
         {
             InformesDeConsulta informeDeConsulta = null;
@@ -190,7 +194,7 @@ namespace WebApp.Controllers
             }
             return View(informeDeConsulta);
         }
-
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

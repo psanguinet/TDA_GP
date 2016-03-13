@@ -87,5 +87,71 @@ namespace WebApp.Controllers
             return View(historiaMedica);
         }
 
+        [Authorize(Roles = "DOCTOR")]
+        public ActionResult HistoriaMedicaDoctorBusqueda()
+        {
+            VM_HistoriaMedica vm_historia = new VM_HistoriaMedica();
+            return View("ReporteHistoriaMedica", vm_historia);
+        }
+
+        [Authorize(Roles = "PACIENTE")]
+        public ActionResult HistoriaMedicaPacienteBusqueda()
+        {
+            VM_HistoriaMedica vm_historia = new VM_HistoriaMedica();
+            return View("ReporteHistoriaMedica", vm_historia);
+        }
+
+        [HttpPost]
+        public ActionResult Buscar(string txtSearch)
+        {
+
+            ViewModel.VM_HistoriaMedica vm_historia = new ViewModel.VM_HistoriaMedica();
+            try
+            {
+                string userName = ((HttpContext.User).Identity).Name;
+
+                List<string> roles = null;
+                using (IRoleLogic rl = new RoleLogic())
+                {
+                    roles = rl.GetRolByUserName(userName).ToList();
+                }
+                if (roles != null)
+                {
+                    string rol = roles.First();
+
+                    using (IHistoriaMedicaLogic bl = new HistoriaMedicaLogic())
+                    {
+                        if (rol == "PACIENTE")
+                        {
+                            using (IPacienteLogic pl = new PacienteLogic())
+                            {
+
+                                Paciente paciente = pl.GetPacienteByUserName(userName);
+                                vm_historia.ListadoHistoriaMedica = bl.ListadoHistoriaMedica(paciente, txtSearch);
+                            }
+                        }
+                        if (rol == "DOCTOR")
+                        {
+
+                            using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                            {
+                                //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
+                                Doctor docctor = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                                vm_historia.ListadoHistoriaMedica = bl.ListadoHistoriaMedica(docctor, txtSearch);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            return PartialView("_HistoriaMedicaBuscar", vm_historia);
+        }
+
+
+
     }
 }

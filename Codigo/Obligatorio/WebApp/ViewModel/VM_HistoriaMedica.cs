@@ -11,10 +11,13 @@ namespace WebApp.ViewModel
         public IEnumerable<AnalisisClinico> ListadoInformesAnalisisClinicos { get; set; }
         public IEnumerable<InformesDeConsulta> ListadoInformeDeConsultas { get; set; }
 
+        public IEnumerable<HistoriaMedica> ListadoHistoriaMedica{ get; set; }
+
         public VM_HistoriaMedica()
         {
             ListadoInformesAnalisisClinicos = new List<AnalisisClinico>();
             ListadoInformeDeConsultas = new List<InformesDeConsulta>();
+            ListadoHistoriaMedica = new List<HistoriaMedica>();
         }
     }
 }

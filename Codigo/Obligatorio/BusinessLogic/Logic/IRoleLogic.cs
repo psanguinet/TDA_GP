@@ -12,6 +12,7 @@ namespace BusinessLogic.Logic
         IEnumerable<Role> ListRoles();
         Role GetRol(Guid id);
         Role GetRolByName(string rolName);
+        IEnumerable<string> GetRolByUserName(string userName);
         void Save(Role rol);
         void Delete(Guid id);
         void Edit(Role rol);
