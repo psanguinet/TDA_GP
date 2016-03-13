@@ -100,10 +100,10 @@ namespace BusinessLogic.Logic
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
+       
 
         public void Edit(Especialidad especialidad)
         {

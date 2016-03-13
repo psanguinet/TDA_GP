@@ -1,0 +1,118 @@
+﻿@model Modelo.Models.Doctor
+
+@{
+    ViewBag.Title = "Doctor";
+}
+
+<h2>Modificar Doctor</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formEdit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        @Html.HiddenFor(model => model.DoctorID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Apellido)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Apellido)
+            @Html.ValidationMessageFor(model => model.Apellido)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cedula)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cedula)
+            @Html.ValidationMessageFor(model => model.Cedula)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EsDirector)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EsDirector)
+            @Html.ValidationMessageFor(model => model.EsDirector)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ValorConsulta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ValorConsulta)
+            @Html.ValidationMessageFor(model => model.ValorConsulta)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SueldoMinimo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SueldoMinimo)
+            @Html.ValidationMessageFor(model => model.SueldoMinimo)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefono)
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Direccion)
+            @Html.ValidationMessageFor(model => model.Direccion)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Activo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Activo)
+            @Html.ValidationMessageFor(model => model.Activo)
+        </div>
+        <div class="editor-label" style="margin-bottom:10px;">
+            @Html.Label("Nombre especialidad")
+        </div>
+        <div>
+        
+        @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades) {
+           <div><input type = "checkbox" id = "item.EspecilidadID" value=@item.EspecilidadID name="espcialidades_list[]" style="margin-right:20px;"/>
+                @Html.DisplayFor(modelItem => item.Nombre)</div>
+        }
+        </div>
+
+
+
+
+
+        <div>
+            @Html.Partial("_UsuarioEdit", (Modelo.Models.RegisterModel)@ViewBag.User)
+            @Html.HiddenFor(model=>model.Usuario.UserId)
+            @Html.HiddenFor(model => model.Usuario.Username)
+            @Html.HiddenFor(model => model.Usuario.Password)
+            @Html.HiddenFor(model => model.Usuario.Email)
+           
+        </div>
+        <p>
+            <input type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("<< Volver al listado", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

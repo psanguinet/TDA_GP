@@ -38,5 +38,9 @@ namespace DataAccess.Model
         public DbSet<InformesDeConsulta> InformesDeConsultas { get; set; }
         public DbSet<LiquidacionDeSueldo> LiquidacionesDeSueldos { get; set; }
         public DbSet<ResultadoAnalisis> ResultadosAnalisis { get; set; }
+
+
+       // public DbSet<EspecialidadDoctor> EspecialidadesDoctores { get; set; }
+        
     }
 }

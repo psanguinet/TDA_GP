@@ -7,23 +7,26 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-
 namespace WebApp.Controllers
 {
-    public class PacienteController : Controller
+    public class DoctorController : Controller
     {
         /// <summary>
-        /// Listado de pacientes
+        /// Listado de doctores
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
-            IEnumerable<Paciente> result = new List<Paciente>();
+            IEnumerable<Doctor> result = new List<Doctor>();
             try
             {
-                using (IPacienteLogic bl = new PacienteLogic())
+                using (IDoctorLogic bl = new DoctorLogic())
                 {
-                    result = bl.ListPacientes();
+                    result = bl.ListDoctores();
+                }
+                using (IEspecialidadLogic bl = new EspecialidadLogic())
+                {
+                    ViewBag.Especialidades = bl.ListEspecialidades();
                 }
             }
             catch (Exception)
@@ -34,61 +37,72 @@ namespace WebApp.Controllers
         }
 
         /// <summary>
-        /// Detalles del paciente
+        /// Detalles del doctor
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Details(int id)
         {
-            Paciente paciente = null;
+            Doctor doctor = null;
             try
             {
-                using (IPacienteLogic bl = new PacienteLogic())
+                using (IDoctorLogic dl = new DoctorLogic())
                 {
-                    paciente = bl.GetPaciente(id);
+                    ViewBag.Especialidades = dl.GetDoctor(id).ListEspecialidades;
                 }
-                if (paciente == null)
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    doctor = bl.GetDoctor(id);
+                }
+                if (doctor == null)
                 {
                     return HttpNotFound();
                 }
             }
             catch (Exception)
             {
-                return View("Error"); 
+                return View("Error");
             }
-            return View(paciente);
+            return View(doctor);
         }
 
 
         public ActionResult Create()
         {
-            //using (IRoleLogic bl = new RoleLogic())
-            //{
-            //    ViewBag.Roles = bl.ListRoles();
-            //}
+            using (IEspecialidadLogic bl = new EspecialidadLogic())
+            {
+                ViewBag.Especialidades = bl.ListEspecialidades();
+            }
 
             return View();
         }
 
+        
+
 
 
         /// <summary>
-        /// Crear nuevo paciente
+        /// Crear nuevo doctor
         /// </summary>
         /// <param name="paciente"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(Paciente paciente, RegisterModel userRegister)
+        public ActionResult Create(Doctor doctor, RegisterModel userRegister,FormCollection form)
         {
+
+            //s1.raw value  stringvalues  2 y 3
+            string[] especialidades = form.GetValues(10);
+
+
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    
-                    using (IPacienteLogic bl = new PacienteLogic())
+
+                    using (IDoctorLogic bl = new DoctorLogic())
                     {
-                        paciente.Usuario = new Modelo.Models.User()
+                        doctor.Usuario = new Modelo.Models.User()
                         {
                             UserId = Guid.NewGuid(),
                             Username = userRegister.UserName,
@@ -98,25 +112,37 @@ namespace WebApp.Controllers
                             PasswordFailuresSinceLastSuccess = 0,
                             IsLockedOut = false
                         };
-                        if(!bl.UserExist(paciente.Usuario))
+                        if (!bl.UserExist(doctor.Usuario))
                         {
-                            bl.Save(paciente);
-                            Roles.AddUserToRole(userRegister.UserName, "PACIENTE");
+                            List<Especialidad> especialidadesToAdd = new List<Especialidad>();
+                            using (IEspecialidadLogic el = new EspecialidadLogic())
+                            {
+
+                                for (int i = 0; i < especialidades.Length; i++)
+                                {
+                                    especialidadesToAdd.Add(el.GetEspecialidad(int.Parse(especialidades[i])));
+                                }
+
+                                doctor.ListEspecialidades = especialidadesToAdd;
+                                bl.Save(doctor);
+                                Roles.AddUserToRole(userRegister.UserName, "DOCTOR");
+
+                            }
                         }
                         else
                         {
                             return View("Error");
                         }
-                       
+
                     }
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    result = View("Create", paciente);
+                    result = View("Create", doctor);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
             }
@@ -124,28 +150,33 @@ namespace WebApp.Controllers
         }
 
         /// <summary>
-        /// Invoca a vista de edicion de paciente con el paciente id
+        /// Invoca a vista de edicion de doctor con el doctor id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
-            Paciente result = null;
+            Doctor result = null;
             try
             {
                 if (id != null)
                 {
-                    using (IPacienteLogic bl = new PacienteLogic())
+                    using (IDoctorLogic bl = new DoctorLogic())
                     {
-                        result = bl.GetPaciente(id);
-                        var user= new RegisterModel()
+                        result = bl.GetDoctor(id);
+                        var user = new RegisterModel()
                         {
                             UserName = result.Usuario.Username,
                             Password = result.Usuario.Password,
                             Email = result.Usuario.Email,
                             ConfirmPassword = result.Usuario.Password,
                         };
+                        
                         ViewBag.User = user;
+                    }
+                    using (IEspecialidadLogic el = new EspecialidadLogic())
+                    {
+                        ViewBag.Especialidades = el.ListEspecialidades();
                     }
                 }
             }
@@ -157,30 +188,43 @@ namespace WebApp.Controllers
         }
 
         /// <summary>
-        /// Guarda el paciente modificado
+        /// Guarda el doctor modificado
         /// </summary>
         /// <param name="paciente"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(Paciente paciente, RegisterModel userRegister)
+        public ActionResult Edit(Doctor doctor, RegisterModel userRegister, FormCollection form)
         {
+
+
+            string[] especialidades = form.GetValues(11);
             ActionResult result = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    using (IPacienteLogic bl = new PacienteLogic())
+                    using (IDoctorLogic bl = new DoctorLogic())
                     {
-                        paciente.Usuario.Email = (userRegister.Email != null || userRegister.Email != "") ? userRegister.Email : paciente.Usuario.Email;
-                        paciente.Usuario.Password = (paciente.Usuario.Password != userRegister.Password) ? userRegister.Password : paciente.Usuario.Password;
-                       
-                        bl.Edit(paciente);
+                        doctor.Usuario.Email = (userRegister.Email != null || userRegister.Email != "") ? userRegister.Email : doctor.Usuario.Email;
+                        doctor.Usuario.Password = (doctor.Usuario.Password != userRegister.Password) ? userRegister.Password : doctor.Usuario.Password;
+                        List<Especialidad> especialidadesToAdd = new List<Especialidad>();
+                        using (IEspecialidadLogic el = new EspecialidadLogic())
+                        {
+
+                            for (int i = 0; i < especialidades.Length; i++)
+                            {
+                                especialidadesToAdd.Add(el.GetEspecialidad(int.Parse(especialidades[i])));
+                            }
+
+                            doctor.ListEspecialidades = especialidadesToAdd;
+                        }
+                        bl.Edit(doctor);
                     }
                     result = RedirectToAction("Index");
                 }
                 else
                 {
-                    result = View(paciente);
+                    result = View(doctor);
                 }
             }
             catch (Exception e)
@@ -194,14 +238,14 @@ namespace WebApp.Controllers
 
         public ActionResult Delete(int id)
         {
-            Paciente result = null;
+            Doctor result = null;
             try
             {
                 if (id != null)
                 {
-                    using (IPacienteLogic bl = new PacienteLogic())
+                    using (IDoctorLogic bl = new DoctorLogic())
                     {
-                        result = bl.GetPaciente(id);
+                        result = bl.GetDoctor(id);
                     }
                 }
             }
@@ -221,7 +265,7 @@ namespace WebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (IPacienteLogic bl = new PacienteLogic())
+                    using (IDoctorLogic bl = new DoctorLogic())
                     {
                         bl.Delete(id);
                     }
@@ -237,6 +281,13 @@ namespace WebApp.Controllers
                 return View("Error");
             }
             return result;
+        }
+
+        private List<int> parseIntoInt(string especialidades)
+        {
+            List<int> especialidadesList = new List<int>();
+            especialidadesList = especialidades.Split(',').Select(Int32.Parse).ToList();
+            return especialidadesList;
         }
 
     }

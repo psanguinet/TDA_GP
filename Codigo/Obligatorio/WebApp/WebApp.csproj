@@ -176,8 +176,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LiquidacionSueldoController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Dialogs\Message.cs" />
@@ -324,10 +326,17 @@
     <Content Include="Views\Especialidad\Details.cshtml" />
     <Content Include="Views\Especialidad\Edit.cshtml" />
     <Content Include="Views\Especialidad\Index.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\LiquidacionSueldo\Index.cshtml" />
+    <Content Include="Views\LiquidacionSueldo\Create.cshtml" />
+    <Content Include="Views\LiquidacionSueldo\ShowLiq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Doctor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

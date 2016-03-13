@@ -1,12 +1,12 @@
-﻿@model Modelo.Models.Paciente
+﻿@model Modelo.Models.Doctor
 
 @{
-    ViewBag.Title = "Paciente";
+    ViewBag.Title = "Doctor";
 }
 
-<h2>Baja de paciente</h2>
+<h2>Baja de doctor</h2>
 
-<h3>Está usted seguro que desea dar de baja al paciente?</h3>
+<h3>Está usted seguro que desea dar de baja al doctor?</h3>
 <fieldset>
 
     <div class="display-label">
@@ -29,54 +29,43 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Cedula)
     </div>
-
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Direccion)
+         @Html.DisplayNameFor(model => model.EsDirector)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Direccion)
+        @Html.DisplayFor(model => model.EsDirector)
     </div>
-
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SueldoMinimo)
+    </div>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Telefono)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Telefono)
     </div>
-
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.FechaNacimiento)
+         @Html.DisplayNameFor(model => model.Direccion)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.FechaNacimiento)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Altura)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Altura)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.GrupoSanguineo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.GrupoSanguineo)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Peso)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Peso)
+        @Html.DisplayFor(model => model.Direccion)
     </div>
     <div class="display-label">
         @Html.DisplayNameFor(model => model.Activo)
     </div>
     <div class="display-field">
-        @Html.HiddenFor(model => model.Activo)
+        @Html.DisplayFor(model => model.Activo)
     </div>
+    
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

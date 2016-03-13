@@ -15,5 +15,7 @@ namespace BusinessLogic.Logic
         void Save(Especialidad especialidad);
         void Delete(int id);
         void Edit(Especialidad especialidad);
+        //void DeleteUltimasEspecialidades(int id);
+        
     }
 }

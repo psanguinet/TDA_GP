@@ -79,11 +79,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\AgendaLogic.cs" />
+    <Compile Include="Logic\DoctorLogic.cs" />
     <Compile Include="Logic\EspecialidadLogic.cs" />
     <Compile Include="Logic\IAgendaLogic.cs" />
+    <Compile Include="Logic\IDoctorLogic.cs" />
     <Compile Include="Logic\IEspecialidadLogic.cs" />
+    <Compile Include="Logic\ILiquidacionSueldoLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
+    <Compile Include="Logic\LiquidacionSueldoLogic.cs" />
     <Compile Include="Logic\PacienteLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

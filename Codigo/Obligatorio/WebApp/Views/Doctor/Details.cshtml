@@ -1,0 +1,84 @@
+﻿@model Modelo.Models.Doctor
+
+@{
+    ViewBag.Title = "Doctor";
+}
+
+<h2>Detalles del Doctor</h2>
+
+<fieldset>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellido)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cedula)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cedula)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EsDirector)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsDirector)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+     <div class="display-label" style="margin-bottom:10px;">
+            @Html.Label("Nombre especialidad")
+     </div>
+     <div>
+        
+     @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades) {
+      // <div><input type = "checkbox" id = "item.EspecilidadID" value=@item.EspecilidadID name="espcialidades_list[]" style="margin-right:20px;"/>
+          @Html.DisplayFor(modelItem => item.Nombre)//</div>
+     }
+    
+     </div>
+
+    
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.DoctorID }) |
+    @Html.ActionLink("<< Volver al listado", "Index")
+</p>

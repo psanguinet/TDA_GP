@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Logic
 {
-    public interface IPacienteLogic : IDisposable
+    public interface IDoctorLogic : IDisposable
     {
-        IEnumerable<Paciente> ListPacientes();
-        Paciente GetPaciente(int id);
-        void Save(Paciente paciente);
+        IEnumerable<Doctor> ListDoctores();
+        Doctor GetDoctor(int id);
+        void Save(Doctor doctor);
         void Delete(int id);
-        void Edit(Paciente paciente);
+        void Edit(Doctor doctor);
         bool UserExist(User user);
     }
 }

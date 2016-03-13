@@ -1,10 +1,11 @@
-﻿@model Modelo.Models.Paciente
+﻿@model Modelo.Models.Doctor
 
 @{
-    ViewBag.Title = "Paciente";
+   // ViewBag.Especialidades;
+    ViewBag.Title = "Doctor";
 }
 
-<h2>Alta de Paciente</h2>
+<h2>Alta de Doctor</h2>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCreate" }))
 {
@@ -36,15 +37,20 @@
             @Html.EditorFor(model => model.Cedula)
             @Html.ValidationMessageFor(model => model.Cedula)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.Direccion)
+            @Html.LabelFor(model => model.ValorConsulta)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Direccion)
-            @Html.ValidationMessageFor(model => model.Direccion)
+            @Html.EditorFor(model => model.ValorConsulta)
+            @Html.ValidationMessageFor(model => model.ValorConsulta)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SueldoMinimo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SueldoMinimo)
+            @Html.ValidationMessageFor(model => model.SueldoMinimo)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Telefono)
         </div>
@@ -52,37 +58,19 @@
             @Html.EditorFor(model => model.Telefono)
             @Html.ValidationMessageFor(model => model.Telefono)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.FechaNacimiento)
+            @Html.LabelFor(model => model.Direccion)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.FechaNacimiento)
-            @Html.ValidationMessageFor(model => model.FechaNacimiento)
+            @Html.EditorFor(model => model.Direccion)
+            @Html.ValidationMessageFor(model => model.Direccion)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.Altura)
+            @Html.LabelFor(model => model.EsDirector)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Altura)
-            @Html.ValidationMessageFor(model => model.Altura)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.GrupoSanguineo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.GrupoSanguineo)
-            @Html.ValidationMessageFor(model => model.GrupoSanguineo)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Peso)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Peso)
-            @Html.ValidationMessageFor(model => model.Peso)
+            @Html.EditorFor(model => model.EsDirector)
+            @Html.ValidationMessageFor(model => model.EsDirector)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Activo)
@@ -92,7 +80,18 @@
             @Html.ValidationMessageFor(model => model.Activo)
         </div>
 
+        <div class="editor-label" style="margin-bottom:10px;">
+            @Html.Label("Nombre especialidad")
+        </div>
         <div>
+        
+        @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades) {
+           <div><input type = "checkbox" id = "item.EspecilidadID" value=@item.EspecilidadID name="espcialidades_list[]" style="margin-right:20px;"/>
+                @Html.DisplayFor(modelItem => item.Nombre)</div>
+        }
+        </div>
+
+        <div style="margin-top:20px;"\>
             @Html.Partial("_UsuarioCreate")
         </div>
 
@@ -105,57 +104,15 @@
 <div>
     @Html.ActionLink("<< Volver al listado", "Index")
 </div>
-<script type='text/javascript'>
-    $(document).ready(function () {
-        $('#Nombre').val('Pablo');
-        $('#Apellido').val('Sanguinet');
-        $('#Cedula').val('35713412');
-        $('#Direccion').val('Magallanes');
-        $('#Telefono').val('29242216');
-        $('#FechaNacimiento').val('2000-10-10');
-        $('#Altura').val('170');
-        $('#Peso').val('70');
-        $('#UserName').val('psanguinet');
-        $('#Email').val('sanguinet@gmail.com');
-        $('#Password').val('123456');
-        $('#ConfirmPassword').val('123456');
-        $('#GrupoSanguineo').val('A');
-        $('#Activo').prop('checked', true);
-        $('#Activo').attr("disabled", true);
-    });
-</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+    @*var rates = document.getElementsByName('rate');
+    var rate_value;
+    for(var i = 0; i < rates.length; i++){
+    if(rates[i].checked){
+        rate_value = rates[i].value;
+    }*@
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
