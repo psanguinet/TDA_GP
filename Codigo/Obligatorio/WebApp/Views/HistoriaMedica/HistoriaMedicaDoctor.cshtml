@@ -3,7 +3,7 @@
     ViewBag.Title = "Hitoria Médica";
 }
 
-<h2>Historia Clínica</h2>
+<h2>Historias clínicas de pacientes</h2>
 
 <h2>Listado de Infomes de Consulta</h2>
 
@@ -15,7 +15,7 @@
                     Fecha
                 </th>
                 <th>
-                    Doctor
+                    Paciente
                 </th>
                 <th>
                     Motivo
@@ -28,23 +28,23 @@
         <tbody>
             @foreach (var item in Model.ListadoInformeDeConsultas)
             {
-            <tr>
+                <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Motivo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Detalle)
-                </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Detalle)
+                    </td>
 
 
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -59,7 +59,7 @@
                     Fecha
                 </th>
                 <th>
-                    Doctor
+                    Paciente
                 </th>
 
                 <th>
@@ -69,21 +69,21 @@
         </thead>
         <tbody>
             @foreach (var item in Model.ListadoInformesAnalisisClinicos)
-                {
+            {
                 <tr>
 
                     <td>
                         @Html.DisplayFor(modelItem => item.Fecha)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+                        @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Detalle)
                     </td>
 
                 </tr>
-                }
+            }
         </tbody>
     </table>
 </div>

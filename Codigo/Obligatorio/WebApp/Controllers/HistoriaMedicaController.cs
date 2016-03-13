@@ -12,10 +12,23 @@ namespace WebApp.Controllers
 
     public class HistoriaMedicaController : Controller
     {
+        [Authorize(Roles = "PACIENTE")]
+        public ActionResult IndexPaciente()
+        {
+            return View();
+
+        }
+        [Authorize(Roles = "DOCTOR")]
+        public ActionResult IndexDoctor()
+        {
+            return View();
+
+        }
+
         //
         // GET: /HistoriaMedica/
         [Authorize(Roles = "PACIENTE")]
-        public ActionResult Index()
+        public ActionResult HistoriaMedicaPaciente()
         {
 
             VM_HistoriaMedica historiaMedica = new VM_HistoriaMedica();
@@ -44,7 +57,7 @@ namespace WebApp.Controllers
         }
 
         [Authorize(Roles = "DOCTOR")]
-        public ActionResult ReporteHistoriaMedica()
+        public ActionResult HistoriaMedicaDoctor()
         {
 
             VM_HistoriaMedica historiaMedica = new VM_HistoriaMedica();

@@ -82,10 +82,12 @@
     <Compile Include="Logic\AnalisisClinicosLogic.cs" />
     <Compile Include="Logic\ConsultaLogic.cs" />
     <Compile Include="Logic\EspecialidadLogic.cs" />
+    <Compile Include="Logic\HistoriaMedicaLogic.cs" />
     <Compile Include="Logic\IAgendaLogic.cs" />
     <Compile Include="Logic\IAnalisisClinicosLogic.cs" />
     <Compile Include="Logic\IConsultaLogic.cs" />
     <Compile Include="Logic\IEspecialidadLogic.cs" />
+    <Compile Include="Logic\IHistoriaMedicaLogic.cs" />
     <Compile Include="Logic\IInformeDeConsultaLogic.cs" />
     <Compile Include="Logic\InformeDeConsultaLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
