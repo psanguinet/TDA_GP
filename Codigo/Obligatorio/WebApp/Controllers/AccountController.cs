@@ -38,7 +38,9 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-              return RedirectToLocal(returnUrl);
+                Logging.ILogger log = Logging.Logger.Initialize(new Logging.Log4Net(Logging.Enumerator.Level.INFO));
+                log.Info(string.Concat(model.UserName," - ",Environment.MachineName));
+                return RedirectToLocal(returnUrl);
             }
 
             CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();

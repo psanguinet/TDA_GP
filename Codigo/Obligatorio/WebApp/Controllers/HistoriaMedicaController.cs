@@ -110,6 +110,9 @@ namespace WebApp.Controllers
             {
                 string userName = ((HttpContext.User).Identity).Name;
 
+                Logging.ILogger log = Logging.Logger.Initialize(new Logging.Log4Net(Logging.Enumerator.Level.INFO));
+                log.Info(string.Concat(userName, " - ", "Texto buscado:", txtSearch));
+
                 List<string> roles = null;
                 using (IRoleLogic rl = new RoleLogic())
                 {
