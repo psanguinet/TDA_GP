@@ -51,6 +51,7 @@ namespace WebApp.Controllers
                 {
                     IEnumerable<Paciente> pacientes = bl.ListPacientes();
                     ViewBag.Pacientes = pacientes;
+                  
                 }
             }
             catch (Exception e)
@@ -89,13 +90,7 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    if (analisisClinico.Paciente.Foto != null)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
-                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                        ViewBag.ImageData = imageDataURL;
-
-                    }
+                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
                 }
 
             }
@@ -135,13 +130,7 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    if (analisisClinico.Paciente.Foto != null)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
-                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                        ViewBag.ImageData = imageDataURL;
-
-                    }
+                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
                 }
             }
             catch (Exception e)
@@ -159,13 +148,7 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    if (analisisClinico.Paciente.Foto != null)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(analisisClinico.Paciente.Foto.ToArray());
-                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                        ViewBag.ImageData = imageDataURL;
-
-                    }
+                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
                 }
 
             }

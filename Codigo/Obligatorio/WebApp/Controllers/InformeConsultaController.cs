@@ -2,6 +2,8 @@
 using Modelo.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +45,9 @@ namespace WebApp.Controllers
                 {
                     Agenda agenda = bl.GetAgendaItem(agendaID);
                     informeConsulta.Paciente = agenda.Paciente;
+
+                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
+
                     using (DataAccess.Model.Context db = new DataAccess.Model.Context())
                     {
                         string userName = ((HttpContext.User).Identity).Name;
@@ -95,6 +100,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
                 if (informeDeConsulta == null)
@@ -147,6 +153,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
                 if (informeDeConsulta == null)
@@ -172,6 +179,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
             }

@@ -9,18 +9,10 @@
 <h3>Está usted seguro que desea dar de baja al paciente?</h3>
 <fieldset>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nombre)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Apellido)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Apellido)
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Partial("_PacienteDetails", Model)
+        </div>
     </div>
 
     <div class="display-label">

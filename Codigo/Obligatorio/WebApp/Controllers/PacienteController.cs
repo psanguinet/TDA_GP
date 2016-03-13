@@ -224,6 +224,7 @@ namespace WebApp.Controllers
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         result = bl.GetPaciente(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(result.Foto);
                     }
                 }
             }

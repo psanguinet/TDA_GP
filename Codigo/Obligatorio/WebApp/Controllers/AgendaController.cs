@@ -110,6 +110,7 @@ namespace WebApp.Controllers
                 using (IAgendaLogic bl = new AgendaLogic())
                 {
                     agenda = bl.GetAgendaItem(id);
+                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
                 }
                 if (agenda == null)
                 {
@@ -133,6 +134,7 @@ namespace WebApp.Controllers
                     using (IAgendaLogic bl = new AgendaLogic())
                     {
                         result = bl.GetAgendaItem(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(result.Paciente.Foto);
                     }
                 }
             }
