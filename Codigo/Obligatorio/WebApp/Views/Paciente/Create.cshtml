@@ -28,7 +28,7 @@
             @Html.EditorFor(model => model.Apellido)
             @Html.ValidationMessageFor(model => model.Apellido)
         </div>
-
+       
         <div class="editor-label">
             @Html.LabelFor(model => model.Cedula)
         </div>
@@ -95,7 +95,7 @@
         <div>
             @Html.Partial("_UsuarioCreate")
         </div>
-
+      
         <p>
             <input type="submit" value="Guardar" id="Create" />
         </p>
@@ -122,6 +122,9 @@
         $('#GrupoSanguineo').val('A');
         $('#Activo').prop('checked', true);
         $('#Activo').attr("disabled", true);
+       
+
+
     });
 </script>
 

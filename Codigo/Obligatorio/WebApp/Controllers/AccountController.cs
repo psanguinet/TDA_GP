@@ -38,17 +38,19 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-              return RedirectToLocal(returnUrl);
+                Logging.ILogger log = Logging.Logger.Initialize(new Logging.Log4Net(Logging.Enumerator.Level.INFO));
+                log.Info(string.Concat(model.UserName," - ",Environment.MachineName));
+                return RedirectToLocal(returnUrl);
             }
 
-            //CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
-            //if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            CodeFirstMembershipProvider cf = new CodeFirstMembershipProvider();
+            if (ModelState.IsValid && cf.ValidateUser(model.UserName, model.Password))
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            // If we got this far, something failed, redisplay form
-            //ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
+             //If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "El nombre de usuario o contrasena es incorrecta.");
             return View(model);
         }
 

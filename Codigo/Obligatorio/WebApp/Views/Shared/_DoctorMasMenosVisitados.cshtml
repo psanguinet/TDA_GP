@@ -1,0 +1,60 @@
+﻿@model WebApp.ViewModel.VM_Reportes
+    
+<h2>Doctor más visitado</h2>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMasVisitado.First().Key.Nombre)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMasVisitado.First().Key.Nombre)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMasVisitado.First().Key.Apellido)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMasVisitado.First().Key.Apellido)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMasVisitado.First().Key.Cedula)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMasVisitado.First().Key.Cedula)
+</div>
+<div class="display-label">
+    Cantidad de consultas:
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMasVisitado.First().Value)
+</div>
+
+
+<h2>Doctor menos visitado</h2>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMenosVisitado.First().Key.Nombre)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMenosVisitado.First().Key.Nombre)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMenosVisitado.First().Key.Apellido)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMenosVisitado.First().Key.Apellido)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DoctorMenosVisitado.First().Key.Cedula)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMenosVisitado.First().Key.Cedula)
+</div>
+<div class="display-label">
+    Cantidad de consultas:
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DoctorMenosVisitado.First().Value)
+</div>

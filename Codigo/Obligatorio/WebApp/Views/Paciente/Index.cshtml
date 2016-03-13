@@ -9,53 +9,69 @@
 <p>
     @Html.ActionLink("Nuevo paciente", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apellido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cedula)
-        </th>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayName("Estado")
-        </th>
-               
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cedula)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-      
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.PacienteID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.PacienteID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.PacienteID })
-        </td>
-    </tr>
-}
+<div id="gridTable">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
 
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayName("Estado")
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cedula)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activo)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.PacienteID }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.PacienteID }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.PacienteID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @Html.ActionLink("<< Volver al listado", "Index")
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+    });
+</script>

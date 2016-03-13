@@ -51,8 +51,7 @@ namespace Modelo.Models
         public int Peso { get; set; }
 
         public bool Activo { get; set; }
-        public virtual HistoriaMedica HistoriaMedica { get; set; }
-
+      
         public virtual User Usuario { get; set; }
     }
 }

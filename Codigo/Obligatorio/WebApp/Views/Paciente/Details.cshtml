@@ -7,65 +7,75 @@
 <h2>Detalles del paciente</h2>
 
 <fieldset>
-
+    @Html.HiddenFor(model => model.PacienteID)
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
+        @Html.DisplayNameFor(model => model.Nombre)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Nombre)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Apellido)
+        @Html.DisplayNameFor(model => model.Apellido)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Apellido)
     </div>
-
+    <aside>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+        <input type="file" name="UploadFile" id="txtUploadFile" />
+        <div>
+            @Html.Partial("_FileUpload", "Vista previa")
+        </div>
+     
+        
+    </aside>
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Cedula)
+        @Html.DisplayNameFor(model => model.Cedula)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Cedula)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Direccion)
+        @Html.DisplayNameFor(model => model.Direccion)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Direccion)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Telefono)
+        @Html.DisplayNameFor(model => model.Telefono)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Telefono)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.FechaNacimiento)
+        @Html.DisplayNameFor(model => model.FechaNacimiento)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.FechaNacimiento)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Altura)
+        @Html.DisplayNameFor(model => model.Altura)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Altura)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.GrupoSanguineo)
+        @Html.DisplayNameFor(model => model.GrupoSanguineo)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.GrupoSanguineo)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Peso)
+        @Html.DisplayNameFor(model => model.Peso)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Peso)
@@ -76,9 +86,51 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Activo)
     </div>
-    
+
 </fieldset>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id=Model.PacienteID }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PacienteID }) |
     @Html.ActionLink("<< Volver al listado", "Index")
 </p>
+<script type='text/javascript'>
+    $(document).ready(function () {
+
+        $('#txtUploadFile').on('change', function (e) {
+            $('img').remove();
+            var files = e.target.files;
+            var myID = $("#PacienteID").val();
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append("file" + x, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Paciente/Upload?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            console.log(result);
+                            $("#imgResult").html(result);
+
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -11,6 +11,8 @@ namespace BusinessLogic.Logic
     {
         IEnumerable<Paciente> ListPacientes();
         Paciente GetPaciente(int id);
+
+        Paciente GetPacienteByUserName(string userName);
         void Save(Paciente paciente);
         void Delete(int id);
         void Edit(Paciente paciente);

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Impresión";
+}
+
+<hgroup class="title">
+    <h1>Impresión de informes:</h1>
+    <h2>Aquí usted puede visualizar e imprimir informes.</h2>
+</hgroup>
+
+<article>
+    <h3>Informes de Consultas.</h3>
+    <ul>
+       
+        <li>@Html.ActionLink("Impresión formato reducido", "InformeConsultaReducido", "Informe")</li>
+        <li>@Html.ActionLink("Impresión formato extenso", "InformeConsultaExtenso", "Informe")</li>
+
+    </ul>
+</article>
+
+<aside>
+    <h3>Informes de Análisis Clínico.</h3>
+    <ul>
+
+        <li>@Html.ActionLink("Impresión formato reducido", "InformeAnalisisClinicoReducido", "Informe")</li>
+        <li>@Html.ActionLink("Impresión formato extenso", "InformeAnalisisClinicoExtenso", "Informe")</li>
+
+    </ul>
+
+</aside>
+

@@ -11,8 +11,10 @@ namespace Modelo.Models
         [Key]
         public virtual Guid UserId { get; set; }
 
-        [Required(ErrorMessage="El nombre de usuario es requerido")]
+        [Required(ErrorMessage = "El nombre de usuario es requerido"), DataType(DataType.Text)]
         [Display(Name = "Usuario")]
+        [StringLength(12, ErrorMessage = "No puede tener mas de 12 caracteres")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No se permiten espacios")]
         public virtual String Username { get; set; }
 
         [EmailAddress(ErrorMessage = "El formato no es correcto")]

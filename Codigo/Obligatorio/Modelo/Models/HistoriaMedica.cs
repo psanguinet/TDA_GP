@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +8,15 @@ namespace Modelo.Models
 {
     public class HistoriaMedica
     {
-        [Key]
-        public int HistoriaMedicaID { get; set; }
-        public virtual ICollection<AnalisisClinico> ListAnalisisClinicos { get; set; }
-        public virtual ICollection<InformesDeConsulta> ListInformesDeConsulta { get; set; }
+        public int Numero { get; set; }
+        public EnumTipoDeInforme TipoDeInforme { get; set; }
+        public string TipoDeInformeNombre { get; set; }
+        public DateTime FechaCreacion { get; set; }
+    }
+
+    public enum EnumTipoDeInforme
+    {
+        InformesDeConsultas = 0,
+        AnalisisCinico = 1,
     }
 }

@@ -2,6 +2,8 @@
 using Modelo.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +12,7 @@ using System.Web.Security;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "DIRECTOR")]
     public class PacienteController : Controller
     {
         /// <summary>
@@ -46,6 +49,14 @@ namespace WebApp.Controllers
                 using (IPacienteLogic bl = new PacienteLogic())
                 {
                     paciente = bl.GetPaciente(id);
+
+                    if (paciente.Foto != null)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(paciente.Foto.ToArray());
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageData = imageDataURL;
+
+                    }
                 }
                 if (paciente == null)
                 {
@@ -54,7 +65,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                return View("Error"); 
+                return View("Error");
             }
             return View(paciente);
         }
@@ -81,11 +92,12 @@ namespace WebApp.Controllers
         public ActionResult Create(Paciente paciente, RegisterModel userRegister)
         {
             ActionResult result = null;
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         paciente.Usuario = new Modelo.Models.User()
@@ -98,7 +110,7 @@ namespace WebApp.Controllers
                             PasswordFailuresSinceLastSuccess = 0,
                             IsLockedOut = false
                         };
-                        if(!bl.UserExist(paciente.Usuario))
+                        if (!bl.UserExist(paciente.Usuario))
                         {
                             bl.Save(paciente);
                             Roles.AddUserToRole(userRegister.UserName, "PACIENTE");
@@ -107,7 +119,7 @@ namespace WebApp.Controllers
                         {
                             return View("Error");
                         }
-                       
+
                     }
                     result = RedirectToAction("Index");
                 }
@@ -138,7 +150,7 @@ namespace WebApp.Controllers
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         result = bl.GetPaciente(id);
-                        var user= new RegisterModel()
+                        var user = new RegisterModel()
                         {
                             UserName = result.Usuario.Username,
                             Password = result.Usuario.Password,
@@ -146,6 +158,14 @@ namespace WebApp.Controllers
                             ConfirmPassword = result.Usuario.Password,
                         };
                         ViewBag.User = user;
+                        if (result.Foto != null)
+                        {
+                            string imageBase64Data = Convert.ToBase64String(result.Foto.ToArray());
+                            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                            ViewBag.ImageData = imageDataURL;
+
+                        }
+
                     }
                 }
             }
@@ -173,8 +193,10 @@ namespace WebApp.Controllers
                     {
                         paciente.Usuario.Email = (userRegister.Email != null || userRegister.Email != "") ? userRegister.Email : paciente.Usuario.Email;
                         paciente.Usuario.Password = (paciente.Usuario.Password != userRegister.Password) ? userRegister.Password : paciente.Usuario.Password;
-                       
+
                         bl.Edit(paciente);
+
+
                     }
                     result = RedirectToAction("Index");
                 }
@@ -202,6 +224,7 @@ namespace WebApp.Controllers
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         result = bl.GetPaciente(id);
+                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(result.Foto);
                     }
                 }
             }
@@ -239,5 +262,46 @@ namespace WebApp.Controllers
             return result;
         }
 
+        [HttpPost]
+        public ActionResult Upload(string id)
+        {
+            byte[] imageByteData = null;
+            try
+            {
+
+                if (Request.Files.Count > 0 && id != null)
+                {
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                        file.SaveAs(path);
+
+                        imageByteData = System.IO.File.ReadAllBytes(path);
+                        using (IPacienteLogic bl = new PacienteLogic())
+                        {
+                           Paciente paciente = bl.GetPaciente(int.Parse(id));
+                           paciente.Foto = imageByteData;
+                           bl.Edit(paciente);
+                        }
+
+                        string imageBase64Data = Convert.ToBase64String(imageByteData);
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageData = imageDataURL;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            string respuesta = (imageByteData.Length > 0) ? respuesta = "Imagen subida correctamente" : respuesta = "Error";
+            return PartialView("_FileUpload", respuesta);
+        }
+
     }
+
 }

@@ -1,0 +1,50 @@
+﻿@model Modelo.Models.InformesDeConsulta
+
+@{
+    ViewBag.Title = "Informe de Consulta";
+}
+
+<h2>Detalles de:</h2>
+
+<div>
+    <h4>Informes De Consulta</h4>
+	<hr />
+    <div>
+        <div>
+            @Html.Partial("_PacienteDetails", Model.Paciente)
+        </div>
+    </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.InformesDeConsultaID }) |
+    @Html.ActionLink("<< Volver al listado", "Index")
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

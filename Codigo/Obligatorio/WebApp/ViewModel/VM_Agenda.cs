@@ -11,5 +11,7 @@ namespace WebApp.ViewModel
         public Agenda Agenda { get; set; }
         public int PacienteID { get; set; }
         public int MedicoID { get; set; }
+
+        public IDictionary<string, bool> ListHorasDisponibles { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace BusinessLogic.Logic
                 {
                     paciente.Usuario.Comment = "Paciente_Usuario";
                     paciente.Usuario.ConfirmationToken = "0";
-                   
+
                     paciente.Usuario.FirstName = paciente.Nombre;
                     paciente.Usuario.IsApproved = true;
                     paciente.Usuario.LastName = paciente.Apellido;
@@ -76,7 +76,7 @@ namespace BusinessLogic.Logic
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -99,7 +99,7 @@ namespace BusinessLogic.Logic
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -117,7 +117,7 @@ namespace BusinessLogic.Logic
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
@@ -140,12 +140,33 @@ namespace BusinessLogic.Logic
                     duplicate = db.Users.Where(Usr => Usr.Username == user.Username).Any();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
             }
             return duplicate;
+        }
+
+
+        public Paciente GetPacienteByUserName(string userName)
+        {
+            Paciente paciente = null;
+            try
+            {
+                if (userName != string.Empty)
+                {
+                    using (Context db = new Context())
+                    {
+                        paciente = db.Pacientes.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paciente;
         }
     }
 }

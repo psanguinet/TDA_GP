@@ -8,6 +8,7 @@ using Modelo.Models;
 
 namespace WebApp.Controllers
 {
+     [Authorize(Roles = "DIRECTOR")]
     public class EspecialidadController : Controller
     {
 
@@ -27,7 +28,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -54,7 +55,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
             return View(especialidad);
         }
@@ -87,8 +88,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }
@@ -108,8 +108,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -136,8 +135,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }
@@ -158,8 +156,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return View(result);
         }
@@ -185,8 +182,7 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
             return result;
         }

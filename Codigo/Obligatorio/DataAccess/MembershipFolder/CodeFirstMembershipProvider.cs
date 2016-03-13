@@ -200,17 +200,17 @@ public class CodeFirstMembershipProvider : MembershipProvider
         }
         using (Context Context = new Context())
         {
-            User User = null;
-            User = Context.Users.FirstOrDefault(Usr => Usr.Username == username);
-            if (User != null)
+            User user = null;
+            user = Context.Users.FirstOrDefault(Usr => Usr.Username == username);
+            if (user != null)
             {
                 if (userIsOnline)
                 {
-                    User.LastActivityDate = DateTime.UtcNow;
+                    user.LastActivityDate = DateTime.UtcNow;
                     Context.SaveChanges();
                 }
-                
-                return new MembershipUser(Membership.Provider.Name, User.Username, User.UserId, User.Email, null, null, User.IsApproved, User.IsLockedOut, User.CreateDate.Value, User.LastLoginDate.Value, User.LastActivityDate.Value, User.LastPasswordChangedDate.Value, User.LastLockoutDate.Value);
+
+                return new MembershipUser(Membership.Provider.Name, user.Username, user.UserId, user.Email, null, null, user.IsApproved, user.IsLockedOut, user.CreateDate.Value, user.LastLoginDate.Value, user.LastActivityDate.Value, user.LastPasswordChangedDate.Value, user.LastLockoutDate.Value);
             }
             else
             {

@@ -1,0 +1,46 @@
+﻿@model Modelo.Models.AnalisisClinico
+
+@{
+    ViewBag.Title = "Analisis Clinico";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AnalisisClinico</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Doctor)
+            <div class="col-md-10">
+                @Html.Partial("_DoctorDetails", Model.Doctor)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Partial("_PacienteDetails", Model.Paciente)
+               
+            </div>
+        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AnalisisClinicoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
