@@ -22,14 +22,15 @@ namespace WebApp.Controllers
             IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListInformeDeConsultas(doc);
-                    }
+                    result = bl.ListInformeDeConsultas(doctor);
                 }
             }
             catch (Exception e)
@@ -43,14 +44,15 @@ namespace WebApp.Controllers
             IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListInformeDeConsultas(doc);
-                    }
+                    result = bl.ListInformeDeConsultas(doctor);
                 }
             }
             catch (Exception e)
@@ -65,14 +67,15 @@ namespace WebApp.Controllers
             IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListadoInformesAnalisisClinicos(doc);
-                    }
+                    result = bl.ListadoInformesAnalisisClinicos(doctor);
                 }
             }
             catch (Exception e)
@@ -86,14 +89,15 @@ namespace WebApp.Controllers
             IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListadoInformesAnalisisClinicos(doc);
-                    }
+                    result = bl.ListadoInformesAnalisisClinicos(doctor);
                 }
             }
             catch (Exception e)
@@ -102,7 +106,7 @@ namespace WebApp.Controllers
             }
             return View(result);
         }
-        
-        
-	}
+
+
+    }
 }

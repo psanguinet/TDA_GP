@@ -11,6 +11,7 @@ namespace BusinessLogic.Logic
     {
         IEnumerable<Doctor> ListDoctores();
         Doctor GetDoctor(int id);
+        Doctor GetDoctorByUserName(string userName);
         void Save(Doctor doctor);
         void Delete(int id);
         void Edit(Doctor doctor);

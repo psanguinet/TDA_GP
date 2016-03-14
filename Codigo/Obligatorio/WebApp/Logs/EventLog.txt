@@ -10,3 +10,8 @@
 2016-03-14 02:16:17,422 [7] INFO Logging.Log4Net - pescobar - PSANGUINET-PC
 2016-03-14 02:16:33,387 [10] INFO Logging.Log4Net - pescobar - Texto buscado:diclo
 2016-03-14 02:16:59,367 [10] INFO Logging.Log4Net - pescobar - Texto buscado:diclo
+2016-03-14 17:50:32,764 [7] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-14 17:53:29,822 [14] INFO Logging.Log4Net - arienzi - PSANGUINET-PC
+2016-03-14 18:30:29,229 [11] INFO Logging.Log4Net - arienzi - Texto buscado:esguin
+2016-03-14 18:30:48,081 [11] INFO Logging.Log4Net - arienzi - Texto buscado:gotas
+2016-03-14 18:31:07,876 [11] INFO Logging.Log4Net - arienzi - Texto buscado:gastritis

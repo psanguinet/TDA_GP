@@ -17,14 +17,15 @@ namespace WebApp.Controllers
             IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListadoInformesAnalisisClinicos(doc);
-                    }
+                    result = bl.ListadoInformesAnalisisClinicos(doctor);
                 }
             }
             catch (Exception e)
@@ -38,20 +39,21 @@ namespace WebApp.Controllers
         {
             try
             {
-                using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
                 {
                     string userName = ((HttpContext.User).Identity).Name;
-                    //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
-                    Doctor doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                    ViewBag.DoctorNombre = doc.Nombre + " " + doc.Apellido;
-                    ViewBag.DoctorID = doc.DoctorID;
+                    doctor = bl.GetDoctorByUserName(userName);
                 }
+
+                ViewBag.DoctorNombre = doctor.Nombre + " " + doctor.Apellido;
+                ViewBag.DoctorID = doctor.DoctorID;
 
                 using (IPacienteLogic bl = new PacienteLogic())
                 {
                     IEnumerable<Paciente> pacientes = bl.ListPacientes();
                     ViewBag.Pacientes = pacientes;
-                  
+
                 }
             }
             catch (Exception e)

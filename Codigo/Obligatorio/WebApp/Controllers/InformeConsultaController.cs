@@ -19,14 +19,15 @@ namespace WebApp.Controllers
             IEnumerable<InformesDeConsulta> result = new List<InformesDeConsulta>();
             try
             {
+                Doctor doctor = null;
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                 {
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        result = bl.ListInformeDeConsultas(doc);
-                    }
+                    result = bl.ListInformeDeConsultas(doctor);
                 }
             }
             catch (Exception e)
@@ -39,28 +40,24 @@ namespace WebApp.Controllers
         public ActionResult InformeConsulta(int agendaID)
         {
             InformesDeConsulta informeConsulta = null;
+            Doctor doctor = null;
             try
             {
                 informeConsulta = new InformesDeConsulta();
+                using (IDoctorLogic bl = new DoctorLogic())
+                {
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
+                }
                 using (IAgendaLogic bl = new AgendaLogic())
                 {
                     Agenda agenda = bl.GetAgendaItem(agendaID);
                     informeConsulta.Paciente = agenda.Paciente;
 
                     ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
-
-                    using (DataAccess.Model.Context db = new DataAccess.Model.Context())
-                    {
-                        string userName = ((HttpContext.User).Identity).Name;
-                        db.Configuration.ProxyCreationEnabled = false;
-                        db.Configuration.LazyLoadingEnabled = false;
-                        var doc = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                        informeConsulta.Doctor = doc;
-                        informeConsulta.Motivo = agenda.Descripcion;
-                    }
-
+                    informeConsulta.Doctor = doctor;
+                    informeConsulta.Motivo = agenda.Descripcion;
                 }
-
             }
             catch (Exception e)
             {

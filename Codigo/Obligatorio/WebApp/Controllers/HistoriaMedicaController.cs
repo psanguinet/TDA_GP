@@ -64,12 +64,10 @@ namespace WebApp.Controllers
             Doctor doctor = null;
             try
             {
-                string userName = ((HttpContext.User).Identity).Name;
-                using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                using (IDoctorLogic bl = new DoctorLogic())
                 {
-                    db.Configuration.ProxyCreationEnabled = false;
-                    db.Configuration.LazyLoadingEnabled = false;
-                    doctor = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                    string userName = ((HttpContext.User).Identity).Name;
+                    doctor = bl.GetDoctorByUserName(userName);
                 }
                 using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                 {
@@ -135,13 +133,12 @@ namespace WebApp.Controllers
                         }
                         if (rol == "DOCTOR")
                         {
-
-                            using (DataAccess.Model.Context db = new DataAccess.Model.Context())
+                            Doctor doctor = null;
+                            using (IDoctorLogic bld = new DoctorLogic())
                             {
-                                //TODO: CAMBIAR DE DATA ACCESS A BUSINESS
-                                Doctor docctor = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
-                                vm_historia.ListadoHistoriaMedica = bl.ListadoHistoriaMedica(docctor, txtSearch);
+                                doctor = bld.GetDoctorByUserName(userName);
                             }
+                            vm_historia.ListadoHistoriaMedica = bl.ListadoHistoriaMedica(doctor, txtSearch);
                         }
                     }
                 }

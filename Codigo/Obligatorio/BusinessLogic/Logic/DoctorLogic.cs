@@ -154,6 +154,27 @@ namespace BusinessLogic.Logic
             }
             return duplicate;
         }
+
+
+        public Doctor GetDoctorByUserName(string userName)
+        {
+            Doctor doctor = null;
+            try
+            {
+                if (userName != string.Empty)
+                {
+                    using (Context db = new Context())
+                    {
+                        doctor = db.Doctores.Include("Usuario").SingleOrDefault(d => d.Usuario.Username == userName);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return doctor;
+        }
     }
 
 
