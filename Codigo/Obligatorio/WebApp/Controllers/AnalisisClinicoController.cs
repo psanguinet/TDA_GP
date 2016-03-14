@@ -10,8 +10,7 @@ namespace WebApp.Controllers
 {
     public class AnalisisClinicoController : Controller
     {
-        //
-        // GET: /AnalisisClinico/
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Index()
         {
             IEnumerable<AnalisisClinico> result = new List<AnalisisClinico>();
@@ -35,6 +34,7 @@ namespace WebApp.Controllers
             return View(result);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Create()
         {
             try
@@ -63,6 +63,7 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AnalisisClinico analisisClinico)
@@ -84,6 +85,7 @@ namespace WebApp.Controllers
             return result;
         }
 
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Edit(int id)
         {
             AnalisisClinico analisisClinico = null;
@@ -104,6 +106,7 @@ namespace WebApp.Controllers
             return View(analisisClinico);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AnalisisClinico analisisClinico)
@@ -144,6 +147,7 @@ namespace WebApp.Controllers
             return View(analisisClinico);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         public ActionResult Delete(int id)
         {
             AnalisisClinico analisisClinico = null;
@@ -164,6 +168,7 @@ namespace WebApp.Controllers
             return View(analisisClinico);
         }
 
+        [Authorize(Roles = "DOCTOR")]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {

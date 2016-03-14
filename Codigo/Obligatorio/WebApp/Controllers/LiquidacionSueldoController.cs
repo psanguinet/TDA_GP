@@ -15,8 +15,14 @@ namespace WebApp.Controllers
         //
         // GET: /LiquidacionSueldo/
 
-        public ActionResult Index(FormCollection form)
+        public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult VerLiquidacion(FormCollection form)
+        {
+
             int month = int.Parse(form["Mes"]);
             int year = int.Parse(form["Anio"]);
             IEnumerable<LiquidacionDeSueldo> result;
@@ -32,10 +38,11 @@ namespace WebApp.Controllers
                 return View("Error");
             }
 
-            return View(result);
+            return View("ReporteLiquidacion", result);
         }
 
-        public void CreateLiq(FormCollection form)
+        [HttpPost]
+        public ActionResult CreateLiq(FormCollection form)
         {
             int month = int.Parse(form["Mes"]);
             int year = int.Parse(form["Anio"]);
@@ -48,11 +55,9 @@ namespace WebApp.Controllers
             }
             catch (Exception)
             {
-                 View("Error");
+                View("Error");
             }
-            //ActionResult result = RedirectToAction("Index",form);
-            //return View(result);
-            Index(form);
+            return View("Index");
         }
 
 

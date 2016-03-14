@@ -1,63 +1,20 @@
-﻿@model IEnumerable<Modelo.Models.LiquidacionDeSueldo>
-
-@{
-    ViewBag.Title = "Liquidacion de Sueldo";
+﻿@{
+    ViewBag.Title = "Administración";
 }
 
-<h2>Liquidacion de Sueldo</h2>
+
+<hgroup class="title">
+    <h1>Liquidación de Sueldo:</h1>
+    <h2>Aquí usted puede administrar las liquidaciones de sueldos.</h2>
+</hgroup>
+
+<article>
+    <ul>
+
+        <li>@Html.ActionLink("Ver Liquidación Sueldo", "ShowLiq", "LiquidacionSueldo")</li>
+        <li>@Html.ActionLink("Crear Liquidación", "Create", "LiquidacionSueldo")</li> @*Agregar restriccion solo directores*@
+
+    </ul>
+</article>
 
 
-<table>
-    <tr>
-        <th>
-             @Html.DisplayName("Nombre")
-        </th>
-        <th>
-             @Html.DisplayName("Apellido")
-        </th>
-        <th>
-            @Html.DisplayName("Mes")
-        </th>
-        <th>
-            @Html.DisplayName("Año")
-        </th>
-        <th>
-             @Html.DisplayName("Fecha. Realización")
-        </th>
-        <th>
-            @Html.DisplayName("Importe a Cobrar")
-            @*@Html.DisplayNameFor(model => model.Importe)*@
-        </th>
-               
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaRealizacion.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Importe)
-        </td>
-
-      
-        <td>
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.LiquidacionID })
-        </td>
-    </tr>
-}
-
-</table>

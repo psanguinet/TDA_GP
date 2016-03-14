@@ -4,14 +4,13 @@
     ViewBag.Title = "Analisis Clinico";
 }
 
-<h2>Analisis Clinicos</h2>
+<h2>Análisis Clínicos</h2>
 
 <div>
 
 	<hr />
     <dl class="dl-horizontal">
         <div class="form-group">
-            @Html.DisplayNameFor(model => model.Doctor)
             <div class="col-md-10">
                 @Html.Partial("_DoctorDetails", Model.Doctor)
             </div>

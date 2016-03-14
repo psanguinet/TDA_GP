@@ -117,7 +117,7 @@ namespace BusinessLogic.Logic
                     using(Context db = new Context())
                     {
                         // Se agrega el objeto modificado. 
-                                               
+                        doctor.Usuario.IsApproved = true;
                         db.Entry(doctor.Usuario).State = System.Data.Entity.EntityState.Modified;
                         db.Entry(doctor).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();

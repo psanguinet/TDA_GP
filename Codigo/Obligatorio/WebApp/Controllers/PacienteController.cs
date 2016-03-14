@@ -282,7 +282,7 @@ namespace WebApp.Controllers
             }
 
             string respuesta = (imageByteData.Length > 0) ? respuesta = "Imagen subida correctamente" : respuesta = "Error";
-            return PartialView("_FileUpload", respuesta);
+            return PartialView("_FileUploadPaciente", respuesta);
         }
 
     }

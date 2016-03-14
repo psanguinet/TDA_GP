@@ -13,5 +13,6 @@ namespace BusinessLogic.Logic
         IEnumerable<LiquidacionDeSueldo> GetLiquidacionesDelMesYAnio(int mes, int anio);
         void HacerLiquidacionesDelMesYAnio(int mes, int anio);
 
+
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "DIRECTOR")]
     public class DoctorController : Controller
     {
         /// <summary>
@@ -82,7 +83,7 @@ namespace WebApp.Controllers
         /// <param name="paciente"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(Doctor doctor, RegisterModel userRegister,FormCollection form)
+        public ActionResult Create(Doctor doctor, RegisterModel userRegister, FormCollection form)
         {
 
             //s1.raw value  stringvalues  2 y 3
@@ -167,7 +168,7 @@ namespace WebApp.Controllers
                             Email = doctor.Usuario.Email,
                             ConfirmPassword = doctor.Usuario.Password,
                         };
-                        
+
                         ViewBag.User = user;
                     }
                     using (IEspecialidadLogic el = new EspecialidadLogic())
@@ -191,7 +192,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Edit(Doctor doctor, RegisterModel userRegister, FormCollection form)
         {
-           
+
             ActionResult result = null;
             try
             {
@@ -215,11 +216,11 @@ namespace WebApp.Controllers
                                 {
                                     especialidadesToAdd.Add(el.GetEspecialidad(IDEspecilidad));
                                 }
-                                
+
                             }
 
                             doctor.ListEspecialidades = especialidadesToAdd;
-                            
+
                             bl.Edit(doctor);
                         }
                     }
@@ -237,7 +238,7 @@ namespace WebApp.Controllers
             }
             return result;
         }
-      
+
 
         public ActionResult Delete(int id)
         {
@@ -331,7 +332,7 @@ namespace WebApp.Controllers
             }
 
             string respuesta = (imageByteData.Length > 0) ? respuesta = "Imagen subida correctamente" : respuesta = "Error";
-            return PartialView("_FileUpload", respuesta);
+            return PartialView("_FileUploadDoctor", respuesta);
         }
 
     }

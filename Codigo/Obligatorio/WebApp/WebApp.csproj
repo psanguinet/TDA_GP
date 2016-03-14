@@ -381,7 +381,7 @@
     <Content Include="Views\Doctor\Details.cshtml" />
     <Content Include="Views\Doctor\Delete.cshtml" />
     <Content Include="Views\Doctor\Create.cshtml" />
-    <Content Include="Views\LiquidacionSueldo\Index.cshtml" />
+    <Content Include="Views\LiquidacionSueldo\ReporteLiquidacion.cshtml" />
     <Content Include="Views\LiquidacionSueldo\Create.cshtml" />
     <Content Include="Views\LiquidacionSueldo\ShowLiq.cshtml" />
     <Content Include="Views\AnalisisClinico\Create.cshtml" />
@@ -417,6 +417,7 @@
     <Content Include="Views\Shared\_NumeroDeConsultasMensuales.cshtml" />
     <Content Include="Views\Shared\_PacienteDetails.cshtml" />
     <Content Include="Views\Shared\_FileUploadDoctor.cshtml" />
+    <Content Include="Views\LiquidacionSueldo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

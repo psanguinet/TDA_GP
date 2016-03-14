@@ -15,3 +15,12 @@
 2016-03-14 18:30:29,229 [11] INFO Logging.Log4Net - arienzi - Texto buscado:esguin
 2016-03-14 18:30:48,081 [11] INFO Logging.Log4Net - arienzi - Texto buscado:gotas
 2016-03-14 18:31:07,876 [11] INFO Logging.Log4Net - arienzi - Texto buscado:gastritis
+2016-03-14 18:43:50,028 [9] INFO Logging.Log4Net - msanchez - PSANGUINET-PC
+2016-03-14 20:09:56,799 [6] INFO Logging.Log4Net - pescobar - PSANGUINET-PC
+2016-03-14 20:10:24,800 [9] INFO Logging.Log4Net - pescobar - Texto buscado:diclo
+2016-03-14 20:10:57,185 [8] INFO Logging.Log4Net - pescobar - Texto buscado:orina
+2016-03-14 20:10:59,316 [8] INFO Logging.Log4Net - pescobar - Texto buscado:orina
+2016-03-14 20:12:10,644 [6] INFO Logging.Log4Net - pescobar - Texto buscado:Orina
+2016-03-14 20:12:58,467 [9] INFO Logging.Log4Net - pescobar - Texto buscado:Orina
+2016-03-14 20:18:27,573 [7] INFO Logging.Log4Net - pescobar - Texto buscado:Orina
+2016-03-14 20:20:55,272 [13] INFO Logging.Log4Net - msanchez - PSANGUINET-PC

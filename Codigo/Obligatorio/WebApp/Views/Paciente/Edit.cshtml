@@ -16,7 +16,7 @@
         @Html.HiddenFor(model => model.PacienteID)
         <aside>
             <div>
-                @Html.Partial("_FileUpload", "Foto")
+                @Html.Partial("_FileUploadPaciente", "Foto")
             </div>
             @Html.ActionLink("Cambiar foto", "Details", new { id = Model.PacienteID })
             @Html.HiddenFor(model => model.Foto)

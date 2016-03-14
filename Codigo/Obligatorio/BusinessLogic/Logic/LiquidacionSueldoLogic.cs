@@ -12,15 +12,15 @@ namespace BusinessLogic.Logic
     public class LiquidacionSueldoLogic : ILiquidacionSueldoLogic
     {
 
-
         public IEnumerable<Modelo.Models.LiquidacionDeSueldo> GetLiquidacionesDelMesYAnio(int mes, int anio)
         {
             IEnumerable<LiquidacionDeSueldo> result = new List<LiquidacionDeSueldo>();
             try
             {
+             
                 using (Context db = new Context())
                 {
-                    result = db.LiquidacionesDeSueldos.Where(ls => (ls.Anio == anio && ls.Mes == mes)).ToList();
+                    result = db.LiquidacionesDeSueldos.Include("Doctor").Where(ls => ls.Anio == anio && ls.Mes == mes).ToList();
                 }
             }
             catch (Exception)
@@ -34,16 +34,16 @@ namespace BusinessLogic.Logic
 
         public void HacerLiquidacionesDelMesYAnio(int mes, int anio)
         {
-            
+
             try
             {
-
+                BorrarLiquidacionesDelMesYAnio(mes, anio);
                 using (Context db = new Context())
                 {
-                    
+
                     IEnumerable<Doctor> listaDoctores = db.Doctores.ToList();
                     IEnumerable<InformesDeConsulta> listaInformesCons = db.InformesDeConsultas.ToList();
-                    
+
                     foreach (Doctor doc in listaDoctores)
                     {
                         int cantidadDeConsultas = 0;
@@ -55,10 +55,10 @@ namespace BusinessLogic.Logic
                             {
                                 if (infCons.Fecha.Month == mes && infCons.Fecha.Year == anio)
                                 {
-                                   if (doc.DoctorID == infCons.Doctor.DoctorID)
-                                   {
-                                    cantidadDeConsultas = cantidadDeConsultas + 1;
-                                   }
+                                    if (doc.DoctorID == infCons.Doctor.DoctorID)
+                                    {
+                                        cantidadDeConsultas = cantidadDeConsultas + 1;
+                                    }
                                 }
                             }
                             plataGeneradaPorConsultas = (int)doc.ValorConsulta * cantidadDeConsultas;
@@ -70,13 +70,14 @@ namespace BusinessLogic.Logic
                             {
                                 nuevaLiquidacion.Importe = plataGeneradaPorConsultas;
                             }
-                            else {
+                            else
+                            {
                                 nuevaLiquidacion.Importe = (int)doc.SueldoMinimo;
                             }
                             db.LiquidacionesDeSueldos.Add(nuevaLiquidacion);
                             db.SaveChanges();
                         }
-                     }
+                    }
                 }
             }
             catch (Exception)
@@ -90,7 +91,46 @@ namespace BusinessLogic.Logic
             GC.Collect();
         }
 
+        private void BorrarLiquidacionesDelMesYAnio(int mes, int anio)
+        {
+            IEnumerable<LiquidacionDeSueldo> result = new List<LiquidacionDeSueldo>();
+            try
+            {
+                using (Context db = new Context())
+                {
+                    result = db.LiquidacionesDeSueldos.Where(ls => ls.Anio == anio && ls.Mes == mes).ToList();
+                    foreach (var item in result)
+                    {
+                        db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                        db.LiquidacionesDeSueldos.Remove(item);
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
 
+        private LiquidacionDeSueldo GetLiquidacionID(int id)
+        {
+            LiquidacionDeSueldo result = null;
+            try
+            {
+
+                using (Context db = new Context())
+                {
+                    result = db.LiquidacionesDeSueldos.SingleOrDefault(ls => ls.LiquidacionID == id);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
     }
 }
