@@ -9,76 +9,68 @@
 <p>
     @Html.ActionLink("Nuevo Doctor", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apellido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cedula)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsDirector)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ValorConsulta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SueldoMinimo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayName("Estado")
-        </th>
+<div id="gridTable" class="display">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EsDirector)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorConsulta)
+                </th>
                
-        <th></th>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayName("Estado")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cedula)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EsDirector)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ValorConsulta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SueldoMinimo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-
-      
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.DoctorID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.DoctorID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.DoctorID })
-        </td>
-    </tr>
-}
-
-</table>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EsDirector)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorConsulta)
+                    </td>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.DoctorID }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.DoctorID }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.DoctorID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+    });
+</script>

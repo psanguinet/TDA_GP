@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Modelo.Models
 {
-    public class Doctor 
+    public class Doctor
     {
         [Key]
         public int DoctorID { get; set; }
@@ -30,13 +30,14 @@ namespace Modelo.Models
         [Display(Name = "Teléfono")]
         public string Telefono { get; set; }
 
-     
+        [Required(ErrorMessage = "El valor de la consulta es requerido.")]
         [Display(Name = "Valor Consulta")]
         public decimal ValorConsulta { get; set; }
 
         [Display(Name = "Es Director")]
         public bool EsDirector { get; set; }
 
+        [Required(ErrorMessage = "El sueldo mínimo es requerido.")]
         [Display(Name = "Sueldo Mínimo")]
         public decimal SueldoMinimo { get; set; }
 
@@ -44,7 +45,7 @@ namespace Modelo.Models
 
         public virtual User Usuario { get; set; }
         public virtual ICollection<Especialidad> ListEspecialidades { get; set; }
-      
+
 
     }
 }

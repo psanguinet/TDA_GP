@@ -90,7 +90,8 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(analisisClinico.Doctor.Foto);
                 }
 
             }
@@ -130,7 +131,8 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(analisisClinico.Doctor.Foto);
                 }
             }
             catch (Exception e)
@@ -148,7 +150,8 @@ namespace WebApp.Controllers
                 using (IAnalisisClinicosLogic bl = new AnalisisClinicosLogic())
                 {
                     analisisClinico = bl.GetAnalisisClinico(id);
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(analisisClinico.Doctor.Foto);
                 }
 
             }

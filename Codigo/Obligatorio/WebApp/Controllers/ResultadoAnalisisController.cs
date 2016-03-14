@@ -21,7 +21,8 @@ namespace WebApp.Controllers
                 {
                     AnalisisClinico analisisClinico = bl.GetAnalisisClinico(id);
 
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(analisisClinico.Paciente.Foto);
+                    ViewBag.ImageDataDoctor= Helper.HelperImage.ImagesConvert(analisisClinico.Doctor.Foto);
                     ViewBag.Doctor = analisisClinico.Doctor;
                     ViewBag.Paciente = analisisClinico.Paciente;
                     ViewBag.AnalisisClinicoID = analisisClinico.AnalisisClinicoID;

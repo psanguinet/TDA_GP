@@ -7,7 +7,7 @@
 <h2>Detalles del Doctor</h2>
 
 <fieldset>
-
+    @Html.HiddenFor(model=>model.DoctorID)
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
     </div>
@@ -21,13 +21,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Apellido)
     </div>
+    <aside>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+        <input type="file" name="UploadFile" id="txtUploadFile" />
+        <div>
+            @Html.Partial("_FileUploadDoctor", "Vista previa")
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Cedula)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Cedula)
-    </div>
+    </aside>
+    
     <div class="display-label">
          @Html.DisplayNameFor(model => model.EsDirector)
     </div>
@@ -82,3 +86,45 @@
     @Html.ActionLink("Editar", "Edit", new { id=Model.DoctorID }) |
     @Html.ActionLink("<< Volver al listado", "Index")
 </p>
+<script type='text/javascript'>
+    $(document).ready(function () {
+
+        $('#txtUploadFile').on('change', function (e) {
+            $('img').remove();
+            var files = e.target.files;
+            var myID = $("#DoctorID").val();
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append("file" + x, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Doctor/Upload?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            console.log(result);
+                            $("#imgResult").html(result);
+
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -50,13 +50,7 @@ namespace WebApp.Controllers
                 {
                     paciente = bl.GetPaciente(id);
 
-                    if (paciente.Foto != null)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(paciente.Foto.ToArray());
-                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                        ViewBag.ImageData = imageDataURL;
-
-                    }
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(paciente.Foto);
                 }
                 if (paciente == null)
                 {
@@ -73,11 +67,6 @@ namespace WebApp.Controllers
 
         public ActionResult Create()
         {
-            //using (IRoleLogic bl = new RoleLogic())
-            //{
-            //    ViewBag.Roles = bl.ListRoles();
-            //}
-
             return View();
         }
 
@@ -158,13 +147,7 @@ namespace WebApp.Controllers
                             ConfirmPassword = result.Usuario.Password,
                         };
                         ViewBag.User = user;
-                        if (result.Foto != null)
-                        {
-                            string imageBase64Data = Convert.ToBase64String(result.Foto.ToArray());
-                            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                            ViewBag.ImageData = imageDataURL;
-
-                        }
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(result.Foto);
 
                     }
                 }
@@ -224,7 +207,7 @@ namespace WebApp.Controllers
                     using (IPacienteLogic bl = new PacienteLogic())
                     {
                         result = bl.GetPaciente(id);
-                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(result.Foto);
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(result.Foto);
                     }
                 }
             }
@@ -289,7 +272,7 @@ namespace WebApp.Controllers
 
                         string imageBase64Data = Convert.ToBase64String(imageByteData);
                         string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                        ViewBag.ImageData = imageDataURL;
+                        ViewBag.ImageDataPaciente = imageDataURL;
                     }
                 }
             }

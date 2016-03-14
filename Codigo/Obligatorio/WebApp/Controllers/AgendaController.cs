@@ -110,7 +110,8 @@ namespace WebApp.Controllers
                 using (IAgendaLogic bl = new AgendaLogic())
                 {
                     agenda = bl.GetAgendaItem(id);
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
+                    ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(agenda.Doctor.Foto);
                 }
                 if (agenda == null)
                 {
@@ -134,7 +135,8 @@ namespace WebApp.Controllers
                     using (IAgendaLogic bl = new AgendaLogic())
                     {
                         result = bl.GetAgendaItem(id);
-                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(result.Paciente.Foto);
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(result.Paciente.Foto);
+                        ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(result.Doctor.Foto);
                     }
                 }
             }
@@ -170,12 +172,7 @@ namespace WebApp.Controllers
             }
             return result;
         }
-        public Action HorasDisponibles()
-        {
-            return null;
-
-        }
-
+       
         public ActionResult BuscarHorarios(string date)
         {
             IDictionary<string, bool> listData = null;
@@ -203,22 +200,7 @@ namespace WebApp.Controllers
             return PartialView("_HorariosDisponibles", vm_agenda);
         }
 
-        public ActionResult BuscarPaciente(string query)
-        {
-            List<string> listData = null;
-            //checking the query parameter sent from view. If it is null we will return null else we will return list based on query.
-            if (!string.IsNullOrEmpty(query))
-            {
-                //Created an array of players. We can fetch this from database as well.
-                string[] arrayData = new string[] { "Fabregas", "Messi", "Ronaldo", "Ronaldinho", "Goetze", "Cazorla", "Henry", "Luiz", "Reus", "Neur", "Podolski" };
-
-                //Using Linq to query the result from an array matching letter entered in textbox.
-                listData = arrayData.Where(q => q.ToLower().Contains(query.ToLower())).ToList();
-            }
-
-            //Returning the matched list as json data.
-            return Json(new { Data = listData });
-        }
+       
 
     }
 }

@@ -112,6 +112,7 @@ namespace BusinessLogic.Logic
             {
                 using (Context db = new Context())
                 {
+                    paciente.Usuario.IsApproved = true;
                     db.Entry(paciente).State = System.Data.Entity.EntityState.Modified;
                     db.Entry(paciente.Usuario).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();

@@ -4,6 +4,12 @@
     <h4>Doctor</h4>
 	<hr />
     <dl class="dl-horizontal">
+        <aside>
+            <div>
+                @Html.Partial("_FileUploadDoctor", "Foto")
+            </div>
+            @Html.HiddenFor(model => model.Foto)
+        </aside>
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -18,6 +24,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
         </dd>
 
     </dl>

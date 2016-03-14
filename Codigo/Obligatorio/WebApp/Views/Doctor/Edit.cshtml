@@ -6,7 +6,7 @@
 
 <h2>Modificar Doctor</h2>
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formEdit" }))
+@using (Html.BeginForm("Edit","Doctor", FormMethod.Post, new { id = "formEdit" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -14,7 +14,13 @@
     <fieldset>
 
         @Html.HiddenFor(model => model.DoctorID)
-
+        <aside>
+            <div>
+                @Html.Partial("_FileUploadDoctor", "Foto")
+            </div>
+            @Html.ActionLink("Cambiar foto", "Details", new { id = Model.DoctorID })
+            @Html.HiddenFor(model => model.Foto)
+        </aside>
         <div class="editor-label">
             @Html.LabelFor(model => model.Nombre)
         </div>
@@ -84,24 +90,31 @@
             @Html.Label("Nombre especialidad")
         </div>
         <div>
-        
-        @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades) {
-           <div><input type = "checkbox" id = "item.EspecilidadID" value=@item.EspecilidadID name="espcialidades_list[]" style="margin-right:20px;"/>
-                @Html.DisplayFor(modelItem => item.Nombre)</div>
-        }
+
+            @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades)
+            {
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.CheckBox("chkDoctor_Especialidad_" + item.EspecilidadID, Model.ListEspecialidades.FirstOrDefault(e => e.EspecilidadID == item.EspecilidadID) != null, new { id = "chkDoctor_Especialidad_" + item.EspecilidadID, @class = "chkPersona_Color" })
+                        </td>
+                    </tr>
+                </table>
+
+            }
+            @*@Html.HiddenFor(model => model.ListEspecialidades, new { value = @ViewBag.Especialidades })*@
         </div>
-
-
-
-
 
         <div>
             @Html.Partial("_UsuarioEdit", (Modelo.Models.RegisterModel)@ViewBag.User)
-            @Html.HiddenFor(model=>model.Usuario.UserId)
+            @Html.HiddenFor(model => model.Usuario.UserId)
             @Html.HiddenFor(model => model.Usuario.Username)
             @Html.HiddenFor(model => model.Usuario.Password)
             @Html.HiddenFor(model => model.Usuario.Email)
-           
+
         </div>
         <p>
             <input type="submit" value="Guardar" />

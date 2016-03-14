@@ -81,6 +81,13 @@ namespace BusinessLogic.Logic
                         Doctor doctor = db.Doctores.SingleOrDefault(d=>d.DoctorID == item.Key);
                         result.Add(doctor, item.Value);
                     }
+                    foreach(var doc in db.Doctores)
+                    {
+                        if(doc.Activo && !result.Keys.Contains(doc))
+                        {
+                            result.Add(doc, 0);
+                        }
+                    }
                 }
             }
             catch (Exception e)

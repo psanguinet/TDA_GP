@@ -2,6 +2,7 @@
 using Modelo.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,12 +25,8 @@ namespace WebApp.Controllers
                 {
                     result = bl.ListDoctores();
                 }
-                using (IEspecialidadLogic bl = new EspecialidadLogic())
-                {
-                    ViewBag.Especialidades = bl.ListEspecialidades();
-                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
             }
@@ -53,13 +50,14 @@ namespace WebApp.Controllers
                 using (IDoctorLogic bl = new DoctorLogic())
                 {
                     doctor = bl.GetDoctor(id);
+                    ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(doctor.Foto);
                 }
                 if (doctor == null)
                 {
                     return HttpNotFound();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
             }
@@ -73,11 +71,8 @@ namespace WebApp.Controllers
             {
                 ViewBag.Especialidades = bl.ListEspecialidades();
             }
-
             return View();
         }
-
-        
 
 
 
@@ -156,20 +151,21 @@ namespace WebApp.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
-            Doctor result = null;
+            Doctor doctor = null;
             try
             {
                 if (id != null)
                 {
                     using (IDoctorLogic bl = new DoctorLogic())
                     {
-                        result = bl.GetDoctor(id);
+                        doctor = bl.GetDoctor(id);
+                        ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(doctor.Foto);
                         var user = new RegisterModel()
                         {
-                            UserName = result.Usuario.Username,
-                            Password = result.Usuario.Password,
-                            Email = result.Usuario.Email,
-                            ConfirmPassword = result.Usuario.Password,
+                            UserName = doctor.Usuario.Username,
+                            Password = doctor.Usuario.Password,
+                            Email = doctor.Usuario.Email,
+                            ConfirmPassword = doctor.Usuario.Password,
                         };
                         
                         ViewBag.User = user;
@@ -184,7 +180,7 @@ namespace WebApp.Controllers
             {
                 return View("Error");
             }
-            return View(result);
+            return View(doctor);
         }
 
         /// <summary>
@@ -195,9 +191,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Edit(Doctor doctor, RegisterModel userRegister, FormCollection form)
         {
-
-
-            string[] especialidades = form.GetValues(11);
+           
             ActionResult result = null;
             try
             {
@@ -207,18 +201,27 @@ namespace WebApp.Controllers
                     {
                         doctor.Usuario.Email = (userRegister.Email != null || userRegister.Email != "") ? userRegister.Email : doctor.Usuario.Email;
                         doctor.Usuario.Password = (doctor.Usuario.Password != userRegister.Password) ? userRegister.Password : doctor.Usuario.Password;
+
+                        List<string> chkKeys = form.AllKeys.Where(p => p.StartsWith("chkDoctor_Especialidad_")).ToList();
                         List<Especialidad> especialidadesToAdd = new List<Especialidad>();
                         using (IEspecialidadLogic el = new EspecialidadLogic())
                         {
 
-                            for (int i = 0; i < especialidades.Length; i++)
+                            foreach (string key in chkKeys)
                             {
-                                especialidadesToAdd.Add(el.GetEspecialidad(int.Parse(especialidades[i])));
+                                string[] chkNameArray = key.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+                                int IDEspecilidad = int.Parse(chkNameArray.Last());
+                                if (this.HttpContext.Request.Params[key] != "false")
+                                {
+                                    especialidadesToAdd.Add(el.GetEspecialidad(IDEspecilidad));
+                                }
+                                
                             }
 
                             doctor.ListEspecialidades = especialidadesToAdd;
+                            
+                            bl.Edit(doctor);
                         }
-                        bl.Edit(doctor);
                     }
                     result = RedirectToAction("Index");
                 }
@@ -234,7 +237,7 @@ namespace WebApp.Controllers
             }
             return result;
         }
-
+      
 
         public ActionResult Delete(int id)
         {
@@ -246,6 +249,7 @@ namespace WebApp.Controllers
                     using (IDoctorLogic bl = new DoctorLogic())
                     {
                         result = bl.GetDoctor(id);
+                        ViewBag.ImageDataDoctor = Helper.HelperImage.ImagesConvert(result.Foto);
                     }
                 }
             }
@@ -288,6 +292,46 @@ namespace WebApp.Controllers
             List<int> especialidadesList = new List<int>();
             especialidadesList = especialidades.Split(',').Select(Int32.Parse).ToList();
             return especialidadesList;
+        }
+
+        [HttpPost]
+        public ActionResult Upload(string id)
+        {
+            byte[] imageByteData = null;
+            try
+            {
+
+                if (Request.Files.Count > 0 && id != null)
+                {
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                        file.SaveAs(path);
+
+                        imageByteData = System.IO.File.ReadAllBytes(path);
+                        using (IDoctorLogic bl = new DoctorLogic())
+                        {
+                            Doctor doctor = bl.GetDoctor(int.Parse(id));
+                            doctor.Foto = imageByteData;
+                            bl.Edit(doctor);
+                        }
+
+                        string imageBase64Data = Convert.ToBase64String(imageByteData);
+                        string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                        ViewBag.ImageDataDoctor = imageDataURL;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            string respuesta = (imageByteData.Length > 0) ? respuesta = "Imagen subida correctamente" : respuesta = "Error";
+            return PartialView("_FileUpload", respuesta);
         }
 
     }

@@ -47,7 +47,7 @@ namespace WebApp.Controllers
                     Agenda agenda = bl.GetAgendaItem(agendaID);
                     informeConsulta.Paciente = agenda.Paciente;
 
-                    ViewBag.ImageData = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
+                    ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(agenda.Paciente.Foto);
 
                     using (DataAccess.Model.Context db = new DataAccess.Model.Context())
                     {
@@ -103,7 +103,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
-                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
                 if (informeDeConsulta == null)
@@ -157,7 +157,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
-                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
                 if (informeDeConsulta == null)
@@ -183,7 +183,7 @@ namespace WebApp.Controllers
                     using (IInformeDeConsultaLogic bl = new InformeDeConsultaLogic())
                     {
                         informeDeConsulta = bl.GetInformeDeConsulta(id);
-                        ViewBag.ImageData = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
+                        ViewBag.ImageDataPaciente = Helper.HelperImage.ImagesConvert(informeDeConsulta.Paciente.Foto);
                     }
                 }
             }

@@ -47,6 +47,9 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\lib\Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -176,21 +179,61 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\AnalisisClinicoController.cs" />
+    <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\HistoriaMedicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformeConsultaController.cs" />
+    <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\LiquidacionSueldoController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\ResultadoAnalisisController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Dialogs\Message.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\HelperImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\VM_Agenda.cs" />
+    <Compile Include="ViewModel\VM_HistoriaMedica.cs" />
+    <Compile Include="ViewModel\VM_Reportes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\DataTables\css\jquery.lightbox-0.5.css" />
+    <Content Include="Content\DataTables\css\TableTools.css" />
+    <Content Include="Content\DataTables\css\TableTools_JUI.css" />
+    <Content Include="Content\DataTables\images\background.png" />
+    <Content Include="Content\DataTables\images\collection.png" />
+    <Content Include="Content\DataTables\images\collection_hover.png" />
+    <Content Include="Content\DataTables\images\copy.png" />
+    <Content Include="Content\DataTables\images\copy_hover.png" />
+    <Content Include="Content\DataTables\images\csv.png" />
+    <Content Include="Content\DataTables\images\csv_hover.png" />
+    <Content Include="Content\DataTables\images\lightbox-blank.gif" />
+    <Content Include="Content\DataTables\images\lightbox-btn-close.gif" />
+    <Content Include="Content\DataTables\images\lightbox-btn-next.gif" />
+    <Content Include="Content\DataTables\images\lightbox-btn-prev.gif" />
+    <Content Include="Content\DataTables\images\lightbox-ico-loading.gif" />
+    <Content Include="Content\DataTables\images\pdf.png" />
+    <Content Include="Content\DataTables\images\pdf_hover.png" />
+    <Content Include="Content\DataTables\images\print.png" />
+    <Content Include="Content\DataTables\images\print_hover.png" />
+    <Content Include="Content\DataTables\images\xls.png" />
+    <Content Include="Content\DataTables\images\xls_hover.png" />
+    <Content Include="Content\DataTables\js\HelperDataTables.js" />
+    <Content Include="Content\DataTables\js\jquery.lightbox-0.5.js" />
+    <Content Include="Content\DataTables\js\jquery.lightbox-0.5.min.js" />
+    <Content Include="Content\DataTables\js\jquery.lightbox-0.5.pack.js" />
+    <Content Include="Content\DataTables\js\TableTools.js" />
+    <Content Include="Content\DataTables\js\TableTools.min.js" />
+    <Content Include="Content\DataTables\js\ZeroClipboard.js" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls.swf" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -247,6 +290,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\DataTables\as3\lib\AlivePDF.swc" />
+    <Content Include="Content\DataTables\as3\ZeroClipboard.as" />
+    <Content Include="Content\DataTables\as3\ZeroClipboardPdf.as" />
+    <Content Include="Content\DataTables\images\psd\collection.psd" />
+    <Content Include="Content\DataTables\images\psd\copy document.psd" />
+    <Content Include="Content\DataTables\images\psd\file_types.psd" />
+    <Content Include="Content\DataTables\images\psd\printer.psd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -334,6 +384,39 @@
     <Content Include="Views\LiquidacionSueldo\Index.cshtml" />
     <Content Include="Views\LiquidacionSueldo\Create.cshtml" />
     <Content Include="Views\LiquidacionSueldo\ShowLiq.cshtml" />
+    <Content Include="Views\AnalisisClinico\Create.cshtml" />
+    <Content Include="Views\AnalisisClinico\Delete.cshtml" />
+    <Content Include="Views\AnalisisClinico\Details.cshtml" />
+    <Content Include="Views\AnalisisClinico\Edit.cshtml" />
+    <Content Include="Views\AnalisisClinico\Index.cshtml" />
+    <Content Include="Views\Consulta\Index.cshtml" />
+    <Content Include="Views\HistoriaMedica\HistoriaMedicaDoctor.cshtml" />
+    <Content Include="Views\HistoriaMedica\HistoriaMedicaPaciente.cshtml" />
+    <Content Include="Views\HistoriaMedica\IndexDoctor.cshtml" />
+    <Content Include="Views\HistoriaMedica\IndexPaciente.cshtml" />
+    <Content Include="Views\HistoriaMedica\ReporteHistoriaMedica.cshtml" />
+    <Content Include="Views\Informe\Index.cshtml" />
+    <Content Include="Views\Informe\InformeAnalisisClinicoExtenso.cshtml" />
+    <Content Include="Views\Informe\InformeAnalisisClinicoReducido.cshtml" />
+    <Content Include="Views\Informe\InformeConsultaExtenso.cshtml" />
+    <Content Include="Views\Informe\InformeConsultaReducido.cshtml" />
+    <Content Include="Views\InformeConsulta\Create.cshtml" />
+    <Content Include="Views\InformeConsulta\Delete.cshtml" />
+    <Content Include="Views\InformeConsulta\Details.cshtml" />
+    <Content Include="Views\InformeConsulta\Edit.cshtml" />
+    <Content Include="Views\InformeConsulta\Index.cshtml" />
+    <Content Include="Views\Reporte\DoctorMasyMenosVisitado.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
+    <Content Include="Views\Reporte\NumeroDeConsultasMensuales.cshtml" />
+    <Content Include="Views\ResultadoAnalisis\Create.cshtml" />
+    <Content Include="Views\Shared\_DoctorDetails.cshtml" />
+    <Content Include="Views\Shared\_DoctorMasMenosVisitados.cshtml" />
+    <Content Include="Views\Shared\_FileUploadPaciente.cshtml" />
+    <Content Include="Views\Shared\_HistoriaMedicaBuscar.cshtml" />
+    <Content Include="Views\Shared\_HorariosDisponibles.cshtml" />
+    <Content Include="Views\Shared\_NumeroDeConsultasMensuales.cshtml" />
+    <Content Include="Views\Shared\_PacienteDetails.cshtml" />
+    <Content Include="Views\Shared\_FileUploadDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -128,6 +128,10 @@ namespace BusinessLogic.Logic
                 using (Context db = new Context())
                 {
                     db.Entry(analisisClinico).State = System.Data.Entity.EntityState.Modified;
+                    foreach(var item in analisisClinico.ListResultadoAnalisis)
+                    {
+                        db.ResultadosAnalisis.Add(item);
+                    }
                     db.SaveChanges();
                 }
             }

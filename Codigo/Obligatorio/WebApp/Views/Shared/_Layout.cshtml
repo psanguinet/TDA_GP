@@ -56,13 +56,10 @@
                             }
                             @if (User.IsInRole("DIRECTOR"))
                             {
-                                <li>@Html.ActionLink("Reportes", "../Reporte/Index", "Reporte")</li>
                                 <li>@Html.ActionLink("Administración", "Index", "Administracion")</li>
                                 <li>@Html.ActionLink("Liquidación de sueldos", "Index", "Administracion")</li>
-
+                                <li>@Html.ActionLink("Reportes", "../Reporte/Index", "Reporte")</li>
                             }
-
-
 
                         </ul>
                     </nav>

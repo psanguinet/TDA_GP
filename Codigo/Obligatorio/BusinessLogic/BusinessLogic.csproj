@@ -79,16 +79,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\AgendaLogic.cs" />
+    <Compile Include="Logic\AnalisisClinicosLogic.cs" />
+    <Compile Include="Logic\ConsultaLogic.cs" />
     <Compile Include="Logic\DoctorLogic.cs" />
     <Compile Include="Logic\EspecialidadLogic.cs" />
+    <Compile Include="Logic\HistoriaMedicaLogic.cs" />
     <Compile Include="Logic\IAgendaLogic.cs" />
+    <Compile Include="Logic\IAnalisisClinicosLogic.cs" />
+    <Compile Include="Logic\IConsultaLogic.cs" />
     <Compile Include="Logic\IDoctorLogic.cs" />
     <Compile Include="Logic\IEspecialidadLogic.cs" />
+    <Compile Include="Logic\IHistoriaMedicaLogic.cs" />
+    <Compile Include="Logic\IInformeDeConsultaLogic.cs" />
     <Compile Include="Logic\ILiquidacionSueldoLogic.cs" />
+    <Compile Include="Logic\InformeDeConsultaLogic.cs" />
     <Compile Include="Logic\IPacienteLogic.cs" />
+    <Compile Include="Logic\IReporteLogic.cs" />
+    <Compile Include="Logic\IResultadosAnalisisLogic.cs" />
     <Compile Include="Logic\IRoleLogic.cs" />
     <Compile Include="Logic\LiquidacionSueldoLogic.cs" />
     <Compile Include="Logic\PacienteLogic.cs" />
+    <Compile Include="Logic\ReporteLogic.cs" />
+    <Compile Include="Logic\ResultadosAnalisisLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
