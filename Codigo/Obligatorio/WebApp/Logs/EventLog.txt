@@ -42,3 +42,5 @@
 2016-03-15 00:09:36,250 [5] INFO Logging.Log4Net - mendiondo - PSANGUINET-PC
 2016-03-15 00:10:14,798 [8] INFO Logging.Log4Net - mendiondo - Texto buscado:analis
 2016-03-15 00:10:19,212 [8] INFO Logging.Log4Net - mendiondo - Texto buscado:Anali
+2016-03-15 00:53:55,430 [16] INFO Logging.Log4Net - mendiondo - PSANGUINET-PC
+2016-03-15 01:30:17,966 [8] INFO Logging.Log4Net - msanchez - PSANGUINET-PC

@@ -5,20 +5,23 @@
     <div class="message-info">
         <p>Sistema para la administración de una clínica	médica.</p>
     </div>
+    <p>
+        <img src="~/assets/img/Equipo%20de%20profesionales%20de%20excelente%20nivel.jpg" style="width:383px;" />
+    </p>
 }
 else
 {
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
     {
-    @Html.AntiForgeryToken()
-    <fieldset id="socialLoginList">
-        <legend>Log in using another service</legend>
-        <p>
-        @foreach (AuthenticationClientData p in Model)
-        {
-            <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
-        }
-        </p>
-    </fieldset>
+        @Html.AntiForgeryToken()
+        <fieldset id="socialLoginList">
+            <legend>Log in using another service</legend>
+            <p>
+                @foreach (AuthenticationClientData p in Model)
+                {
+                    <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+                }
+            </p>
+        </fieldset>
     }
 }
