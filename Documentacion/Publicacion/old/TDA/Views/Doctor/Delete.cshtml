@@ -1,0 +1,63 @@
+﻿@model Modelo.Models.Doctor
+
+@{
+    ViewBag.Title = "Doctor";
+}
+
+<h2>Baja de doctor</h2>
+
+<h3>Está usted seguro que desea dar de baja al doctor?</h3>
+<fieldset>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Partial("_DoctorDetails", Model)
+        </div>
+    </div>
+
+   
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EsDirector)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsDirector)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+    
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("<< Volver al listado", "Index")
+    </p>
+}

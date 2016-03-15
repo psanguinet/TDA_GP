@@ -19,11 +19,7 @@ namespace DataAccess.Model
         public Context()
             : base("name=Context")
         {
-            //    Database.SetInitializer<Context>(new DBInitializer());
-            //Configuration.AutoDetectChangesEnabled = false;
-            //Configuration.LazyLoadingEnabled = false;
-            //Configuration.ProxyCreationEnabled = false;
-
+            Database.SetInitializer<Context>(null);
         }
 
 
@@ -39,8 +35,6 @@ namespace DataAccess.Model
         public DbSet<LiquidacionDeSueldo> LiquidacionesDeSueldos { get; set; }
         public DbSet<ResultadoAnalisis> ResultadosAnalisis { get; set; }
 
-
-       // public DbSet<EspecialidadDoctor> EspecialidadesDoctores { get; set; }
         
     }
 }

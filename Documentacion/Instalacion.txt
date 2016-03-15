@@ -1,0 +1,6 @@
+1- archivos de la publicacion en la carpeta inetpub
+2- crear un nuevo sito en iis apuntando a dicha carpeta. 
+	Asignar la ip local ver puerto
+	application pool opciones avanzadas=> identity: LocalSystem
+3- DAR PERMISOS A NT AUTHORITY\SYSTEM en la carpeta
+3- dar permisos a la base de datos al usuario NT AUTHORITY\SYSTEM 

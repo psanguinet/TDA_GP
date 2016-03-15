@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Modelo.Models.Agenda>
+
+@{
+    ViewBag.Title = "Agenda";
+}
+
+<h2>Mi Agenda</h2>
+
+<p>
+    @Html.ActionLink("Agendar paciente", "AgendarPaciente")
+</p>
+<div id="gridTable">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Hora)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Paciente.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.AgendaID })
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Detalles", "Details", new { id = item.AgendaID }) |
+                        @Html.ActionLink("Informe de consulta", "../InformeConsulta/InformeConsulta", new { agendaID = item.AgendaID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+    });
+</script>

@@ -1,0 +1,33 @@
+﻿@model WebApp.ViewModel.VM_Reportes
+
+<table class="display">
+    <thead>
+        <tr>
+            <th>
+                Doctor
+            </th>
+            <th>
+                Cantidad
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ListadoNumeroDeConsultasMensuales)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key.Nombre) @Html.DisplayFor(modelItem => item.Key.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("table");
+        //$('#table_filter').hide();
+    });
+</script>

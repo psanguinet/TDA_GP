@@ -1,0 +1,28 @@
+﻿@model Modelo.Models.Role
+
+@{
+    ViewBag.Title = "Roles";
+}
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Rol</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RoleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.RoleId }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

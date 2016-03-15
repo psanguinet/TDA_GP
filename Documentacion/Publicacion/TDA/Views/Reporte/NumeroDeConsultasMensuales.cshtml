@@ -1,0 +1,68 @@
+﻿@model WebApp.ViewModel.VM_Reportes
+@{
+    ViewBag.Title = "Reporte";
+}
+
+@*<script src="~/Scripts/jquery-2.2.1.js"></script>*@
+<h2>Número De Consultas Mensuales</h2>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateFrom)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateFrom)
+</div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateTo)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateTo)
+</div>
+<p>
+    @Html.ActionLink("Consultar", "NumeroDeConsultasMensuales", "Reporte", null, new { id = "lnkConsultar" })
+</p>
+
+
+<div id="table">
+    @Html.Partial("_NumeroDeConsultasMensuales", Model)
+</div>
+
+<script type='text/javascript'>
+    $(document).ready(function () {
+        ApplyDataTables("table");
+
+        $('#lnkConsultar').on('click', function (e) {
+            e.preventDefault();
+            $("#table").html("");
+            var dateFrom = $("#DateFrom").val();
+            var dateTo = $("#DateTo").val();
+            var targetUrl = "/Reporte/NumeroDeConsultasMensuales";
+            $.ajax({
+                url: targetUrl,
+                dataType: 'html',
+                data: { "dateFrom": dateFrom, "dateTo": dateTo },
+                type: 'POST',
+                beforeSend: function () {
+                    //$('#dlgProcesando').dialog('open');
+                },
+                success: function (data) {
+                    //$("#tabla_Horas").html(data.Data);
+                    $("#table").html(data);
+                }
+            })
+            .fail(function (serverResponse) {
+                //$('#dlgProcesando').dialog('close');
+                //$('#dlgResultadoError').html(serverResponse.responseText);
+                //$('#dlgResultadoError').dialog({
+                //    buttons: {
+                //        'Aceptar': function () {
+                //            $(this).dialog('close');
+                //        }
+                //    }
+                //});
+                //$('#dlgResultadoError').dialog('open');
+            });
+        });
+    });
+</script>
+

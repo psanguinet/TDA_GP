@@ -1,0 +1,56 @@
+﻿@model Modelo.Models.InformesDeConsulta
+
+@{
+    ViewBag.Title = "Informe de Consulta";
+}
+
+
+<h2>Eliminar informe de consulta</h2>
+
+<h3>Esta seguro que desea eliminar este informe de consulta?</h3>
+<div>
+    <hr />
+    <div>
+        <div>
+            @Html.Partial("_PacienteDetails", Model.Paciente)
+        </div>
+    </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("<< Volver al listado", "Index")
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

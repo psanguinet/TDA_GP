@@ -1,0 +1,79 @@
+﻿@model Modelo.Models.Paciente
+
+@{
+    ViewBag.Title = "Paciente";
+}
+
+<h2>Baja de paciente</h2>
+
+<h3>Está usted seguro que desea dar de baja al paciente?</h3>
+<fieldset>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Partial("_PacienteDetails", Model)
+        </div>
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cedula)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cedula)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaNacimiento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Altura)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Altura)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GrupoSanguineo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GrupoSanguineo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Peso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Peso)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.HiddenFor(model => model.Activo)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Borrar" /> |
+        @Html.ActionLink("<< Volver al listado", "Index")
+    </p>
+}

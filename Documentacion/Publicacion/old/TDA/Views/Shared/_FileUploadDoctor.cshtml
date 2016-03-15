@@ -1,0 +1,11 @@
+﻿@model String
+<img src="@ViewBag.ImageDataDoctor" style="width:100px;" id="imgUpload" />
+
+<div id="imgResult">
+    @if(Model!=null)
+    {
+          @Html.Label(Model)
+    }
+
+</div>
+

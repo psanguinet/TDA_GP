@@ -1,0 +1,44 @@
+﻿@model Modelo.Models.Agenda
+
+@{
+    ViewBag.Title = "Agenda";
+}
+
+<h2>Detalles de la agenda</h2>
+
+<fieldset>
+    <legend>Agenda</legend>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Partial("_DoctorDetails", Model.Doctor)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Partial("_PacienteDetails", Model.Paciente)
+        </div>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha)
+    </div>
+    <div class="editor-label">
+        @Html.DisplayNameFor(model => model.Hora)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.Hora)
+        @Html.ValidationMessageFor(model => model.Hora)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Informe de consulta", "../InformeConsulta/InformeConsulta", new { agendaID = Model.AgendaID }) |
+    @Html.ActionLink("<<Volver al listado", "Index")
+</p>

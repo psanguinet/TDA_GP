@@ -37,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -207,9 +208,15 @@
   <ItemGroup>
     <Content Include="assets\bjqs.css" />
     <Content Include="assets\demo.css" />
-    <Content Include="assets\img\Atención a la familia.jpg" />
-    <Content Include="assets\img\Atención a niños.jpg" />
-    <Content Include="assets\img\Equipo de profesionales de excelente nivel.jpg" />
+    <Content Include="assets\img\Atención a la familia.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\img\Atención a niños.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\img\Equipo de profesionales de excelente nivel.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\js\bjqs-1.3.js" />
     <Content Include="assets\js\bjqs-1.3.min.js" />
     <Content Include="assets\js\libs\jquery.secret-source.min.js" />
@@ -306,9 +313,8 @@
     <Content Include="Content\DataTables\images\psd\copy document.psd" />
     <Content Include="Content\DataTables\images\psd\file_types.psd" />
     <Content Include="Content\DataTables\images\psd\printer.psd" />
+    <None Include="Properties\PublishProfiles\Production.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -373,7 +379,6 @@
     <Content Include="Views\Shared\_UsuarioCreate.cshtml" />
     <Content Include="Views\Shared\_UsuarioEdit.cshtml" />
     <Content Include="Views\Agenda\Index.cshtml" />
-    <Content Include="Views\Agenda\Edit.cshtml" />
     <Content Include="Views\Agenda\Details.cshtml" />
     <Content Include="Views\Agenda\Delete.cshtml" />
     <Content Include="Views\Agenda\AgendarPaciente.cshtml" />
@@ -424,6 +429,7 @@
     <Content Include="Views\Shared\_PacienteDetails.cshtml" />
     <Content Include="Views\Shared\_FileUploadDoctor.cshtml" />
     <Content Include="Views\LiquidacionSueldo\Index.cshtml" />
+    <Content Include="Views\Agenda\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

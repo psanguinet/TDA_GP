@@ -1,0 +1,54 @@
+﻿@model WebApp.ViewModel.VM_HistoriaMedica
+<table id="table" class="display">
+    <thead>
+        <tr>
+            <th>
+                Número
+            </th>
+            <th>
+                Tipo de Informe
+            </th>
+            <th>
+                Fecha creación
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ListadoHistoriaMedica)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDeInformeNombre)
+                </td>
+                @if (item.TipoDeInforme == 0)
+                {
+                    <td>
+                        @Html.ActionLink("Ver mas", "../InformeConsulta/Details", new { id = item.Numero })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Ver mas", "../AnalisisClinico/Details", new { id = item.Numero })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+        $('#table_filter').hide();
+    });
+</script>

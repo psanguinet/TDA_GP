@@ -1,0 +1,67 @@
+﻿@model WebApp.ViewModel.VM_Reportes
+@{
+    ViewBag.Title = "Reporte";
+}
+
+<script src="~/Scripts/jquery-2.2.1.js"></script>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateFrom)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateFrom)
+</div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DateTo)
+</div>
+<div class="display-field">
+    @Html.EditorFor(model => model.DateTo)
+</div>
+<p>
+    @Html.ActionLink("Consultar", "DoctorMasyMenosVisitado", "Reporte", null, new { id = "lnkConsultar" })
+</p>
+
+<div id="table">
+    @Html.Partial("_DoctorMasMenosVisitados", Model)
+</div>
+
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#lnkConsultar').on('click', function (e) {
+            e.preventDefault();
+            $("#table").html("");
+            var dateFrom = $("#DateFrom").val();
+            var dateTo = $("#DateTo").val();
+            var targetUrl = "/Reporte/DoctorMasyMenosVisitado";
+            $.ajax({
+                url: targetUrl,
+                dataType: 'html',
+                data: { "dateFrom": dateFrom, "dateTo": dateTo },
+                type: 'POST',
+                beforeSend: function () {
+                    //$('#dlgProcesando').dialog('open');
+                },
+                success: function (data) {
+                    //$("#tabla_Horas").html(data.Data);
+                    $("#table").html(data);
+                }
+            })
+            .fail(function (serverResponse) {
+                //$('#dlgProcesando').dialog('close');
+                //$('#dlgResultadoError').html(serverResponse.responseText);
+                //$('#dlgResultadoError').dialog({
+                //    buttons: {
+                //        'Aceptar': function () {
+                //            $(this).dialog('close');
+                //        }
+                //    }
+                //});
+                //$('#dlgResultadoError').dialog('open');
+            });
+        });
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

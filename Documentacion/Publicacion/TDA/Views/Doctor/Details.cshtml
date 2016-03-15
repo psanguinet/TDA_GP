@@ -1,0 +1,130 @@
+﻿@model Modelo.Models.Doctor
+
+@{
+    ViewBag.Title = "Doctor";
+}
+
+<h2>Detalles del Doctor</h2>
+
+<fieldset>
+    @Html.HiddenFor(model=>model.DoctorID)
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellido)
+    </div>
+    <aside>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+        <input type="file" name="UploadFile" id="txtUploadFile" />
+        <div>
+            @Html.Partial("_FileUploadDoctor", "Vista previa")
+        </div>
+
+    </aside>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EsDirector)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsDirector)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorConsulta)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SueldoMinimo)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+     <div class="display-label" style="margin-bottom:10px;">
+            @Html.Label("Nombre especialidad")
+     </div>
+     <div>
+        
+     @foreach (var item in (IEnumerable<Modelo.Models.Especialidad>)ViewBag.Especialidades) {
+      // <div><input type = "checkbox" id = "item.EspecilidadID" value=@item.EspecilidadID name="espcialidades_list[]" style="margin-right:20px;"/>
+          @Html.DisplayFor(modelItem => item.Nombre)//</div>
+     }
+    
+     </div>
+
+    
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.DoctorID }) |
+    @Html.ActionLink("<< Volver al listado", "Index")
+</p>
+<script type='text/javascript'>
+    $(document).ready(function () {
+
+        $('#txtUploadFile').on('change', function (e) {
+            $('img').remove();
+            var files = e.target.files;
+            var myID = $("#DoctorID").val();
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append("file" + x, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Doctor/Upload?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            console.log(result);
+                            $("#imgResult").html(result);
+
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

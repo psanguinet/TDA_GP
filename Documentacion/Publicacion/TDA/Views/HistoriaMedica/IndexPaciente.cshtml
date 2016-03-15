@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Historia Clínica";
+}
+
+<hgroup class="title">
+    <h1>Historia médica:</h1>
+    <h2>Aquí usted puede visualizar y buscar sobre sus historias medicas.</h2>
+</hgroup>
+
+<article>
+    <h3>Mis historias médicas</h3>
+    <ul>
+
+        <li>@Html.ActionLink("Ver historias", "HistoriaMedicaPaciente", "HistoriaMedica")</li>
+        <li>@Html.ActionLink("Búsquedas", "HistoriaMedicaPacienteBusqueda", "HistoriaMedica")</li>
+
+    </ul>
+</article>
+
+

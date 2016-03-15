@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Administración";
+}
+
+
+<hgroup class="title">
+    <h1>Administración:</h1>
+    <h2>Aquí usted puede administrar las principales entidades del sistema.</h2>
+</hgroup>
+
+<article>
+    <ul>
+        <li>@Html.ActionLink("Paciente", "Index", "Paciente")</li>
+        <li>@Html.ActionLink("Doctor", "Index", "Doctor")</li>
+
+      
+    </ul>
+</article>
+
+<aside>
+    <ul>
+        <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+        <li>@Html.ActionLink("Especialidades", "Index", "Especialidad")</li>
+    </ul>
+</aside>

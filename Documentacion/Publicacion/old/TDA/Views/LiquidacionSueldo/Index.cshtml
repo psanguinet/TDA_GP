@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Administración";
+}
+
+
+<hgroup class="title">
+    <h1>Liquidación de Sueldo:</h1>
+    <h2>Aquí usted puede administrar las liquidaciones de sueldos.</h2>
+</hgroup>
+
+<article>
+    <ul>
+
+        <li>@Html.ActionLink("Ver Liquidación Sueldo", "ShowLiq", "LiquidacionSueldo")</li>
+        <li>@Html.ActionLink("Crear Liquidación", "Create", "LiquidacionSueldo")</li> @*Agregar restriccion solo directores*@
+
+    </ul>
+</article>
+
+

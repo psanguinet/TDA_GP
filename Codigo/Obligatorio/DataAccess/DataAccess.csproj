@@ -90,82 +90,8 @@
   <ItemGroup>
     <Compile Include="MembershipFolder\CodeFirstMembershipProvider.cs" />
     <Compile Include="MembershipFolder\CodeFirstRoleProvider.cs" />
-    <Compile Include="Migrations\201602281604432__1.cs" />
-    <Compile Include="Migrations\201602281604432__1.Designer.cs">
-      <DependentUpon>201602281604432__1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292042020__2.cs" />
-    <Compile Include="Migrations\201602292042020__2.Designer.cs">
-      <DependentUpon>201602292042020__2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292049038__3.cs" />
-    <Compile Include="Migrations\201602292049038__3.Designer.cs">
-      <DependentUpon>201602292049038__3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292127402__4.cs" />
-    <Compile Include="Migrations\201602292127402__4.Designer.cs">
-      <DependentUpon>201602292127402__4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292130187__5.cs" />
-    <Compile Include="Migrations\201602292130187__5.Designer.cs">
-      <DependentUpon>201602292130187__5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292137222__6.cs" />
-    <Compile Include="Migrations\201602292137222__6.Designer.cs">
-      <DependentUpon>201602292137222__6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292142167__7.cs" />
-    <Compile Include="Migrations\201602292142167__7.Designer.cs">
-      <DependentUpon>201602292142167__7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292147558__8.cs" />
-    <Compile Include="Migrations\201602292147558__8.Designer.cs">
-      <DependentUpon>201602292147558__8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292150411__9.cs" />
-    <Compile Include="Migrations\201602292150411__9.Designer.cs">
-      <DependentUpon>201602292150411__9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603012234060__10.cs" />
-    <Compile Include="Migrations\201603012234060__10.Designer.cs">
-      <DependentUpon>201603012234060__10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603030230502__11.cs" />
-    <Compile Include="Migrations\201603030230502__11.Designer.cs">
-      <DependentUpon>201603030230502__11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040004366__12.cs" />
-    <Compile Include="Migrations\201603040004366__12.Designer.cs">
-      <DependentUpon>201603040004366__12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040018180__13.cs" />
-    <Compile Include="Migrations\201603040018180__13.Designer.cs">
-      <DependentUpon>201603040018180__13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040119391__14.cs" />
-    <Compile Include="Migrations\201603040119391__14.Designer.cs">
-      <DependentUpon>201603040119391__14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603051710283__15.cs" />
-    <Compile Include="Migrations\201603051710283__15.Designer.cs">
-      <DependentUpon>201603051710283__15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603052033154__16.cs" />
-    <Compile Include="Migrations\201603052033154__16.Designer.cs">
-      <DependentUpon>201603052033154__16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603090522316__.cs" />
-    <Compile Include="Migrations\201603090522316__.Designer.cs">
-      <DependentUpon>201603090522316__.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603092113336__17.cs" />
-    <Compile Include="Migrations\201603092113336__17.Designer.cs">
-      <DependentUpon>201603092113336__17.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\WebSecurity.cs" />
     <Compile Include="Model\Context.cs" />
-    <Compile Include="Model\DBInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,62 +105,6 @@
       <Project>{156464f7-1b84-4d21-bb0d-20a674f4592b}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602281604432__1.resx">
-      <DependentUpon>201602281604432__1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292042020__2.resx">
-      <DependentUpon>201602292042020__2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292049038__3.resx">
-      <DependentUpon>201602292049038__3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292127402__4.resx">
-      <DependentUpon>201602292127402__4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292130187__5.resx">
-      <DependentUpon>201602292130187__5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292137222__6.resx">
-      <DependentUpon>201602292137222__6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292142167__7.resx">
-      <DependentUpon>201602292142167__7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292147558__8.resx">
-      <DependentUpon>201602292147558__8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292150411__9.resx">
-      <DependentUpon>201602292150411__9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603012234060__10.resx">
-      <DependentUpon>201603012234060__10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603030230502__11.resx">
-      <DependentUpon>201603030230502__11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040004366__12.resx">
-      <DependentUpon>201603040004366__12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040018180__13.resx">
-      <DependentUpon>201603040018180__13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040119391__14.resx">
-      <DependentUpon>201603040119391__14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603051710283__15.resx">
-      <DependentUpon>201603051710283__15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603052033154__16.resx">
-      <DependentUpon>201603052033154__16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603090522316__.resx">
-      <DependentUpon>201603090522316__.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603092113336__17.resx">
-      <DependentUpon>201603092113336__17.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Modelo.Models.AnalisisClinico>
+
+@{
+    ViewBag.Title = "Análisis Clínico";
+}
+
+<h2>Listado de Análisis Clínicos</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<div id="gridTable">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    Paciente
+                </th>
+                <th>
+                    Doctor
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Detalle)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Detalle)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.AnalisisClinicoID }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.AnalisisClinicoID }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.AnalisisClinicoID }) |
+                        @Html.ActionLink("Agregar resultado", "../ResultadoAnalisis/Create", new { id = item.AnalisisClinicoID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+    });
+</script>
