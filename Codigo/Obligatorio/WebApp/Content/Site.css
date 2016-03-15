@@ -12,6 +12,7 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
+   
 }
 
 a {
@@ -24,7 +25,7 @@ a {
 
     a:link, a:visited,
     a:active, a:hover {
-        color: #333;
+        color: #3b8d61;
     }
 
     a:hover {
@@ -60,7 +61,7 @@ mark {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #000;
+    color: #114454 ;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -96,6 +97,7 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
+    color:#4c6a8d;
 }
 
 #body {
@@ -120,7 +122,7 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background-color: #114454;
     font-size: .8em;
     height: 100px;
 }
@@ -137,7 +139,7 @@ footer {
 
     .site-title a, .site-title a:hover, .site-title a:active {
         background: none;
-        color: #c8c8c8;
+        color: #114454;
         outline: none;
         text-decoration: none;
     }
@@ -195,7 +197,7 @@ ul#menu {
 
         ul#menu li a {
             background: none;
-            color: #999;
+            color: #3b8d61;
             text-decoration: none;
         }
 
