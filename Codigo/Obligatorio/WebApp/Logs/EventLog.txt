@@ -29,3 +29,16 @@
 2016-03-14 21:34:46,212 [11] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
 2016-03-14 21:43:32,649 [10] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
 2016-03-14 21:57:38,568 [21] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-14 22:48:13,100 [8] INFO Logging.Log4Net - psanguinet - Texto buscado:diclof
+2016-03-14 22:50:36,903 [25] INFO Logging.Log4Net - psanguinet - Texto buscado:diclofenac
+2016-03-14 23:09:03,835 [10] INFO Logging.Log4Net - msanchez - PSANGUINET-PC
+2016-03-14 23:13:12,495 [10] INFO Logging.Log4Net - msanchez - PSANGUINET-PC
+2016-03-14 23:26:47,418 [14] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-14 23:47:28,096 [13] INFO Logging.Log4Net - msanchez - PSANGUINET-PC
+2016-03-15 00:05:03,425 [6] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-15 00:06:38,543 [8] INFO Logging.Log4Net - psanguinet - Texto buscado:diclo
+2016-03-15 00:07:38,745 [6] INFO Logging.Log4Net - pescobar - PSANGUINET-PC
+2016-03-15 00:07:54,982 [5] INFO Logging.Log4Net - pescobar - Texto buscado:diclo
+2016-03-15 00:09:36,250 [5] INFO Logging.Log4Net - mendiondo - PSANGUINET-PC
+2016-03-15 00:10:14,798 [8] INFO Logging.Log4Net - mendiondo - Texto buscado:analis
+2016-03-15 00:10:19,212 [8] INFO Logging.Log4Net - mendiondo - Texto buscado:Anali

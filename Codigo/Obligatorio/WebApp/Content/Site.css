@@ -12,7 +12,6 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-   
 }
 
 a {
@@ -61,7 +60,7 @@ mark {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #114454 ;
+    color: #114454;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -97,7 +96,7 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
-    color:#4c6a8d;
+    color: #4c6a8d;
 }
 
 #body {
@@ -454,14 +453,15 @@ input[type="checkbox"] {
 input[type="submit"],
 input[type="button"],
 button {
-    background-color: #d3dce0;
+    background-color: #4c6a8d;
     border: 1px solid #787878;
     cursor: pointer;
     font-size: 1.2em;
     font-weight: 600;
     padding: 7px;
     margin-right: 8px;
-    width: auto;
+    width: 140px;
+    color: white;
 }
 
 td input[type="submit"],
@@ -756,4 +756,10 @@ tr.pager td {
             margin: 0;
         }
 
+    img {
+        border: solid 2px;
+        border-color:#114454;
+        padding: 1px;
+    }
+    
 }

@@ -41,9 +41,14 @@
                         @Html.ActionLink("Ver mas", "../AnalisisClinico/Details", new { id = item.Numero })
                     </td>
                 }
-
             </tr>
         }
     </tbody>
 </table>
 
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("gridTable");
+        $('#table_filter').hide();
+    });
+</script>

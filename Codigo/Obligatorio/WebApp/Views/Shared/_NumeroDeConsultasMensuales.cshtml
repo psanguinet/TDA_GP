@@ -16,7 +16,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Key.Nombre) - @Html.DisplayFor(modelItem => item.Key.Apellido)
+                    @Html.DisplayFor(modelItem => item.Key.Nombre) @Html.DisplayFor(modelItem => item.Key.Apellido)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Value)
@@ -25,4 +25,9 @@
         }
     </tbody>
 </table>
-
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        ApplyDataTables("table");
+        //$('#table_filter').hide();
+    });
+</script>

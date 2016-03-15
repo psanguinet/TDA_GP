@@ -13,6 +13,7 @@ namespace Modelo.Models
         public int ResultadoAnalisisID { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido.")]
+        [Display(Name = "Nombre")]
         public string Nobmre { get; set; }
 
         [Required(ErrorMessage = "El resultado es requerido.")]

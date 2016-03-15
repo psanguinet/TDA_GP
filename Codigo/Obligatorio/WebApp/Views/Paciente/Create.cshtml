@@ -105,28 +105,7 @@
 <div>
     @Html.ActionLink("<< Volver al listado", "Index")
 </div>
-<script type='text/javascript'>
-    $(document).ready(function () {
-        $('#Nombre').val('Pablo');
-        $('#Apellido').val('Sanguinet');
-        $('#Cedula').val('35713412');
-        $('#Direccion').val('Magallanes');
-        $('#Telefono').val('29242216');
-        $('#FechaNacimiento').val('2000-10-10');
-        $('#Altura').val('170');
-        $('#Peso').val('70');
-        $('#UserName').val('psanguinet');
-        $('#Email').val('sanguinet@gmail.com');
-        $('#Password').val('123456');
-        $('#ConfirmPassword').val('123456');
-        $('#GrupoSanguineo').val('A');
-        $('#Activo').prop('checked', true);
-        $('#Activo').attr("disabled", true);
-       
 
-
-    });
-</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
