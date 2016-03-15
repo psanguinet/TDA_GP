@@ -24,3 +24,6 @@
 2016-03-14 20:12:58,467 [9] INFO Logging.Log4Net - pescobar - Texto buscado:Orina
 2016-03-14 20:18:27,573 [7] INFO Logging.Log4Net - pescobar - Texto buscado:Orina
 2016-03-14 20:20:55,272 [13] INFO Logging.Log4Net - msanchez - PSANGUINET-PC
+2016-03-14 20:36:56,545 [6] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-14 21:22:57,398 [9] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
+2016-03-14 21:34:46,212 [11] INFO Logging.Log4Net - psanguinet - PSANGUINET-PC
